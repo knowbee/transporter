@@ -1,0 +1,7 @@
+{
+    "@@locale": "en",
+    "transporterAppBarTitle": "Transporter",
+    "@transporterAppBarTitle": {
+        "description": "Text shown in the AppBar of the transporter Page"
+    }
+}
