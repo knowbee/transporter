@@ -4,8 +4,10 @@ concurrency:
   group: $-$
   cancel-in-progress: true
 
-on: [pull_request, push]
-
+on:
+  push:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
