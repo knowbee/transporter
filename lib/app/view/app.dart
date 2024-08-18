@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transporter/l10n/l10n.dart';
-import 'package:transporter/screens/home.dart';
+import 'package:transporter/screens/onboarding/onboarding_progress_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -16,7 +16,7 @@ class App extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const HomePage(),
+      home: const OnboardingProgressScreen(),
     );
   }
 }
