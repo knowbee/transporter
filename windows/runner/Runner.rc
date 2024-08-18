@@ -89,11 +89,11 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example.verygoodcore.transporter" "\0"
+            VALUE "CompanyName", "com.knowbee.transporter" "\0"
             VALUE "FileDescription", "transporter" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "transporter" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 com.example.verygoodcore.transporter. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2022 com.knowbee.transporter. All rights reserved." "\0"
             VALUE "OriginalFilename", "transporter.exe" "\0"
             VALUE "ProductName", "Transporter" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
