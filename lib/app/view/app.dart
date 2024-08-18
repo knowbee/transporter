@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:transporter/l10n/l10n.dart';
 import 'package:transporter/screens/onboarding/onboarding_progress_screen.dart';
 
@@ -7,6 +8,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.black,
+        statusBarBrightness: Brightness.light,
+      ),
+    );
+
     return MaterialApp(
       theme: ThemeData(
         appBarTheme: AppBarTheme(

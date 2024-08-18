@@ -4,7 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:transporter/l10n/l10n.dart';
-import 'package:transporter/screens/home.dart';
+import 'package:transporter/screens/authentication/welcome_screen.dart';
 import 'package:transporter/values/assets/onboarding_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
@@ -76,7 +76,7 @@ class _OnboardingProgressScreen extends State<OnboardingProgressScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute<Material>(
-                  builder: (context) => const HomePage(),
+                  builder: (context) => const WelcomeScreen(),
                 ),
               );
             },
@@ -139,7 +139,7 @@ class _OnboardingProgressScreen extends State<OnboardingProgressScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute<Material>(
-                    builder: (context) => const HomePage(),
+                    builder: (context) => const WelcomeScreen(),
                   ),
                 );
               }

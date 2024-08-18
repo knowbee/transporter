@@ -15,4 +15,18 @@ abstract class Styles {
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w500,
   );
+
+  static const normalWhiteTextStyle = TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w500,
+  );
+
+  static const normalGreenTextStyle = TextStyle(
+    color: Color(0xFF008955),
+    fontSize: 16,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w500,
+  );
 }
