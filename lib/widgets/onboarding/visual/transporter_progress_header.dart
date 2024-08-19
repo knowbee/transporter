@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_dynamic_calls
 
 import 'package:flutter/material.dart';
-import 'package:transporter/l10n/l10n.dart';
+import 'package:transporter/generated/l10n.dart';
 
 class TProgressHeader extends StatelessWidget {
   const TProgressHeader({
@@ -16,8 +16,6 @@ class TProgressHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
     return SafeArea(
       bottom: false,
       child: Column(
@@ -31,7 +29,7 @@ class TProgressHeader extends StatelessWidget {
                 child: TextButton(
                   onPressed: () => onTap?.call(),
                   child: Text(
-                    l10n.onboarding_skip,
+                    Strings.of(context).onboarding_skip,
                     style: const TextStyle(color: Colors.black),
                   ),
                 ),

@@ -3,8 +3,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:transporter/l10n/l10n.dart';
-import 'package:transporter/screens/home.dart';
+import 'package:transporter/generated/l10n.dart';
+import 'package:transporter/screens/authentication/welcome_screen.dart';
 import 'package:transporter/values/assets/onboarding_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
@@ -61,8 +61,6 @@ class _OnboardingProgressScreen extends State<OnboardingProgressScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
     return Scaffold(
       appBar: _buildEmptyAppBar(),
       extendBodyBehindAppBar: true,
@@ -76,13 +74,13 @@ class _OnboardingProgressScreen extends State<OnboardingProgressScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute<Material>(
-                  builder: (context) => const HomePage(),
+                  builder: (context) => const WelcomeScreen(),
                 ),
               );
             },
           ),
           Expanded(
-            child: _buildBody(l10n),
+            child: _buildBody(),
           ),
           _buildFooter(index: _current),
         ],
@@ -90,14 +88,13 @@ class _OnboardingProgressScreen extends State<OnboardingProgressScreen> {
     );
   }
 
-  Widget _buildBody(AppLocalizations l10n) => SizedBox(
+  Widget _buildBody() => SizedBox(
         child: CarouselSlider(
           carouselController: _carouselController,
           options: CarouselOptions(
             height: MediaQuery.of(context).size.height,
             viewportFraction: 1,
             enableInfiniteScroll: false,
-            autoPlay: true,
             autoPlayInterval: AppDurations.carouselInterval,
             scrollPhysics: const ClampingScrollPhysics(),
             onPageChanged: (index, reason) => setState(
@@ -105,9 +102,9 @@ class _OnboardingProgressScreen extends State<OnboardingProgressScreen> {
             ),
           ),
           items: [
-            _firstSlide(l10n: l10n),
-            _secondSlide(l10n: l10n),
-            _thirdSlide(l10n: l10n),
+            _firstSlide(),
+            _secondSlide(),
+            _thirdSlide(),
           ],
         ),
       );
@@ -139,7 +136,7 @@ class _OnboardingProgressScreen extends State<OnboardingProgressScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute<Material>(
-                    builder: (context) => const HomePage(),
+                    builder: (context) => const WelcomeScreen(),
                   ),
                 );
               }
@@ -164,28 +161,28 @@ class _OnboardingProgressScreen extends State<OnboardingProgressScreen> {
         ),
       );
 
-  Widget _firstSlide({required AppLocalizations l10n}) => _slideTemplate(
-        title: l10n.onboarding_anywhere_heading,
+  Widget _firstSlide() => _slideTemplate(
+        title: Strings.of(context).onboarding_anywhere_heading,
         asset: _anywhereImage,
-        description: l10n.onboarding_anywhere_description,
+        description: Strings.of(context).onboarding_anywhere_description,
         topInset: Dimensions.marginLarge,
         leftInset: Dimensions.marginLarge,
         rightInset: Dimensions.marginLarge,
       );
 
-  Widget _secondSlide({required AppLocalizations l10n}) => _slideTemplate(
-        title: l10n.onboarding_anytime_heading,
+  Widget _secondSlide() => _slideTemplate(
+        title: Strings.of(context).onboarding_anytime_heading,
         asset: _anytimeImage,
-        description: l10n.onboarding_anytime_description,
+        description: Strings.of(context).onboarding_anytime_description,
         topInset: Dimensions.marginLarge,
         leftInset: Dimensions.marginLarge,
         rightInset: Dimensions.marginLarge,
       );
 
-  Widget _thirdSlide({required AppLocalizations l10n}) => _slideTemplate(
-        title: l10n.onboarding_book_car_heading,
+  Widget _thirdSlide() => _slideTemplate(
+        title: Strings.of(context).onboarding_book_car_heading,
         asset: _bookYourCarImage,
-        description: l10n.onboarding_book_car_description,
+        description: Strings.of(context).onboarding_book_car_description,
         topInset: Dimensions.marginLarge,
         leftInset: Dimensions.marginLarge,
         rightInset: Dimensions.marginLarge,

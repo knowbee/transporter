@@ -1,0 +1,116 @@
+// DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
+// This is a library that provides messages for a en locale. All the
+// messages from the main program should be duplicated here with the same
+// function name.
+
+// Ignore issues from commonly used lints in this file.
+// ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
+// ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
+// ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
+// ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
+
+import 'package:intl/intl.dart';
+import 'package:intl/message_lookup_by_library.dart';
+
+final messages = new MessageLookup();
+
+typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
+
+class MessageLookup extends MessageLookupByLibrary {
+  String get localeName => 'en';
+
+  final messages = _notInlinedMessages(_notInlinedMessages);
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "confirm_password_label":
+            MessageLookupByLibrary.simpleMessage("Confirm Password"),
+        "confirm_password_rule_validation":
+            MessageLookupByLibrary.simpleMessage(
+                "At least 1 number or a special character",),
+        "confirm_password_validation":
+            MessageLookupByLibrary.simpleMessage("Please enter your password"),
+        "gender_female": MessageLookupByLibrary.simpleMessage("Female"),
+        "gender_male": MessageLookupByLibrary.simpleMessage("Male"),
+        "header_back_label": MessageLookupByLibrary.simpleMessage("Back"),
+        "new_password_label":
+            MessageLookupByLibrary.simpleMessage("Enter Your New Password"),
+        "new_password_validation": MessageLookupByLibrary.simpleMessage(
+            "Please enter your new password",),
+        "onboarding_anytime_description": MessageLookupByLibrary.simpleMessage(
+            "Sell houses easily with the help of Listenoryx and to make this line big I am writing more.",),
+        "onboarding_anytime_heading":
+            MessageLookupByLibrary.simpleMessage("At anytime"),
+        "onboarding_anywhere_description": MessageLookupByLibrary.simpleMessage(
+            "Sell houses easily with the help of Listenoryx and to make this line big I am writing more.",),
+        "onboarding_anywhere_heading":
+            MessageLookupByLibrary.simpleMessage("Anywhere you are"),
+        "onboarding_book_car_description": MessageLookupByLibrary.simpleMessage(
+            "Sell houses easily with the help of Listenoryx and to make this line big I am writing more.",),
+        "onboarding_book_car_heading":
+            MessageLookupByLibrary.simpleMessage("Book your car"),
+        "onboarding_skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "or_separator": MessageLookupByLibrary.simpleMessage("or"),
+        "save_button_label": MessageLookupByLibrary.simpleMessage("Save"),
+        "set_new_password_heading":
+            MessageLookupByLibrary.simpleMessage("Set New Password"),
+        "set_new_password_subheading":
+            MessageLookupByLibrary.simpleMessage("Set your new password"),
+        "signin_dont_have_account_label":
+            MessageLookupByLibrary.simpleMessage("Don\'t have an account? "),
+        "signin_email_or_phone":
+            MessageLookupByLibrary.simpleMessage("Email or Phone Number"),
+        "signin_forgot_password_label":
+            MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+        "signin_heading": MessageLookupByLibrary.simpleMessage(
+            "Sign in with your email or phone number",),
+        "signin_label": MessageLookupByLibrary.simpleMessage("Sign in"),
+        "signin_password_label":
+            MessageLookupByLibrary.simpleMessage("Enter your Password"),
+        "signin_password_validation_label":
+            MessageLookupByLibrary.simpleMessage("Please enter your password"),
+        "signin_validation_email_or_phone":
+            MessageLookupByLibrary.simpleMessage(
+                "Please enter your email or phone number",),
+        "signup_already_have_account_label":
+            MessageLookupByLibrary.simpleMessage("Already have an account? "),
+        "signup_button_label": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "signup_email_field_label":
+            MessageLookupByLibrary.simpleMessage("Email"),
+        "signup_email_validation_label":
+            MessageLookupByLibrary.simpleMessage("Please enter your email"),
+        "signup_gender_field_label":
+            MessageLookupByLibrary.simpleMessage("Gender"),
+        "signup_heading": MessageLookupByLibrary.simpleMessage(
+            "Sign up with your email or phone number",),
+        "signup_name_field_label": MessageLookupByLibrary.simpleMessage("Name"),
+        "signup_name_validation_label":
+            MessageLookupByLibrary.simpleMessage("Please enter your name"),
+        "signup_phone_field_label":
+            MessageLookupByLibrary.simpleMessage("Your mobile number"),
+        "signup_terms_conditions_1": MessageLookupByLibrary.simpleMessage(
+            "By signing up, you agree to the ",),
+        "signup_terms_conditions_2":
+            MessageLookupByLibrary.simpleMessage("Terms of service"),
+        "signup_terms_conditions_3":
+            MessageLookupByLibrary.simpleMessage(" and "),
+        "signup_terms_conditions_4":
+            MessageLookupByLibrary.simpleMessage("Privacy policy."),
+        "transporterAppBarTitle":
+            MessageLookupByLibrary.simpleMessage("Transporter"),
+        "verify_button_label": MessageLookupByLibrary.simpleMessage("Verify"),
+        "verify_didnt_receive_label":
+            MessageLookupByLibrary.simpleMessage("Didn\'t receive code? "),
+        "verify_phone_heading":
+            MessageLookupByLibrary.simpleMessage("Phone verification"),
+        "verify_phone_subheading":
+            MessageLookupByLibrary.simpleMessage("Enter your OTP code"),
+        "verify_resend_label":
+            MessageLookupByLibrary.simpleMessage("Resend again"),
+        "welcome_create_account_label":
+            MessageLookupByLibrary.simpleMessage("Create an account"),
+        "welcome_heading": MessageLookupByLibrary.simpleMessage("Welcome"),
+        "welcome_login_label": MessageLookupByLibrary.simpleMessage("Log In"),
+        "welcome_subheading": MessageLookupByLibrary.simpleMessage(
+            "Have a better sharing experience",),
+      };
+}
