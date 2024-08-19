@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/authentication/signin_screen.dart';
+import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
@@ -19,24 +20,25 @@ class SetNewPasswordScreen extends StatelessWidget {
           titleText: Strings.of(context).header_back_label,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
-        child: SizedBox.expand(
-          child: Column(
-            children: [
-              Text(
-                Strings.of(context).set_new_password_heading,
-                style:
-                    const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                Strings.of(context).set_new_password_subheading,
-                style: const TextStyle(color: Colors.grey),
-              ),
-              const SizedBox(height: 24),
-              const NewPasswordForm(),
-            ],
+      body: ResponsiveLayout(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+          child: SizedBox.expand(
+            child: Column(
+              children: [
+                Text(
+                  Strings.of(context).set_new_password_heading,
+                  style: Styles.mediumBlackTitle,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  Strings.of(context).set_new_password_subheading,
+                  style: Styles.regularGreyParagraph,
+                ),
+                const SizedBox(height: 24),
+                const NewPasswordForm(),
+              ],
+            ),
           ),
         ),
       ),
@@ -138,13 +140,11 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
   }
 
   Widget _buildPasswordRuleLabel() {
-    return Text(
-      Strings.of(context).confirm_password_rule_validation,
-      style: const TextStyle(
-        color: Color(0xFFA5A5A5),
-        fontSize: 14,
-        fontFamily: 'Poppins',
-        fontWeight: FontWeight.w500,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Text(
+        Strings.of(context).confirm_password_rule_validation,
+        style: Styles.mediumHintText,
       ),
     );
   }
@@ -172,7 +172,7 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
       ),
       child: Text(
         Strings.of(context).save_button_label,
-        style: Styles.normalWhiteTextStyle,
+        style: Styles.mediumWhiteText,
       ),
     );
   }

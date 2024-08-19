@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/authentication/signin_screen.dart';
 import 'package:transporter/screens/authentication/verify_otp_screen.dart';
+import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/assets/authentication_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
@@ -18,15 +19,18 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.tWhite,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: GenericHeader(
           titleText: Strings.of(context).header_back_label,
         ),
       ),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 30),
-        child: SignUpForm(),
+      body: const ResponsiveLayout(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+          child: SignUpForm(),
+        ),
       ),
     );
   }
@@ -60,16 +64,11 @@ class _SignUpFormState extends State<SignUpForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: ListView(
+      child: Column(
         children: [
           Text(
             Strings.of(context).signup_heading,
-            style: const TextStyle(
-              color: Color(0xFF414141),
-              fontSize: 24,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w500,
-            ),
+            style: Styles.mediumBlackTitle,
           ),
           const SizedBox(height: 30),
           _buildNameField(),
@@ -96,7 +95,9 @@ class _SignUpFormState extends State<SignUpForm> {
     return TextFormField(
       decoration: InputDecoration(
         labelText: Strings.of(context).signup_name_field_label,
-        border: const OutlineInputBorder(),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGrey),
+        ),
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -167,13 +168,7 @@ class _SignUpFormState extends State<SignUpForm> {
             padding: const EdgeInsets.only(left: 8),
             child: Text(
               '+${_selectedCountry.phoneCode}',
-              style: const TextStyle(
-                color: Color(0xFF262626),
-                fontSize: 16,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w500,
-                height: 0.09,
-              ),
+              style: Styles.countryCodeTextStyle,
             ),
           ),
           Expanded(
@@ -181,7 +176,7 @@ class _SignUpFormState extends State<SignUpForm> {
               controller: _phoneController,
               decoration: InputDecoration(
                 hintText: Strings.of(context).signup_phone_field_label,
-                hintStyle: const TextStyle(color: AppColors.tGrey),
+                hintStyle: Styles.inputLabelStyle,
                 border: InputBorder.none,
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
@@ -227,21 +222,19 @@ class _SignUpFormState extends State<SignUpForm> {
           child: Text.rich(
             TextSpan(
               text: Strings.of(context).signup_terms_conditions_1,
+              style: Styles.smallParagraphBlack,
               children: [
                 TextSpan(
                   text: Strings.of(context).signup_terms_conditions_2,
-                  style: const TextStyle(
-                    color: AppColors.tLightGreen,
-                  ),
+                  style: Styles.smallParagraphLightGreen,
                 ),
                 TextSpan(
                   text: Strings.of(context).signup_terms_conditions_3,
+                  style: Styles.smallParagraphBlack,
                 ),
                 TextSpan(
                   text: Strings.of(context).signup_terms_conditions_4,
-                  style: const TextStyle(
-                    color: AppColors.tLightGreen,
-                  ),
+                  style: Styles.smallParagraphLightGreen,
                 ),
               ],
             ),
@@ -252,30 +245,33 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   Widget _buildSignUpButton() {
-    return ElevatedButton(
-      key: const Key('signup_button'),
-      onPressed: () {
-        if (_formKey.currentState?.validate() ?? false) {
-          Navigator.push(
-            context,
-            MaterialPageRoute<Material>(
-              builder: (context) => const VerificationScreen(),
-            ),
-          );
-        }
-      },
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(
-          vertical: Dimensions.marginDefault,
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        key: const Key('signup_button'),
+        onPressed: () {
+          if (_formKey.currentState?.validate() ?? false) {
+            Navigator.push(
+              context,
+              MaterialPageRoute<Material>(
+                builder: (context) => const VerificationScreen(),
+              ),
+            );
+          }
+        },
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(
+            vertical: Dimensions.marginDefault,
+          ),
+          backgroundColor: AppColors.tGreen,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
+          ),
         ),
-        backgroundColor: AppColors.tGreen,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
+        child: Text(
+          Strings.of(context).signup_button_label,
+          style: Styles.mediumWhiteText,
         ),
-      ),
-      child: Text(
-        Strings.of(context).signup_button_label,
-        style: Styles.normalWhiteTextStyle,
       ),
     );
   }
@@ -285,9 +281,9 @@ class _SignUpFormState extends State<SignUpForm> {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         children: [
-          Expanded(
+          const Expanded(
             child: Divider(
-              color: Colors.grey[300],
+              color: AppColors.greyIconColor,
               height: 1.5,
             ),
           ),
@@ -295,15 +291,12 @@ class _SignUpFormState extends State<SignUpForm> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               Strings.of(context).or_separator,
-              style: TextStyle(
-                color: Colors.grey[600],
-                fontWeight: FontWeight.w500,
-              ),
+              style: Styles.orSeparatorTextStyle,
             ),
           ),
-          Expanded(
+          const Expanded(
             child: Divider(
-              color: Colors.grey[300],
+              color: AppColors.greyIconColor,
               height: 1.5,
             ),
           ),
@@ -330,10 +323,7 @@ class _SignUpFormState extends State<SignUpForm> {
           },
           child: Text(
             Strings.of(context).signin_label,
-            style: const TextStyle(
-              color: AppColors.tGreen,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Styles.normalGreenTextStyle,
           ),
         ),
       ],

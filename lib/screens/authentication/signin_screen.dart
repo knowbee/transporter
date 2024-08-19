@@ -3,6 +3,7 @@ import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/authentication/new_password_screen.dart';
 import 'package:transporter/screens/authentication/signup_screen.dart';
 import 'package:transporter/screens/home.dart';
+import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
@@ -21,9 +22,11 @@ class SignInScreen extends StatelessWidget {
           titleText: Strings.of(context).header_back_label,
         ),
       ),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 30),
-        child: SignInForm(),
+      body: const ResponsiveLayout(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+          child: SignInForm(),
+        ),
       ),
     );
   }
@@ -43,16 +46,11 @@ class _SignInFormState extends State<SignInForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: ListView(
+      child: Column(
         children: [
           Text(
             Strings.of(context).signin_heading,
-            style: const TextStyle(
-              color: Color(0xFF414141),
-              fontSize: 24,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w500,
-            ),
+            style: Styles.mediumBlackTitle,
           ),
           const SizedBox(height: 30),
           _buildEmailField(),
@@ -130,13 +128,7 @@ class _SignInFormState extends State<SignInForm> {
           },
           child: Text(
             Strings.of(context).signin_forgot_password_label,
-            style: const TextStyle(
-              color: AppColors.tRed,
-              fontSize: 14,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w500,
-              height: 0.10,
-            ),
+            style: Styles.mediumRedHintText,
           ),
         ),
       ],
@@ -144,29 +136,32 @@ class _SignInFormState extends State<SignInForm> {
   }
 
   Widget _buildSignInButton() {
-    return ElevatedButton(
-      onPressed: () {
-        if (_formKey.currentState?.validate() ?? false) {
-          Navigator.push(
-            context,
-            MaterialPageRoute<Material>(
-              builder: (context) => const HomePage(),
-            ),
-          );
-        }
-      },
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(
-          vertical: Dimensions.marginDefault,
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: () {
+          if (_formKey.currentState?.validate() ?? false) {
+            Navigator.push(
+              context,
+              MaterialPageRoute<Material>(
+                builder: (context) => const HomePage(),
+              ),
+            );
+          }
+        },
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(
+            vertical: Dimensions.marginDefault,
+          ),
+          backgroundColor: AppColors.tGreen,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
+          ),
         ),
-        backgroundColor: AppColors.tGreen,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
+        child: Text(
+          Strings.of(context).signin_label,
+          style: Styles.mediumWhiteText,
         ),
-      ),
-      child: Text(
-        Strings.of(context).signin_label,
-        style: Styles.normalWhiteTextStyle,
       ),
     );
   }
@@ -187,10 +182,7 @@ class _SignInFormState extends State<SignInForm> {
           },
           child: Text(
             Strings.of(context).signup_button_label,
-            style: const TextStyle(
-              color: AppColors.tGreen,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Styles.normalGreenTextStyle,
           ),
         ),
       ],
@@ -202,9 +194,9 @@ class _SignInFormState extends State<SignInForm> {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         children: [
-          Expanded(
+          const Expanded(
             child: Divider(
-              color: Colors.grey[300],
+              color: AppColors.greyIconColor,
               height: 1.5,
             ),
           ),
@@ -212,15 +204,12 @@ class _SignInFormState extends State<SignInForm> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               Strings.of(context).or_separator,
-              style: TextStyle(
-                color: Colors.grey[600],
-                fontWeight: FontWeight.w500,
-              ),
+              style: Styles.orSeparatorTextStyle,
             ),
           ),
-          Expanded(
+          const Expanded(
             child: Divider(
-              color: Colors.grey[300],
+              color: AppColors.greyIconColor,
               height: 1.5,
             ),
           ),
