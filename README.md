@@ -88,8 +88,7 @@ import 'package:transporter/l10n/l10n.dart';
 
 @override
 Widget build(BuildContext context) {
-  final l10n = context.l10n;
-  return Text(l10n.helloWorld);
+  return Text(Strings.of(context).helloWorld);
 }
 ```
 
@@ -153,7 +152,7 @@ To use the latest translations changes, you will need to generate them:
 1. Generate localizations for the current project:
 
 ```sh
-flutter gen-l10n --arb-dir="lib/l10n/arb"
+flutter pub run intl_utils:generate
 ```
 
 Alternatively, run `flutter run` and code generation will take place automatically.
