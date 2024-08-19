@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/authentication/welcome_screen.dart';
+import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/assets/onboarding_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
@@ -65,25 +66,27 @@ class _OnboardingProgressScreen extends State<OnboardingProgressScreen> {
       appBar: _buildEmptyAppBar(),
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.tWhite,
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          TProgressHeader(
-            showSkip: _current < 2,
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute<Material>(
-                  builder: (context) => const WelcomeScreen(),
-                ),
-              );
-            },
-          ),
-          Expanded(
-            child: _buildBody(),
-          ),
-          _buildFooter(index: _current),
-        ],
+      body: ResponsiveLayout(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TProgressHeader(
+              showSkip: _current < 2,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<Material>(
+                    builder: (context) => const WelcomeScreen(),
+                  ),
+                );
+              },
+            ),
+            Expanded(
+              child: _buildBody(),
+            ),
+            _buildFooter(index: _current),
+          ],
+        ),
       ),
     );
   }
@@ -210,7 +213,7 @@ class _OnboardingProgressScreen extends State<OnboardingProgressScreen> {
               Flexible(
                 child: Text(
                   title,
-                  style: Styles.onboardingTitleStyle,
+                  style: Styles.mediumBlackTitle,
                   softWrap: true,
                   overflow: TextOverflow.visible,
                   textAlign: TextAlign.center,
@@ -222,7 +225,7 @@ class _OnboardingProgressScreen extends State<OnboardingProgressScreen> {
               Flexible(
                 child: Text(
                   description,
-                  style: Styles.onboardingDescriptionStyle,
+                  style: Styles.mediumGreyParagraph,
                   softWrap: true,
                   overflow: TextOverflow.visible,
                   textAlign: TextAlign.center,

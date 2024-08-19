@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transporter/values/styles.dart';
 
 class GenericHeader extends StatelessWidget {
   const GenericHeader({
@@ -23,17 +24,12 @@ class GenericHeader extends StatelessWidget {
                 children: [
                   const Icon(
                     Icons.arrow_back_ios_new_sharp,
-                    color: Colors.black,
+                    color: Color(0xFF414141),
                   ),
                   const SizedBox(width: 8),
                   Text(
                     titleText ?? '',
-                    style: const TextStyle(
-                      color: Color(0xFF414141),
-                      fontSize: 16,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w400,
-                    ),
+                    style: Styles.regularLightBlackSubheading,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],

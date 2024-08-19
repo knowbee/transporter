@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:transporter/generated/l10n.dart';
+import 'package:transporter/values/styles.dart';
 
 class TProgressHeader extends StatelessWidget {
   const TProgressHeader({
@@ -30,7 +31,7 @@ class TProgressHeader extends StatelessWidget {
                   onPressed: () => onTap?.call(),
                   child: Text(
                     Strings.of(context).onboarding_skip,
-                    style: const TextStyle(color: Colors.black),
+                    style: Styles.regularLightBlackSubheading,
                   ),
                 ),
               ),
