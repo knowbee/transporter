@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:transporter/generated/l10n.dart';
+import 'package:transporter/screens/authentication/welcome_screen.dart';
 import 'package:transporter/screens/home/complain_screen.dart';
 import 'package:transporter/values/assets/drawer_assets.dart';
 import 'package:transporter/values/dimensions.dart';
@@ -70,11 +71,7 @@ extension SideMenuLinksContent on SideMenuLinks {
           ),
         );
       case SideMenuLinks.logout:
-        return Scaffold(
-          body: Center(
-            child: Text(Strings.current.menu_logout_label),
-          ),
-        );
+        return const WelcomeScreen();
     }
   }
 

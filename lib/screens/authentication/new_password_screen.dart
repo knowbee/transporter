@@ -84,7 +84,21 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
     return TextFormField(
       decoration: InputDecoration(
         labelText: Strings.of(context).new_password_label,
-        border: const OutlineInputBorder(),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGreen),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
         suffixIcon: IconButton(
           icon: Icon(
             color: AppColors.greyIconColor,
@@ -114,7 +128,21 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
     return TextFormField(
       decoration: InputDecoration(
         labelText: Strings.of(context).confirm_password_label,
-        border: const OutlineInputBorder(),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGreen),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
         suffixIcon: IconButton(
           icon: Icon(
             color: AppColors.greyIconColor,
