@@ -2,6 +2,7 @@ analyzer:
   errors:
     avoid_dynamic_calls: ignore
     library_private_types_in_public_api: ignore
+    flutter_style_todos: ignore
 include: package:very_good_analysis/analysis_options.6.0.0.yaml
 linter:
   rules:

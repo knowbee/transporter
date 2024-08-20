@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:transporter/generated/l10n.dart';
+import 'package:transporter/screens/home/complain_screen.dart';
 import 'package:transporter/values/assets/drawer_assets.dart';
 import 'package:transporter/values/dimensions.dart';
 
@@ -43,11 +44,7 @@ extension SideMenuLinksContent on SideMenuLinks {
           ),
         );
       case SideMenuLinks.complain:
-        return Scaffold(
-          body: Center(
-            child: Text(Strings.current.menu_complain_label),
-          ),
-        );
+        return const ComplainScreen();
       case SideMenuLinks.referral:
         return Scaffold(
           body: Center(
@@ -132,25 +129,6 @@ extension SideMenuLinksContent on SideMenuLinks {
             width: Dimensions.iconDimensSixteen,
           ),
         );
-    }
-  }
-
-  Function get onTap {
-    switch (this) {
-      case SideMenuLinks.history:
-        return () => null;
-      case SideMenuLinks.complain:
-        return () => null;
-      case SideMenuLinks.referral:
-        return () => null;
-      case SideMenuLinks.about:
-        return () => null;
-      case SideMenuLinks.settings:
-        return () => null;
-      case SideMenuLinks.support:
-        return () => null;
-      case SideMenuLinks.logout:
-        return () => null;
     }
   }
 

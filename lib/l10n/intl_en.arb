@@ -77,5 +77,15 @@
     "bottom_navigation_fav_label": "Favourite",
     "bottom_navigation_wallet_label": "Wallet",
     "bottom_navigation_offer_label": "Offer",
-    "bottom_navigation_profile_label": "Profile"
+    "bottom_navigation_profile_label": "Profile",
+
+    "submit_button_label": "Submit",
+
+    "complain_recent_reviews_heading": "Recent Reviews",
+    "complain_vehicle_arrived_late": "Vehicle arrived late",
+    "complain_vehicle_not_clean": "Vehicle not clean",
+    "complain_vehicle_has_mechanical_fault": "Vehicle has mechanical fault",
+    "complain_text_area_placeholder": "Write your complain here (minimum 10 characters)",
+    "complain_text_area_placeholder_validation_error": "Complaint must be at least 10 characters long",
+    "complain_topic_validation_error": "Please select a topic"
 }

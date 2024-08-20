@@ -32,6 +32,22 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Profile"),
         "bottom_navigation_wallet_label":
             MessageLookupByLibrary.simpleMessage("Wallet"),
+        "complain_recent_reviews_heading":
+            MessageLookupByLibrary.simpleMessage("Recent Reviews"),
+        "complain_text_area_placeholder": MessageLookupByLibrary.simpleMessage(
+            "Write your complain here (minimum 10 characters)",),
+        "complain_text_area_placeholder_validation_error":
+            MessageLookupByLibrary.simpleMessage(
+                "Complaint must be at least 10 characters long",),
+        "complain_topic_validation_error":
+            MessageLookupByLibrary.simpleMessage("Please select a topic"),
+        "complain_vehicle_arrived_late":
+            MessageLookupByLibrary.simpleMessage("Vehicle arrived late"),
+        "complain_vehicle_has_mechanical_fault":
+            MessageLookupByLibrary.simpleMessage(
+                "Vehicle has mechanical fault",),
+        "complain_vehicle_not_clean":
+            MessageLookupByLibrary.simpleMessage("Vehicle not clean"),
         "confirm_password_label":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "confirm_password_rule_validation":
@@ -122,6 +138,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" and "),
         "signup_terms_conditions_4":
             MessageLookupByLibrary.simpleMessage("Privacy policy."),
+        "submit_button_label": MessageLookupByLibrary.simpleMessage("Submit"),
         "transporterAppBarTitle":
             MessageLookupByLibrary.simpleMessage("Mutwazi"),
         "verify_button_label": MessageLookupByLibrary.simpleMessage("Verify"),

@@ -46,6 +46,13 @@ abstract class Styles {
     fontWeight: FontWeight.w500,
   );
 
+  static const pageTitleTextStyle = TextStyle(
+    color: Color(0xFF2A2A2A),
+    fontSize: 18,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w500,
+  );
+
   static const regularLightBlackSubheading = TextStyle(
     color: Color(0xFF414141),
     fontSize: 16,
@@ -155,5 +162,27 @@ abstract class Styles {
     fontSize: 18,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w500,
+  );
+
+  static const mediumLightBlackText = TextStyle(
+    color: Color(0xFF5A5A5A),
+    fontSize: 22,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w500,
+  );
+
+  static const regularLightGreyText = TextStyle(
+    color: Color(0xFF898989),
+    fontSize: 12,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w500,
+  );
+
+  static const textAreaHintStyle = TextStyle(
+    color: Color(0xFFD0D0D0),
+    fontSize: 14,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w400,
+    height: 2,
   );
 }

@@ -93,7 +93,15 @@ class CustomDrawer extends StatelessWidget {
                       return _buildDrawerItem(
                         icon: e.icon,
                         text: e.label,
-                        onTap: () => e.onTap.call(),
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<Material>(
+                              builder: (context) => e.content,
+                            ),
+                          );
+                        },
                       );
                     }).toList(),
                   ),

@@ -58,6 +58,7 @@ flutter:
     - assets/icons/bottom_navigation/
     - assets/icons/home/
     - assets/icons/drawer/
+    - assets/icons/complain/
 
     # JSON Data
     - assets/data/
