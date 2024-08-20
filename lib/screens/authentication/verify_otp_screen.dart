@@ -29,7 +29,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: GenericHeader(
-          titleText: Strings.of(context).header_back_label,
+          backLabel: Strings.of(context).header_back_label,
         ),
       ),
       body: ResponsiveLayout(

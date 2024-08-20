@@ -31,5 +31,6 @@ abstract class Dimensions {
 
   static const iconDimensSixteen = 16.0;
   static const iconDimensTwenty = 20.0;
+  static const iconDimensTwentyFour = 24.0;
   static const iconDimensTwentyFive = 25.0;
 }

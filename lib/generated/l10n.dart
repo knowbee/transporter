@@ -719,6 +719,86 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Submit`
+  String get submit_button_label {
+    return Intl.message(
+      'Submit',
+      name: 'submit_button_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent Reviews`
+  String get complain_recent_reviews_heading {
+    return Intl.message(
+      'Recent Reviews',
+      name: 'complain_recent_reviews_heading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle arrived late`
+  String get complain_vehicle_arrived_late {
+    return Intl.message(
+      'Vehicle arrived late',
+      name: 'complain_vehicle_arrived_late',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle not clean`
+  String get complain_vehicle_not_clean {
+    return Intl.message(
+      'Vehicle not clean',
+      name: 'complain_vehicle_not_clean',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle has mechanical fault`
+  String get complain_vehicle_has_mechanical_fault {
+    return Intl.message(
+      'Vehicle has mechanical fault',
+      name: 'complain_vehicle_has_mechanical_fault',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write your complain here (minimum 10 characters)`
+  String get complain_text_area_placeholder {
+    return Intl.message(
+      'Write your complain here (minimum 10 characters)',
+      name: 'complain_text_area_placeholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complaint must be at least 10 characters long`
+  String get complain_text_area_placeholder_validation_error {
+    return Intl.message(
+      'Complaint must be at least 10 characters long',
+      name: 'complain_text_area_placeholder_validation_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a topic`
+  String get complain_topic_validation_error {
+    return Intl.message(
+      'Please select a topic',
+      name: 'complain_topic_validation_error',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {
