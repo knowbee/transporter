@@ -97,6 +97,18 @@ class _SignUpFormState extends State<SignUpForm> {
         labelText: Strings.of(context).signup_name_field_label,
         border: const OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGreen),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
         ),
       ),
       validator: (value) {
@@ -112,7 +124,21 @@ class _SignUpFormState extends State<SignUpForm> {
     return TextFormField(
       decoration: InputDecoration(
         labelText: Strings.of(context).signup_email_field_label,
-        border: const OutlineInputBorder(),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGreen),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
       ),
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
@@ -128,8 +154,8 @@ class _SignUpFormState extends State<SignUpForm> {
     return Container(
       height: 60,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        border: Border.all(color: AppColors.tGrey),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: AppColors.tLightGrey),
       ),
       child: Row(
         children: [
@@ -196,7 +222,21 @@ class _SignUpFormState extends State<SignUpForm> {
     return DropdownButtonFormField<String>(
       decoration: InputDecoration(
         labelText: Strings.of(context).signup_gender_field_label,
-        border: const OutlineInputBorder(),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGreen),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
       ),
       items: ['Male', 'Female', 'Other'].map((String value) {
         return DropdownMenuItem<String>(

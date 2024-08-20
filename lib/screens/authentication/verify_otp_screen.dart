@@ -55,7 +55,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 children: [
                   Text(
                     Strings.of(context).verify_didnt_receive_label,
-                    style: Styles.normalGreenTextStyle,
+                    style: Styles.smallLightBlackText,
                   ),
                   GestureDetector(
                     onTap: () {

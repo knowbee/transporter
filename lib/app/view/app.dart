@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/onboarding/onboarding_progress_screen.dart';
+import 'package:transporter/values/styles.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -11,18 +12,13 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
-        statusBarColor: Colors.black,
+        statusBarColor: Colors.white,
         statusBarBrightness: Brightness.light,
       ),
     );
 
     return MaterialApp(
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        ),
-        useMaterial3: true,
-      ),
+      theme: Styles.themeData,
       localizationsDelegates: const [
         Strings.delegate,
         GlobalMaterialLocalizations.delegate,

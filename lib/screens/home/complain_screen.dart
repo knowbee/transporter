@@ -73,12 +73,18 @@ class _ComplainScreenState extends State<ComplainScreen> {
       decoration: const InputDecoration(
         border: OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.tLightGreen),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
         ),
       ),
       items: [
@@ -110,12 +116,18 @@ class _ComplainScreenState extends State<ComplainScreen> {
         hintStyle: Styles.textAreaHintStyle,
         border: const OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
         ),
         enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
         ),
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.tLightGreen),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
         ),
       ),
       maxLines: 5,

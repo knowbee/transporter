@@ -72,7 +72,21 @@ class _SignInFormState extends State<SignInForm> {
     return TextFormField(
       decoration: InputDecoration(
         labelText: Strings.of(context).signin_password_label,
-        border: const OutlineInputBorder(),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGreen),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
         suffixIcon: IconButton(
           icon: Icon(
             color: AppColors.greyIconColor,
@@ -101,7 +115,21 @@ class _SignInFormState extends State<SignInForm> {
     return TextFormField(
       decoration: InputDecoration(
         labelText: Strings.of(context).signin_email_or_phone,
-        border: const OutlineInputBorder(),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGrey),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.tLightGreen),
+          borderRadius:
+              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+        ),
       ),
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
