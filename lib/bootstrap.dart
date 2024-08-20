@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:transporter/helpers/config_override_helper.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -26,7 +28,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   Bloc.observer = const AppBlocObserver();
-
+  // if in debug mode, load config override values is there are any
+  if (kDebugMode) await ConfigOverrideHelper.init();
   // Add cross-flavor configuration here
 
   runApp(await builder());

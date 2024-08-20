@@ -22,6 +22,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "bottom_navigation_fav_label":
+            MessageLookupByLibrary.simpleMessage("Favourite"),
+        "bottom_navigation_home_label":
+            MessageLookupByLibrary.simpleMessage("Home"),
+        "bottom_navigation_offer_label":
+            MessageLookupByLibrary.simpleMessage("Offer"),
+        "bottom_navigation_profile_label":
+            MessageLookupByLibrary.simpleMessage("Profile"),
+        "bottom_navigation_wallet_label":
+            MessageLookupByLibrary.simpleMessage("Wallet"),
         "confirm_password_label":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "confirm_password_rule_validation":
@@ -32,6 +42,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "gender_female": MessageLookupByLibrary.simpleMessage("Female"),
         "gender_male": MessageLookupByLibrary.simpleMessage("Male"),
         "header_back_label": MessageLookupByLibrary.simpleMessage("Back"),
+        "home_address_input_hint":
+            MessageLookupByLibrary.simpleMessage("Where would you go?"),
+        "home_delivery_button_heading":
+            MessageLookupByLibrary.simpleMessage("Delivery"),
+        "home_rental_button_heading":
+            MessageLookupByLibrary.simpleMessage("Rental"),
+        "home_transport_button_heading":
+            MessageLookupByLibrary.simpleMessage("Transport"),
+        "menu_about_label": MessageLookupByLibrary.simpleMessage("About Us"),
+        "menu_complain_label": MessageLookupByLibrary.simpleMessage("Complain"),
+        "menu_help_label":
+            MessageLookupByLibrary.simpleMessage("Help and Support"),
+        "menu_history_label": MessageLookupByLibrary.simpleMessage("History"),
+        "menu_logout_label": MessageLookupByLibrary.simpleMessage("Logout"),
+        "menu_profile_label": MessageLookupByLibrary.simpleMessage("Profile"),
+        "menu_referral_label": MessageLookupByLibrary.simpleMessage("Referral"),
+        "menu_settings_label": MessageLookupByLibrary.simpleMessage("Settings"),
         "new_password_label":
             MessageLookupByLibrary.simpleMessage("Enter Your New Password"),
         "new_password_validation": MessageLookupByLibrary.simpleMessage(

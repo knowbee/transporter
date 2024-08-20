@@ -57,5 +57,25 @@
     "verify_phone_subheading": "Enter your OTP code",
     "verify_didnt_receive_label": "Didn't receive code? ",
     "verify_resend_label": "Resend again",
-    "verify_button_label": "Verify"
+    "verify_button_label": "Verify",
+
+    "menu_history_label": "History",
+    "menu_profile_label": "Profile",
+    "menu_settings_label": "Settings",
+    "menu_logout_label": "Logout",
+    "menu_help_label": "Help and Support",
+    "menu_referral_label": "Referral",
+    "menu_complain_label": "Complain",
+    "menu_about_label": "About Us",
+
+    "home_rental_button_heading": "Rental",
+    "home_transport_button_heading": "Transport",
+    "home_delivery_button_heading": "Delivery",
+    "home_address_input_hint": "Where would you go?",
+
+    "bottom_navigation_home_label": "Home",
+    "bottom_navigation_fav_label": "Favourite",
+    "bottom_navigation_wallet_label": "Wallet",
+    "bottom_navigation_offer_label": "Offer",
+    "bottom_navigation_profile_label": "Profile"
 }

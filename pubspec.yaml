@@ -11,21 +11,29 @@ dependencies:
   bloc: ^8.1.4
   carousel_slider: ^5.0.0
   country_picker: ^2.0.26
+
+  analyzer: '>=4.6.0 <=5.12.0'
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
   flutter_localizations:
     sdk: flutter
-  flutter_svg: ^2.0.10+1
+  flutter_svg: ^2.0.5
   intl: ^0.19.0
   json_annotation: ^4.9.0
   pinput: ^1.2.2
 
   intl_utils: ^2.8.7
+  flutter_toggle_tab: ^1.4.1
+  google_maps_flutter: ^2.9.0
+  intersperse: ^2.0.0
 
 flutter_intl:
   enabled: true
   class_name: Strings
+
+dependency_overrides:
+  analyzer: '>=6.0.0 <7.0.0' # Adjust if necessary
 
 dev_dependencies:
   bloc_test: ^9.1.7
@@ -33,16 +41,27 @@ dev_dependencies:
     sdk: flutter
   mocktail: ^1.0.4
   very_good_analysis: ^6.0.0
+  build_runner: ^2.0.1
+  json_serializable: ^6.5.4
 
 flutter:
   uses-material-design: true
   generate: true
   assets:
+    # Images and Icons
     - assets/images/
     - assets/icons/
+    - assets/images/profile/
     - assets/images/onboarding/
     - assets/images/authentication/
     - assets/icons/authentication/
+    - assets/icons/bottom_navigation/
+    - assets/icons/home/
+    - assets/icons/drawer/
+
+    # JSON Data
+    - assets/data/
+
   fonts:
     - family: Poppins
       fonts:

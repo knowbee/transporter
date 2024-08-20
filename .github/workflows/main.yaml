@@ -8,6 +8,9 @@ on:
   push:
     branches:
       - main
+env:
+  FLUTTER_VERSION: '3.3.10'
+  DEFINE_GOOGLE_MAPS_API_KEY: ${{ secrets.DEFINE_GOOGLE_MAPS_API_KEY }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,7 +38,7 @@ jobs:
         run: flutter test --no-pub --coverage --test-randomize-ordering-seed random
 
       - name: Build release apK
-        run: flutter build apk --flavor production -t lib/main_production.dart
+        run: flutter build apk --flavor production -t lib/main_production.dart --dart-define=DEFINE_GOOGLE_MAPS_API_KEY=$DEFINE_GOOGLE_MAPS_API_KEY
 
       - name: Setup build tool version variable
         shell: bash
