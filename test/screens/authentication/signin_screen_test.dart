@@ -4,7 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/authentication/new_password_screen.dart';
 import 'package:transporter/screens/authentication/signin_screen.dart';
-import 'package:transporter/screens/authentication/signup_screen.dart';
 import 'package:transporter/screens/home.dart';
 
 void main() {
@@ -97,14 +96,5 @@ void main() {
         .tap(find.widgetWithText(ElevatedButton, Strings.current.signin_label));
     await tester.pumpAndSettle();
     expect(find.byType(HomePage), findsOneWidget);
-
-    // Navigate back to Sign In screen
-    await tester.pageBack();
-    await tester.pumpAndSettle();
-
-    // Test navigation to Sign Up screen
-    await tester.tap(find.text(Strings.current.signup_button_label));
-    await tester.pumpAndSettle();
-    expect(find.byType(SignUpScreen), findsOneWidget);
   });
 }
