@@ -549,6 +549,176 @@ class Strings {
       args: [],
     );
   }
+
+  /// `History`
+  String get menu_history_label {
+    return Intl.message(
+      'History',
+      name: 'menu_history_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get menu_profile_label {
+    return Intl.message(
+      'Profile',
+      name: 'menu_profile_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get menu_settings_label {
+    return Intl.message(
+      'Settings',
+      name: 'menu_settings_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get menu_logout_label {
+    return Intl.message(
+      'Logout',
+      name: 'menu_logout_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help and Support`
+  String get menu_help_label {
+    return Intl.message(
+      'Help and Support',
+      name: 'menu_help_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Referral`
+  String get menu_referral_label {
+    return Intl.message(
+      'Referral',
+      name: 'menu_referral_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complain`
+  String get menu_complain_label {
+    return Intl.message(
+      'Complain',
+      name: 'menu_complain_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About Us`
+  String get menu_about_label {
+    return Intl.message(
+      'About Us',
+      name: 'menu_about_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rental`
+  String get home_rental_button_heading {
+    return Intl.message(
+      'Rental',
+      name: 'home_rental_button_heading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transport`
+  String get home_transport_button_heading {
+    return Intl.message(
+      'Transport',
+      name: 'home_transport_button_heading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery`
+  String get home_delivery_button_heading {
+    return Intl.message(
+      'Delivery',
+      name: 'home_delivery_button_heading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Where would you go?`
+  String get home_address_input_hint {
+    return Intl.message(
+      'Where would you go?',
+      name: 'home_address_input_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get bottom_navigation_home_label {
+    return Intl.message(
+      'Home',
+      name: 'bottom_navigation_home_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favourite`
+  String get bottom_navigation_fav_label {
+    return Intl.message(
+      'Favourite',
+      name: 'bottom_navigation_fav_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wallet`
+  String get bottom_navigation_wallet_label {
+    return Intl.message(
+      'Wallet',
+      name: 'bottom_navigation_wallet_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Offer`
+  String get bottom_navigation_offer_label {
+    return Intl.message(
+      'Offer',
+      name: 'bottom_navigation_offer_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get bottom_navigation_profile_label {
+    return Intl.message(
+      'Profile',
+      name: 'bottom_navigation_profile_label',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

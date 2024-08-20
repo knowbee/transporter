@@ -28,6 +28,17 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
+def dartEnvironmentVariables = []
+
+if (project.hasProperty('dart-define')) {
+    dartEnvironmentVariables = project.property('dart-define')
+        .split(',')
+        .collectEntries { entry ->
+            def pair = new String(entry.decodeBase64(), 'UTF-8').split('=')
+            [(pair.first()): pair.last()]
+        }
+}
+
 android {
     namespace "com.knowbee.transporter"
     compileSdkVersion flutter.compileSdkVersion
@@ -55,6 +66,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders['DEFINE_GOOGLE_MAPS_API_KEY'] = dartEnvironmentVariables.DEFINE_GOOGLE_MAPS_API_KEY
     }
 
     flavorDimensions "default"

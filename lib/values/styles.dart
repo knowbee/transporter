@@ -58,7 +58,6 @@ abstract class Styles {
     fontSize: 16,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.normal,
-    height: 16 / 24,
   );
 
   static const normalGreenTextStyle = TextStyle(
@@ -84,6 +83,13 @@ abstract class Styles {
 
   static const smallParagraphLightGreen = TextStyle(
     color: AppColors.tLightGreen,
+    fontSize: 12,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w500,
+  );
+
+  static const smallParagraphGrey = TextStyle(
+    color: AppColors.tGrey,
     fontSize: 12,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w500,
@@ -136,4 +142,18 @@ abstract class Styles {
         color: AppColors.tWhite,
         border: Border.all(color: AppColors.tLightGreen),
       );
+
+  static const regularBlackText = TextStyle(
+    color: Color(0xFF414141),
+    fontSize: 12,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w500,
+  );
+
+  static const mediumBlackText = TextStyle(
+    color: Color(0xFF414141),
+    fontSize: 18,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w500,
+  );
 }

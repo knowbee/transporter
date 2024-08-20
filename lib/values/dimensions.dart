@@ -15,6 +15,7 @@ abstract class Dimensions {
   static const marginMiddle = 20.0;
   static const marginMedium = 24.0;
   static const marginBig = 28.0;
+  static const marginThirty = 30.0;
   static const marginLarge = 32.0;
   static const marginXLarge = 48.0;
   static const marginIcon = 100.0;
@@ -27,4 +28,8 @@ abstract class Dimensions {
   static const radiusLarge = 16.0;
   static const radiusXLarge = 20.0;
   static const radiusCircular = 100.0;
+
+  static const iconDimensSixteen = 16.0;
+  static const iconDimensTwenty = 20.0;
+  static const iconDimensTwentyFive = 25.0;
 }
