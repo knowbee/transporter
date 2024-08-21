@@ -2,17 +2,31 @@ import 'package:hive/hive.dart';
 import 'package:transporter/data/models/authentication/user.dart';
 
 class UserRepository {
-  UserRepository({required this.userBox});
+  UserRepository({required this.userBox, required this.settingsBox});
   final Box<User> userBox;
+  final Box<String> settingsBox;
 
   Future<User?> getCurrentUser() async {
     if (userBox.values.isEmpty) {
       return null;
     }
-    return userBox.values.first;
+    final userEmail = getCurrentUserEmail();
+    if (userEmail.isEmpty) {
+      return null;
+    }
+    return getUserByEmail(userEmail);
+  }
+
+  Future<void> saveCurrentUserEmail(String currentUserEmail) async {
+    await settingsBox.put('userEmail', currentUserEmail);
+  }
+
+  String getCurrentUserEmail() {
+    return settingsBox.get('userEmail') ?? '';
   }
 
   Future<void> addUser(User user) async {
+    await saveCurrentUserEmail(user.email);
     await userBox.put(user.email, user);
   }
 
@@ -25,6 +39,7 @@ class UserRepository {
     if (user != null && user.password == password) {
       user.isLoggedIn = true;
       await userBox.put(user.email, user);
+      await saveCurrentUserEmail(email);
       return user;
     }
     return null;
@@ -45,7 +60,8 @@ class UserRepository {
   }
 
   Future<User?> verifyOTP(String otp) async {
-    final user = await getCurrentUser();
+    final userEmail = getCurrentUserEmail();
+    final user = getUserByEmail(userEmail);
     if (user != null && otp == '12345') {
       user.isVerified = true;
       await userBox.put(user.email, user);
@@ -55,7 +71,9 @@ class UserRepository {
   }
 
   Future<User?> setNewPassword(String password) async {
-    final user = await getCurrentUser();
+    final userEmail = getCurrentUserEmail();
+    final user = getUserByEmail(userEmail);
+
     if (user != null) {
       user.password = password;
       await userBox.put(user.email, user);

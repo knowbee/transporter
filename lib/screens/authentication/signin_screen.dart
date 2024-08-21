@@ -57,7 +57,6 @@ class SignInForm extends StatefulWidget {
 class _SignInFormState extends State<SignInForm> {
   final _formKey = GlobalKey<FormState>();
   bool _isObscured = true;
-  // controller for email or phone number and password
   final _identifierController = TextEditingController();
   final _passwordController = TextEditingController();
 
