@@ -107,8 +107,8 @@ class _VerificationFormState extends State<VerificationForm> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {
-                    context.read<AuthCubit>().verifyOTP(
+                  onPressed: () async {
+                    await context.read<AuthCubit>().verifyOTP(
                           _pinInputValue,
                         );
 
@@ -125,7 +125,7 @@ class _VerificationFormState extends State<VerificationForm> {
                       );
                     } else if (context.read<AuthCubit>().state
                         is Authenticated) {
-                      Navigator.push(
+                      await Navigator.push(
                         context,
                         MaterialPageRoute<Material>(
                           builder: (context) => const SetNewPasswordScreen(),

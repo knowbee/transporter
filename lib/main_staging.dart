@@ -16,8 +16,10 @@ void main() async {
 
   Hive.registerAdapter(UserAdapter());
   final userBox = await Hive.openBox<User>(Constants.userBox);
+  final settingsBox = await Hive.openBox<String>(Constants.settingsBox);
 
-  final userRepository = UserRepository(userBox: userBox);
+  final userRepository =
+      UserRepository(userBox: userBox, settingsBox: settingsBox);
 
   await bootstrap(
     () => App(
