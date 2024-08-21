@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:transporter/generated/l10n.dart';
-import 'package:transporter/screens/home.dart';
 import 'package:transporter/values/assets/navigation_assets.dart';
 import 'package:transporter/values/colors.dart';
 
@@ -25,7 +24,11 @@ extension BottomNavigationLinksContent on BottomNavigationLinks {
   Widget get content {
     switch (this) {
       case BottomNavigationLinks.home:
-        return const HomePage();
+        return Scaffold(
+          body: Center(
+            child: Text(Strings.current.bottom_navigation_home_label),
+          ),
+        );
       case BottomNavigationLinks.favourite:
         return Scaffold(
           body: Center(

@@ -3,8 +3,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:transporter/data/cubits/authentication/auth_cubit.dart';
+import 'package:transporter/data/repositories/user_repository.dart';
 import 'package:transporter/generated/l10n.dart';
+import 'package:transporter/screens/authentication/new_password_screen.dart';
+import 'package:transporter/screens/authentication/signin_screen.dart';
+import 'package:transporter/screens/authentication/verify_otp_screen.dart';
 import 'package:transporter/screens/authentication/welcome_screen.dart';
+import 'package:transporter/screens/home.dart';
 import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/assets/onboarding_assets.dart';
 import 'package:transporter/values/colors.dart';
@@ -17,15 +24,52 @@ abstract class _Constants {
   static const progressIconHeight = 86.0;
 }
 
-class OnboardingProgressScreen extends StatefulWidget {
+class OnboardingProgressScreen extends StatelessWidget {
   const OnboardingProgressScreen({super.key});
   static const routeName = '/onboarding/welcome';
 
   @override
-  _OnboardingProgressScreen createState() => _OnboardingProgressScreen();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => AuthCubit(userRepository: context.read<UserRepository>())
+        ..checkAuthState(),
+      child: const OnboardingProgressView(),
+    );
+  }
 }
 
-class _OnboardingProgressScreen extends State<OnboardingProgressScreen> {
+class OnboardingProgressView extends StatelessWidget {
+  const OnboardingProgressView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: _buildEmptyAppBar(),
+      extendBodyBehindAppBar: true,
+      backgroundColor: AppColors.tWhite,
+      body: const ResponsiveLayout(
+        child: OnboardingProgressCarousel(),
+      ),
+    );
+  }
+
+  PreferredSizeWidget _buildEmptyAppBar() => PreferredSize(
+        preferredSize: Size.zero,
+        child: AnnotatedRegion(
+          value: SystemUiOverlayStyle.light,
+          child: Container(),
+        ),
+      );
+}
+
+class OnboardingProgressCarousel extends StatefulWidget {
+  const OnboardingProgressCarousel({super.key});
+
+  @override
+  _OnboardingProgressCarousel createState() => _OnboardingProgressCarousel();
+}
+
+class _OnboardingProgressCarousel extends State<OnboardingProgressCarousel> {
   int _current = 0;
   final CarouselSliderController _carouselController =
       CarouselSliderController();
@@ -62,31 +106,61 @@ class _OnboardingProgressScreen extends State<OnboardingProgressScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildEmptyAppBar(),
-      extendBodyBehindAppBar: true,
-      backgroundColor: AppColors.tWhite,
-      body: ResponsiveLayout(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TProgressHeader(
-              showSkip: _current < 2,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<Material>(
-                    builder: (context) => const WelcomeScreen(),
-                  ),
-                );
-              },
-            ),
-            Expanded(
-              child: _buildBody(),
-            ),
-            _buildFooter(index: _current),
-          ],
-        ),
+    return BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is Authenticated) {
+          if (state.user.password == null || state.user.password == '') {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute<Material>(
+                builder: (context) => const SetNewPasswordScreen(),
+              ),
+            );
+          } else if (state.user.isVerified == false) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute<Material>(
+                builder: (context) => const VerificationScreen(),
+              ),
+            );
+          } else if (state.user.isLoggedIn == false) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute<Material>(
+                builder: (context) => const SignInScreen(),
+              ),
+            );
+          } else {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute<Material>(
+                builder: (context) => HomePage(
+                  user: state.user,
+                ),
+              ),
+            );
+          }
+        }
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TProgressHeader(
+            showSkip: _current < 2,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<Material>(
+                  builder: (context) => const WelcomeScreen(),
+                ),
+              );
+            },
+          ),
+          Expanded(
+            child: _buildBody(),
+          ),
+          _buildFooter(index: _current),
+        ],
       ),
     );
   }
@@ -109,14 +183,6 @@ class _OnboardingProgressScreen extends State<OnboardingProgressScreen> {
             _secondSlide(),
             _thirdSlide(),
           ],
-        ),
-      );
-
-  PreferredSizeWidget _buildEmptyAppBar() => PreferredSize(
-        preferredSize: Size.zero,
-        child: AnnotatedRegion(
-          value: SystemUiOverlayStyle.light,
-          child: Container(),
         ),
       );
 

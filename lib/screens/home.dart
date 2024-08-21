@@ -4,6 +4,7 @@ import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:transporter/data/enums/bottom_navigation_links.dart';
 import 'package:transporter/data/enums/service_type.dart';
+import 'package:transporter/data/models/authentication/user.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/values/assets/home_assets.dart';
 import 'package:transporter/values/assets/navigation_assets.dart';
@@ -13,7 +14,8 @@ import 'package:transporter/values/styles.dart';
 import 'package:transporter/widgets/home/visual/custom_drawer.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({this.user, super.key});
+  final User? user;
 
   @override
   _HomePageState createState() => _HomePageState();

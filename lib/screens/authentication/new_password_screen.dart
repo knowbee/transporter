@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:transporter/data/cubits/authentication/auth_cubit.dart';
+import 'package:transporter/data/repositories/user_repository.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/authentication/signin_screen.dart';
+import 'package:transporter/screens/home.dart';
 import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
@@ -13,6 +17,19 @@ class SetNewPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => AuthCubit(userRepository: context.read<UserRepository>())
+        ..checkAuthState(),
+      child: const SetNewPasswordView(),
+    );
+  }
+}
+
+class SetNewPasswordView extends StatelessWidget {
+  const SetNewPasswordView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
@@ -20,26 +37,35 @@ class SetNewPasswordScreen extends StatelessWidget {
           backLabel: Strings.of(context).header_back_label,
         ),
       ),
-      body: ResponsiveLayout(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
-          child: SizedBox.expand(
-            child: Column(
-              children: [
-                Text(
-                  Strings.of(context).set_new_password_heading,
-                  style: Styles.mediumBlackTitle,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  Strings.of(context).set_new_password_subheading,
-                  style: Styles.regularGreyParagraph,
-                ),
-                const SizedBox(height: 24),
-                const NewPasswordForm(),
-              ],
+      body: const ResponsiveLayout(
+        child: SetNewPasswordForm(),
+      ),
+    );
+  }
+}
+
+class SetNewPasswordForm extends StatelessWidget {
+  const SetNewPasswordForm({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+      child: SizedBox.expand(
+        child: Column(
+          children: [
+            Text(
+              Strings.of(context).set_new_password_heading,
+              style: Styles.mediumBlackTitle,
             ),
-          ),
+            const SizedBox(height: 8),
+            Text(
+              Strings.of(context).set_new_password_subheading,
+              style: Styles.regularGreyParagraph,
+            ),
+            const SizedBox(height: 24),
+            const NewPasswordForm(),
+          ],
         ),
       ),
     );
@@ -57,24 +83,51 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
   final _formKey = GlobalKey<FormState>();
   bool _isNewPasswordObscured = true;
   bool _isConfirmPasswordObscured = true;
+  final _newPasswordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final formHeight = MediaQuery.of(context).size.height * 0.6;
-    return SizedBox(
-      height: formHeight,
-      child: Form(
-        key: _formKey,
-        child: ListView(
-          children: [
-            const SizedBox(height: 30),
-            _buildNewPasswordField(),
-            const SizedBox(height: 16),
-            _buildConfirmPasswordField(),
-            _buildPasswordRuleLabel(),
-            const SizedBox(height: 24),
-            _buildSaveButton(),
-          ],
+    return BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is Authenticated) {
+          if (state.user.password != null &&
+              state.user.isLoggedIn != null &&
+              state.user.isLoggedIn! != false) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute<Material>(
+                builder: (context) => HomePage(
+                  user: state.user,
+                ),
+              ),
+            );
+          } else {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute<Material>(
+                builder: (context) => const SignInScreen(),
+              ),
+            );
+          }
+        }
+      },
+      child: SizedBox(
+        height: formHeight,
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: [
+              const SizedBox(height: 30),
+              _buildNewPasswordField(),
+              const SizedBox(height: 16),
+              _buildConfirmPasswordField(),
+              _buildPasswordRuleLabel(),
+              const SizedBox(height: 24),
+              _buildSaveButton(),
+            ],
+          ),
         ),
       ),
     );
@@ -82,6 +135,7 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
 
   Widget _buildNewPasswordField() {
     return TextFormField(
+      controller: _newPasswordController,
       decoration: InputDecoration(
         labelText: Strings.of(context).new_password_label,
         border: const OutlineInputBorder(
@@ -126,6 +180,7 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
 
   Widget _buildConfirmPasswordField() {
     return TextFormField(
+      controller: _confirmPasswordController,
       decoration: InputDecoration(
         labelText: Strings.of(context).confirm_password_label,
         border: const OutlineInputBorder(
@@ -181,12 +236,28 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
     return ElevatedButton(
       onPressed: () {
         if (_formKey.currentState?.validate() ?? false) {
-          Navigator.push(
-            context,
-            MaterialPageRoute<Material>(
-              builder: (context) => const SignInScreen(),
-            ),
-          );
+          context.read<AuthCubit>().setNewPassword(
+                _newPasswordController.text,
+              );
+
+          if (context.read<AuthCubit>().state is AuthenticationFailed) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  Strings.of(context).invalid_password_message,
+                  style: Styles.mediumWhiteText,
+                ),
+                backgroundColor: AppColors.tRed,
+              ),
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute<Material>(
+                builder: (context) => const SignInScreen(),
+              ),
+            );
+          }
         }
       },
       style: ElevatedButton.styleFrom(

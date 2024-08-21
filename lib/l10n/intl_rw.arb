@@ -32,6 +32,11 @@
     "signup_button_label": "Sign Up",
     "or_separator": "or",
     "signup_already_have_account_label": "Already have an account? ",
+    "invalid_credentials_error_message": "Please enter correct email and password",
+    "invalid_password_message": "Please enter matching password",
+    "user_signup_failed_message": "User signup failed",
+    "invalid_otp_verification": "Invalid OTP",
+    
     "signin_label": "Sign in",
     "gender_male": "Male",
     "gender_female": "Female",
