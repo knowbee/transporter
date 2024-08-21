@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pin_put/pin_put.dart';
+import 'package:transporter/data/cubits/authentication/auth_cubit.dart';
+import 'package:transporter/data/repositories/user_repository.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/authentication/new_password_screen.dart';
 import 'package:transporter/templates/responsive_layout.dart';
@@ -10,18 +13,21 @@ import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 
-class VerificationScreen extends StatefulWidget {
+class VerificationScreen extends StatelessWidget {
   const VerificationScreen({super.key});
   static const routeName = '/authentication/verify-otp';
 
   @override
-  _VerificationScreenState createState() => _VerificationScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => AuthCubit(userRepository: context.read<UserRepository>()),
+      child: const VerificationScreenView(),
+    );
+  }
 }
 
-class _VerificationScreenState extends State<VerificationScreen> {
-  final _pinInputController = TextEditingController();
-  final _pinInputFocusNode = FocusNode();
-  String _pinInputValue = '';
+class VerificationScreenView extends StatelessWidget {
+  const VerificationScreenView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +38,30 @@ class _VerificationScreenState extends State<VerificationScreen> {
           backLabel: Strings.of(context).header_back_label,
         ),
       ),
-      body: ResponsiveLayout(
-        child: Padding(
+      body: const ResponsiveLayout(
+        child: VerificationForm(),
+      ),
+    );
+  }
+}
+
+class VerificationForm extends StatefulWidget {
+  const VerificationForm({super.key});
+
+  @override
+  _VerificationFormState createState() => _VerificationFormState();
+}
+
+class _VerificationFormState extends State<VerificationForm> {
+  final _pinInputController = TextEditingController();
+  final _pinInputFocusNode = FocusNode();
+  String _pinInputValue = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        return Padding(
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -80,12 +108,30 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute<Material>(
-                        builder: (context) => const SetNewPasswordScreen(),
-                      ),
-                    );
+                    context.read<AuthCubit>().verifyOTP(
+                          _pinInputValue,
+                        );
+
+                    if (context.read<AuthCubit>().state
+                        is AuthenticationFailed) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            Strings.of(context).invalid_otp_verification,
+                            style: Styles.mediumWhiteText,
+                          ),
+                          backgroundColor: AppColors.tRed,
+                        ),
+                      );
+                    } else if (context.read<AuthCubit>().state
+                        is Authenticated) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<Material>(
+                          builder: (context) => const SetNewPasswordScreen(),
+                        ),
+                      );
+                    }
                   },
                   child: Text(
                     Strings.of(context).verify_button_label,
@@ -95,8 +141,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
               ),
             ],
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 

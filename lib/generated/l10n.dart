@@ -420,6 +420,46 @@ class Strings {
     );
   }
 
+  /// `Please enter correct email and password`
+  String get invalid_credentials_error_message {
+    return Intl.message(
+      'Please enter correct email and password',
+      name: 'invalid_credentials_error_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter matching password`
+  String get invalid_password_message {
+    return Intl.message(
+      'Please enter matching password',
+      name: 'invalid_password_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User signup failed`
+  String get user_signup_failed_message {
+    return Intl.message(
+      'User signup failed',
+      name: 'user_signup_failed_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid OTP`
+  String get invalid_otp_verification {
+    return Intl.message(
+      'Invalid OTP',
+      name: 'invalid_otp_verification',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Set New Password`
   String get set_new_password_heading {
     return Intl.message(

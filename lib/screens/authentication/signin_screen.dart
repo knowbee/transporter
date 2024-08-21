@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:transporter/data/cubits/authentication/auth_cubit.dart';
+import 'package:transporter/data/repositories/user_repository.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/authentication/new_password_screen.dart';
 import 'package:transporter/screens/authentication/signup_screen.dart';
@@ -13,6 +16,18 @@ class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
   static const routeName = '/authentication/signin';
 
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => AuthCubit(userRepository: context.read<UserRepository>())
+        ..checkAuthState(),
+      child: const SignInView(),
+    );
+  }
+}
+
+class SignInView extends StatelessWidget {
+  const SignInView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,34 +57,43 @@ class SignInForm extends StatefulWidget {
 class _SignInFormState extends State<SignInForm> {
   final _formKey = GlobalKey<FormState>();
   bool _isObscured = true;
+  // controller for email or phone number and password
+  final _identifierController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          Text(
-            Strings.of(context).signin_heading,
-            style: Styles.mediumBlackTitle,
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        return Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Text(
+                Strings.of(context).signin_heading,
+                style: Styles.mediumBlackTitle,
+              ),
+              const SizedBox(height: 30),
+              _buildEmailField(),
+              const SizedBox(height: 16),
+              _buildPasswordField(),
+              _buildForgotPasswordButton(),
+              const SizedBox(height: 24),
+              _buildSignInButton(),
+              const SizedBox(height: 24),
+              _buildOrDivider(),
+              const SizedBox(height: 50),
+              _buildSignUpPrompt(),
+            ],
           ),
-          const SizedBox(height: 30),
-          _buildEmailField(),
-          const SizedBox(height: 16),
-          _buildPasswordField(),
-          _buildForgotPasswordButton(),
-          const SizedBox(height: 24),
-          _buildSignInButton(),
-          const SizedBox(height: 24),
-          _buildOrDivider(),
-          const SizedBox(height: 50),
-          _buildSignUpPrompt(),
-        ],
-      ),
+        );
+      },
     );
   }
 
   Widget _buildPasswordField() {
     return TextFormField(
+      controller: _passwordController,
       decoration: InputDecoration(
         labelText: Strings.of(context).signin_password_label,
         border: const OutlineInputBorder(
@@ -113,6 +137,7 @@ class _SignInFormState extends State<SignInForm> {
 
   Widget _buildEmailField() {
     return TextFormField(
+      controller: _identifierController,
       decoration: InputDecoration(
         labelText: Strings.of(context).signin_email_or_phone,
         border: const OutlineInputBorder(
@@ -167,14 +192,31 @@ class _SignInFormState extends State<SignInForm> {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: () async {
           if (_formKey.currentState?.validate() ?? false) {
-            Navigator.push(
-              context,
-              MaterialPageRoute<Material>(
-                builder: (context) => const HomePage(),
-              ),
-            );
+            await context.read<AuthCubit>().logIn(
+                  _identifierController.text,
+                  _passwordController.text,
+                );
+            if (context.read<AuthCubit>().state == AuthenticationFailed() ||
+                context.read<AuthCubit>().state == Unauthenticated()) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    Strings.of(context).invalid_credentials_error_message,
+                    style: Styles.mediumWhiteText,
+                  ),
+                  backgroundColor: AppColors.tRed,
+                ),
+              );
+            } else if (context.read<AuthCubit>().state is Authenticated) {
+              await Navigator.push(
+                context,
+                MaterialPageRoute<Material>(
+                  builder: (context) => const HomePage(),
+                ),
+              );
+            }
           }
         },
         style: ElevatedButton.styleFrom(

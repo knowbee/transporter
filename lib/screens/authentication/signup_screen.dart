@@ -1,7 +1,11 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:transporter/data/cubits/authentication/auth_cubit.dart';
+import 'package:transporter/data/enums/authentication/gender.dart';
+import 'package:transporter/data/repositories/user_repository.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/authentication/signin_screen.dart';
 import 'package:transporter/screens/authentication/verify_otp_screen.dart';
@@ -15,6 +19,19 @@ import 'package:transporter/widgets/common/visual/generic_header.dart';
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
   static const routeName = '/authentication/signup';
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => AuthCubit(userRepository: context.read<UserRepository>())
+        ..checkAuthState(),
+      child: const SignUpView(),
+    );
+  }
+}
+
+class SignUpView extends StatelessWidget {
+  const SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,41 +75,50 @@ class _SignUpFormState extends State<SignUpForm> {
     displayNameNoCountryCode: 'BD',
     e164Key: '',
   );
+  String? _selectedGender = '';
+
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          Text(
-            Strings.of(context).signup_heading,
-            style: Styles.mediumBlackTitle,
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        return Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Text(
+                Strings.of(context).signup_heading,
+                style: Styles.mediumBlackTitle,
+              ),
+              const SizedBox(height: 30),
+              _buildNameField(),
+              const SizedBox(height: 16),
+              _buildEmailField(),
+              const SizedBox(height: 16),
+              _buildPhoneField(),
+              const SizedBox(height: 16),
+              _buildGenderField(),
+              const SizedBox(height: 16),
+              _buildTermsAndConditions(),
+              const SizedBox(height: 16),
+              _buildSignUpButton(),
+              const SizedBox(height: 24),
+              _buildOrDivider(),
+              const SizedBox(height: 50),
+              _buildSignInPrompt(),
+            ],
           ),
-          const SizedBox(height: 30),
-          _buildNameField(),
-          const SizedBox(height: 16),
-          _buildEmailField(),
-          const SizedBox(height: 16),
-          _buildPhoneField(),
-          const SizedBox(height: 16),
-          _buildGenderField(),
-          const SizedBox(height: 16),
-          _buildTermsAndConditions(),
-          const SizedBox(height: 16),
-          _buildSignUpButton(),
-          const SizedBox(height: 24),
-          _buildOrDivider(),
-          const SizedBox(height: 50),
-          _buildSignInPrompt(),
-        ],
-      ),
+        );
+      },
     );
   }
 
   Widget _buildNameField() {
     return TextFormField(
+      controller: _nameController,
       decoration: InputDecoration(
         labelText: Strings.of(context).signup_name_field_label,
         border: const OutlineInputBorder(
@@ -122,6 +148,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   Widget _buildEmailField() {
     return TextFormField(
+      controller: _emailController,
       decoration: InputDecoration(
         labelText: Strings.of(context).signup_email_field_label,
         border: const OutlineInputBorder(
@@ -238,13 +265,17 @@ class _SignUpFormState extends State<SignUpForm> {
               BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
         ),
       ),
-      items: ['Male', 'Female', 'Other'].map((String value) {
+      items: Gender.values.map((value) {
         return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
+          value: value.getStringFromGender,
+          child: Text(value.getStringFromGender),
         );
       }).toList(),
-      onChanged: (String? newValue) {},
+      onChanged: (String? newValue) {
+        setState(() {
+          _selectedGender = newValue;
+        });
+      },
     );
   }
 
@@ -289,14 +320,36 @@ class _SignUpFormState extends State<SignUpForm> {
       width: double.infinity,
       child: ElevatedButton(
         key: const Key('signup_button'),
-        onPressed: () {
+        onPressed: () async {
           if (_formKey.currentState?.validate() ?? false) {
-            Navigator.push(
-              context,
-              MaterialPageRoute<Material>(
-                builder: (context) => const VerificationScreen(),
-              ),
-            );
+            await context.read<AuthCubit>().signUp(
+                  email: _emailController.text,
+                  phoneNumber:
+                      _selectedCountry.countryCode + _phoneController.text,
+                  name: _nameController.text,
+                  gender: _selectedGender ?? '',
+                );
+            if (context.read<AuthCubit>().state is AuthenticationFailed) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    Strings.of(context).user_signup_failed_message,
+                    style: Styles.mediumWhiteText,
+                  ),
+                  backgroundColor: AppColors.tRed,
+                ),
+              );
+            } else {
+              await Navigator.push(
+                context,
+                MaterialPageRoute<Material>(
+                  builder: (context) => const VerificationScreen(),
+                ),
+              );
+            }
+            _emailController.clear();
+            _phoneController.clear();
+            _nameController.clear();
           }
         },
         style: ElevatedButton.styleFrom(

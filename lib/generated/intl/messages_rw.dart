@@ -66,6 +66,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Rental"),
         "home_transport_button_heading":
             MessageLookupByLibrary.simpleMessage("Transport"),
+        "invalid_credentials_error_message":
+            MessageLookupByLibrary.simpleMessage(
+                "Please enter correct email and password",),
+        "invalid_otp_verification":
+            MessageLookupByLibrary.simpleMessage("Invalid OTP"),
+        "invalid_password_message": MessageLookupByLibrary.simpleMessage(
+            "Please enter matching password",),
         "menu_about_label": MessageLookupByLibrary.simpleMessage("About Us"),
         "menu_complain_label": MessageLookupByLibrary.simpleMessage("Complain"),
         "menu_help_label":
@@ -141,6 +148,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "submit_button_label": MessageLookupByLibrary.simpleMessage("Submit"),
         "transporterAppBarTitle":
             MessageLookupByLibrary.simpleMessage("Mutwazi"),
+        "user_signup_failed_message":
+            MessageLookupByLibrary.simpleMessage("User signup failed"),
         "verify_button_label": MessageLookupByLibrary.simpleMessage("Verify"),
         "verify_didnt_receive_label":
             MessageLookupByLibrary.simpleMessage("Didn\'t receive code? "),
