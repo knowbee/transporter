@@ -57,6 +57,7 @@
     "confirm_password_validation": "Please enter your password",
     "confirm_password_rule_validation": "At least 1 number or a special character",
     "save_button_label": "Save",
+    "auth_user_is_not_authenticated": "User is not authenticated",
 
     "verify_phone_heading": "Phone verification",
     "verify_phone_subheading": "Enter your OTP code",
@@ -92,5 +93,14 @@
     "complain_vehicle_has_mechanical_fault": "Vehicle has mechanical fault",
     "complain_text_area_placeholder": "Write your complain here (minimum 10 characters)",
     "complain_text_area_placeholder_validation_error": "Complaint must be at least 10 characters long",
-    "complain_topic_validation_error": "Please select a topic"
+    "complain_topic_validation_error": "Please select a topic",
+    "complain_updated_success_message": "Your updated complain has been send successful",
+    "complain_created_success_message": "Your complain has been send successful",
+    "complain_modal_title": "Send successful",
+    "complain_back_home_button_label": "Back Home",
+    "complaints_not_found_message": "No complaints found",
+    "complaints_failed_to_load": "Failed to load complaints",
+    "complaints_failed_to_add": "Failed to add complaint",
+    "complaints_failed_to_update": "Failed to update complaint",
+    "complaints_failed_to_delete": "Failed to delete complaint"
 }

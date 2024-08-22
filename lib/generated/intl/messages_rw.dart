@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "auth_user_is_not_authenticated":
+            MessageLookupByLibrary.simpleMessage("User is not authenticated"),
         "bottom_navigation_fav_label":
             MessageLookupByLibrary.simpleMessage("Favourite"),
         "bottom_navigation_home_label":
@@ -32,6 +34,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Profile"),
         "bottom_navigation_wallet_label":
             MessageLookupByLibrary.simpleMessage("Wallet"),
+        "complain_back_home_button_label":
+            MessageLookupByLibrary.simpleMessage("Back Home"),
+        "complain_created_success_message":
+            MessageLookupByLibrary.simpleMessage(
+                "Your complain has been send successful",),
+        "complain_modal_title":
+            MessageLookupByLibrary.simpleMessage("Send successful"),
         "complain_recent_reviews_heading":
             MessageLookupByLibrary.simpleMessage("Recent Reviews"),
         "complain_text_area_placeholder": MessageLookupByLibrary.simpleMessage(
@@ -41,6 +50,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Complaint must be at least 10 characters long",),
         "complain_topic_validation_error":
             MessageLookupByLibrary.simpleMessage("Please select a topic"),
+        "complain_updated_success_message":
+            MessageLookupByLibrary.simpleMessage(
+                "Your updated complain has been send successful",),
         "complain_vehicle_arrived_late":
             MessageLookupByLibrary.simpleMessage("Vehicle arrived late"),
         "complain_vehicle_has_mechanical_fault":
@@ -48,6 +60,16 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Vehicle has mechanical fault",),
         "complain_vehicle_not_clean":
             MessageLookupByLibrary.simpleMessage("Vehicle not clean"),
+        "complaints_failed_to_add":
+            MessageLookupByLibrary.simpleMessage("Failed to add complaint"),
+        "complaints_failed_to_delete":
+            MessageLookupByLibrary.simpleMessage("Failed to delete complaint"),
+        "complaints_failed_to_load":
+            MessageLookupByLibrary.simpleMessage("Failed to load complaints"),
+        "complaints_failed_to_update":
+            MessageLookupByLibrary.simpleMessage("Failed to update complaint"),
+        "complaints_not_found_message":
+            MessageLookupByLibrary.simpleMessage("No complaints found"),
         "confirm_password_label":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "confirm_password_rule_validation":

@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:transporter/data/cubits/authentication/auth_cubit.dart';
+import 'package:transporter/data/cubits/complaints/complain_cubit.dart';
+import 'package:transporter/data/cubits/complaints/complain_state.dart';
 import 'package:transporter/data/enums/complaints_topics.dart';
+import 'package:transporter/data/models/complaint.dart';
+import 'package:transporter/data/repositories/complain_repository.dart';
+import 'package:transporter/data/repositories/user_repository.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/values/assets/complain_assets.dart';
 import 'package:transporter/values/colors.dart';
@@ -9,16 +16,32 @@ import 'package:transporter/values/styles.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 import 'package:transporter/widgets/complaints/modals/success_modal.dart';
 
-class ComplainScreen extends StatefulWidget {
+class ComplainScreen extends StatelessWidget {
   const ComplainScreen({super.key});
+  static const routeName = '/home/complain';
 
   @override
-  _ComplainScreenState createState() => _ComplainScreenState();
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              AuthCubit(userRepository: context.read<UserRepository>())
+                ..checkAuthState(),
+        ),
+        BlocProvider(
+          create: (context) => ComplaintCubit(
+            complaintRepository: context.read<ComplaintRepository>(),
+          )..loadComplaints(),
+        ),
+      ],
+      child: const ComplainView(),
+    );
+  }
 }
 
-class _ComplainScreenState extends State<ComplainScreen> {
-  final _formKey = GlobalKey<FormState>();
-  String? _selectedTopic = ComplaintsTopics.values.first.label;
+class ComplainView extends StatelessWidget {
+  const ComplainView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,35 +54,101 @@ class _ComplainScreenState extends State<ComplainScreen> {
           title: Strings.of(context).menu_complain_label,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
+      body: const Padding(
+        padding: EdgeInsets.symmetric(
           vertical: 40,
-          horizontal: 16,
+          horizontal: Dimensions.marginDefault,
         ),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              _buildDropdown(),
-              const SizedBox(height: 16),
-              _buildComplaintField(),
-              const SizedBox(height: 16),
-              _buildSubmitButton(),
-              const SizedBox(height: 48),
-              Text(
-                Strings.of(context).complain_recent_reviews_heading,
-                style: Styles.mediumBlackText,
-              ),
-              const SizedBox(height: 16),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 3, // Update this count as needed
-                  itemBuilder: (context, index) => _buildReviewItem(),
-                ),
-              ),
-            ],
+        child: ComplainContent(),
+      ),
+    );
+  }
+}
+
+class ComplainContent extends StatefulWidget {
+  const ComplainContent({super.key});
+
+  @override
+  _ComplainContentState createState() => _ComplainContentState();
+}
+
+class _ComplainContentState extends State<ComplainContent> {
+  final _formKey = GlobalKey<FormState>();
+  String? _selectedTopic = ComplaintsTopics.values.first.label;
+  final _complaintController = TextEditingController();
+  bool _isEditing = false;
+  int _selectedComplaintIndex = -1;
+  Complaint? _selectedComplaint;
+
+  @override
+  void initState() {
+    super.initState();
+    checkAuthState();
+    loadComplaints();
+  }
+
+  Future<void> loadComplaints() async {
+    final complaintCubit = context.read<ComplaintCubit>();
+    await complaintCubit.loadComplaints();
+  }
+
+  Future<void> checkAuthState() async {
+    final authCubit = context.read<AuthCubit>();
+    await authCubit.checkAuthState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          _buildDropdown(),
+          const SizedBox(height: Dimensions.marginDefault),
+          _buildComplaintField(),
+          const SizedBox(height: Dimensions.marginDefault),
+          _buildSubmitButton(),
+          const SizedBox(height: 48),
+          Text(
+            Strings.of(context).complain_recent_reviews_heading,
+            style: Styles.mediumBlackText,
           ),
-        ),
+          const SizedBox(height: Dimensions.marginDefault),
+          Expanded(
+            child: BlocBuilder<ComplaintCubit, ComplaintState>(
+              builder: (context, state) {
+                if (state is ComplaintLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is ComplaintLoaded) {
+                  if (state.complaints.isEmpty) {
+                    return Center(
+                      child: Text(
+                        Strings.of(context).complaints_not_found_message,
+                        style: Styles.smallBlackTitle,
+                      ),
+                    );
+                  }
+                  return ListView.builder(
+                    itemCount: state.complaints.length,
+                    itemBuilder: (context, index) => _buildReviewItem(
+                      complaint: state.complaints[index],
+                      index: index,
+                    ),
+                  );
+                } else if (state is ComplaintFailure) {
+                  return Center(
+                    child: Text(state.error),
+                  );
+                }
+                return Center(
+                  child: Text(Strings.of(context).complaints_not_found_message),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -111,6 +200,7 @@ class _ComplainScreenState extends State<ComplainScreen> {
 
   Widget _buildComplaintField() {
     return TextFormField(
+      controller: _complaintController,
       decoration: InputDecoration(
         hintText: Strings.of(context).complain_text_area_placeholder,
         hintStyle: Styles.textAreaHintStyle,
@@ -148,14 +238,54 @@ class _ComplainScreenState extends State<ComplainScreen> {
       child: ElevatedButton(
         onPressed: () {
           if (_formKey.currentState?.validate() ?? false) {
-            //TODO: Submit the complaint
+            final complaintCubit = context.read<ComplaintCubit>();
+            final authState = context.read<AuthCubit>().state;
+            if (authState is Authenticated) {
+              final userEmail = authState.user.email;
 
-            showDialog<void>(
-              context: context,
-              builder: (BuildContext context) {
-                return const SuccessDialog();
-              },
-            );
+              final topic = _selectedTopic!;
+              final text = _complaintController.text;
+
+              if (_isEditing) {
+                final complaint = _selectedComplaint;
+                complaint!.topic = topic;
+                complaint.text = text;
+                complaintCubit.updateComplaint(
+                  _selectedComplaintIndex,
+                  complaint,
+                );
+                showDialog<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SuccessDialog(
+                      message:
+                          Strings.of(context).complain_updated_success_message,
+                    );
+                  },
+                );
+              } else {
+                complaintCubit.addComplaint(topic, text, userEmail);
+                showDialog<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const SuccessDialog();
+                  },
+                );
+              }
+
+              _formKey.currentState?.reset();
+              setState(() {
+                _selectedTopic = ComplaintsTopics.values.first.label;
+              });
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    Strings.of(context).auth_user_is_not_authenticated,
+                  ),
+                ),
+              );
+            }
           }
         },
         style: ElevatedButton.styleFrom(
@@ -175,22 +305,28 @@ class _ComplainScreenState extends State<ComplainScreen> {
     );
   }
 
-  Widget _buildReviewItem() {
+  Widget _buildReviewItem({required Complaint complaint, required int index}) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.only(bottom: Dimensions.marginDefault),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(Dimensions.marginSmall),
           border: Border.all(color: Colors.greenAccent),
         ),
         child: ListTile(
-          title: const Text('Vehicle Arrived late'),
-          subtitle: const Text(
-            'The driver arrived late and I missed my trip',
+          contentPadding: const EdgeInsets.all(Dimensions.marginSmall),
+          title: Text(
+            complaint.topic,
+            style: Styles.smallBlackTitle,
+          ),
+          subtitle: Text(
+            complaint.text,
+            style: Styles.smallParagraphBlack,
             overflow: TextOverflow.ellipsis,
           ),
           trailing: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
                 mainAxisSize: MainAxisSize.min,
@@ -198,9 +334,17 @@ class _ComplainScreenState extends State<ComplainScreen> {
                 children: [
                   InkWell(
                     customBorder: const CircleBorder(),
-                    onTap: () {},
+                    onTap: () {
+                      _complaintController.text = complaint.text;
+                      _selectedTopic = complaint.topic;
+                      setState(() {
+                        _isEditing = true;
+                        _selectedComplaintIndex = index;
+                        _selectedComplaint = complaint;
+                      });
+                    },
                     child: Padding(
-                      padding: const EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(Dimensions.marginSmall),
                       child: SvgPicture.asset(
                         ComplainAssets.editIcon,
                       ),
@@ -208,9 +352,13 @@ class _ComplainScreenState extends State<ComplainScreen> {
                   ),
                   InkWell(
                     customBorder: const CircleBorder(),
-                    onTap: () {},
+                    onTap: () async {
+                      await context.read<ComplaintCubit>().deleteComplaint(
+                            index,
+                          );
+                    },
                     child: Padding(
-                      padding: const EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(Dimensions.marginSmall),
                       child: SvgPicture.asset(
                         ComplainAssets.deleteIcon,
                       ),
@@ -218,9 +366,13 @@ class _ComplainScreenState extends State<ComplainScreen> {
                   ),
                 ],
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Text('09:24'),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Dimensions.marginSmall,
+                ),
+                child: Text(
+                  '${complaint.timestamp.hour}:${complaint.timestamp.minute}',
+                ),
               ),
             ],
           ),

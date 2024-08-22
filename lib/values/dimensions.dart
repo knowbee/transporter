@@ -29,6 +29,7 @@ abstract class Dimensions {
   static const radiusXLarge = 20.0;
   static const radiusCircular = 100.0;
 
+  static const iconDimensFourteen = 14.0;
   static const iconDimensSixteen = 16.0;
   static const iconDimensTwenty = 20.0;
   static const iconDimensTwentyFour = 24.0;
