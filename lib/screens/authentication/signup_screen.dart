@@ -325,7 +325,7 @@ class _SignUpFormState extends State<SignUpForm> {
             await context.read<AuthCubit>().signUp(
                   email: _emailController.text,
                   phoneNumber:
-                      _selectedCountry.countryCode + _phoneController.text,
+                      _selectedCountry.phoneCode + _phoneController.text,
                   name: _nameController.text,
                   gender: _selectedGender ?? '',
                 );

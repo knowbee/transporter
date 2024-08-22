@@ -2,17 +2,23 @@ import 'package:bloc/bloc.dart';
 import 'package:transporter/data/cubits/complaints/complain_state.dart';
 import 'package:transporter/data/models/complaint.dart';
 import 'package:transporter/data/repositories/complain_repository.dart';
+import 'package:transporter/data/repositories/user_repository.dart';
 import 'package:transporter/generated/l10n.dart';
 
 class ComplaintCubit extends Cubit<ComplaintState> {
-  ComplaintCubit({required this.complaintRepository})
-      : super(ComplaintInitial());
+  ComplaintCubit({
+    required this.complaintRepository,
+    required this.userRepository,
+  }) : super(ComplaintInitial());
   final ComplaintRepository complaintRepository;
+  final UserRepository userRepository;
 
   Future<void> loadComplaints() async {
     emit(ComplaintLoading());
     try {
-      final complaints = await complaintRepository.getComplaints();
+      final user = await userRepository.getCurrentUser();
+      final complaints =
+          await complaintRepository.getComplaints(user?.email ?? '');
       emit(ComplaintLoaded(complaints));
     } catch (e) {
       emit(ComplaintFailure(Strings.current.complaints_failed_to_load));

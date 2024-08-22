@@ -32,6 +32,7 @@ class ComplainScreen extends StatelessWidget {
         BlocProvider(
           create: (context) => ComplaintCubit(
             complaintRepository: context.read<ComplaintRepository>(),
+            userRepository: context.read<UserRepository>(),
           )..loadComplaints(),
         ),
       ],
