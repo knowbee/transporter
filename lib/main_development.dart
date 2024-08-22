@@ -8,6 +8,7 @@ import 'package:transporter/data/models/complaint.dart';
 import 'package:transporter/data/repositories/complain_repository.dart';
 import 'package:transporter/data/repositories/user_repository.dart';
 import 'package:transporter/helpers/config.dart';
+import 'package:transporter/services/security_service.dart';
 import 'package:transporter/values/constants.dart';
 
 void main() async {
@@ -27,8 +28,11 @@ void main() async {
   final settingsBox = await Hive.openBox<String>(Constants.settingsBox);
   final complaintBox = await Hive.openBox<Complaint>(Constants.complaintsBox);
 
-  final userRepository =
-      UserRepository(userBox: userBox, settingsBox: settingsBox);
+  final userRepository = UserRepository(
+    userBox: userBox,
+    settingsBox: settingsBox,
+    securityService: SecurityService(),
+  );
   final complaintRepository = ComplaintRepository(complaintBox: complaintBox);
 
   await bootstrap(

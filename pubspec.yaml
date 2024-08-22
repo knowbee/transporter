@@ -32,6 +32,8 @@ dependencies:
   hive_flutter: ^1.1.0
   equatable: ^2.0.5
   path_provider: ^2.0.12
+  flutter_bcrypt: ^1.0.8
+  dbcrypt: ^2.0.0
 
 flutter_intl:
   enabled: true
