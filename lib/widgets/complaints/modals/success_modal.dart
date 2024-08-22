@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:transporter/generated/l10n.dart';
+import 'package:transporter/screens/home.dart';
 import 'package:transporter/values/assets/complain_assets.dart';
 import 'package:transporter/values/colors.dart';
+import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
 
+abstract class _Constants {
+  static const iconHeight = 100.0;
+  static const iconWidth = 100.0;
+}
+
 class SuccessDialog extends StatelessWidget {
-  const SuccessDialog({super.key});
+  const SuccessDialog({super.key, this.message = ''});
+  final String? message;
 
   @override
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(Dimensions.marginDefault),
       ),
-      insetPadding: const EdgeInsets.all(32),
+      insetPadding: const EdgeInsets.all(Dimensions.marginLarge),
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(Dimensions.marginMedium),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -25,44 +34,52 @@ class SuccessDialog extends StatelessWidget {
                 onTap: () => Navigator.of(context).pop(),
                 child: Image.asset(
                   ComplainAssets.closeIcon,
-                  height: 14,
-                  width: 14,
+                  height: Dimensions.iconDimensFourteen,
+                  width: Dimensions.iconDimensFourteen,
                 ),
               ),
             ),
             SvgPicture.asset(
               ComplainAssets.successIcon,
-              height: 100,
-              width: 100,
+              height: _Constants.iconHeight,
+              width: _Constants.iconWidth,
             ),
-            const SizedBox(height: 24),
-            const Text(
-              'Send successful',
+            const SizedBox(height: Dimensions.marginMedium),
+            Text(
+              Strings.of(context).complain_modal_title,
               style: Styles.mediumLightBlackText,
             ),
-            const SizedBox(height: 8),
-            const Text(
-              'Your complain has been send successful',
+            const SizedBox(height: Dimensions.marginSmall),
+            Text(
+              message ?? Strings.of(context).complain_created_success_message,
               style: Styles.regularLightGreyText,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: Dimensions.marginMedium),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<Material>(
+                      builder: (context) => const HomePage(),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.tGreen,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: Dimensions.marginDefault,
+                  ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(Dimensions.marginSmall),
                   ),
                 ),
-                child: const Text(
-                  'Back Home',
-                  style: Styles.mediumWhiteText, // Custom style
+                child: Text(
+                  Strings.of(context).complain_back_home_button_label,
+                  style: Styles.mediumWhiteText,
                 ),
               ),
             ),

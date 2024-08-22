@@ -540,6 +540,16 @@ class Strings {
     );
   }
 
+  /// `User is not authenticated`
+  String get auth_user_is_not_authenticated {
+    return Intl.message(
+      'User is not authenticated',
+      name: 'auth_user_is_not_authenticated',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Phone verification`
   String get verify_phone_heading {
     return Intl.message(
@@ -835,6 +845,96 @@ class Strings {
     return Intl.message(
       'Please select a topic',
       name: 'complain_topic_validation_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your updated complain has been send successful`
+  String get complain_updated_success_message {
+    return Intl.message(
+      'Your updated complain has been send successful',
+      name: 'complain_updated_success_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your complain has been send successful`
+  String get complain_created_success_message {
+    return Intl.message(
+      'Your complain has been send successful',
+      name: 'complain_created_success_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send successful`
+  String get complain_modal_title {
+    return Intl.message(
+      'Send successful',
+      name: 'complain_modal_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back Home`
+  String get complain_back_home_button_label {
+    return Intl.message(
+      'Back Home',
+      name: 'complain_back_home_button_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No complaints found`
+  String get complaints_not_found_message {
+    return Intl.message(
+      'No complaints found',
+      name: 'complaints_not_found_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to load complaints`
+  String get complaints_failed_to_load {
+    return Intl.message(
+      'Failed to load complaints',
+      name: 'complaints_failed_to_load',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to add complaint`
+  String get complaints_failed_to_add {
+    return Intl.message(
+      'Failed to add complaint',
+      name: 'complaints_failed_to_add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to update complaint`
+  String get complaints_failed_to_update {
+    return Intl.message(
+      'Failed to update complaint',
+      name: 'complaints_failed_to_update',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to delete complaint`
+  String get complaints_failed_to_delete {
+    return Intl.message(
+      'Failed to delete complaint',
+      name: 'complaints_failed_to_delete',
       desc: '',
       args: [],
     );

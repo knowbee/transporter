@@ -27,6 +27,14 @@ abstract class Styles {
     ),
   );
 
+  static const smallBlackTitle = TextStyle(
+    color: Color(0xFF414141),
+    fontSize: 14,
+    fontFamily: _poppins,
+    fontWeight: FontWeight.w500,
+    height: 14 / 19,
+  );
+
   static const mediumBlackTitle = TextStyle(
     color: Color(0xFF414141),
     fontSize: 24,
