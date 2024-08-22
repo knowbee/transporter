@@ -4,7 +4,6 @@ import 'package:transporter/data/cubits/authentication/auth_cubit.dart';
 import 'package:transporter/data/repositories/user_repository.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/authentication/signin_screen.dart';
-import 'package:transporter/screens/home.dart';
 import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
@@ -90,29 +89,7 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
   Widget build(BuildContext context) {
     final formHeight = MediaQuery.of(context).size.height * 0.6;
     return BlocListener<AuthCubit, AuthState>(
-      listener: (context, state) {
-        if (state is Authenticated) {
-          if (state.user.password != null &&
-              state.user.isLoggedIn != null &&
-              state.user.isLoggedIn! != false) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute<Material>(
-                builder: (context) => HomePage(
-                  user: state.user,
-                ),
-              ),
-            );
-          } else {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute<Material>(
-                builder: (context) => const SignInScreen(),
-              ),
-            );
-          }
-        }
-      },
+      listener: (context, state) {},
       child: SizedBox(
         height: formHeight,
         child: Form(
@@ -234,9 +211,9 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
 
   Widget _buildSaveButton() {
     return ElevatedButton(
-      onPressed: () {
+      onPressed: () async {
         if (_formKey.currentState?.validate() ?? false) {
-          context.read<AuthCubit>().setNewPassword(
+          await context.read<AuthCubit>().setNewPassword(
                 _newPasswordController.text,
               );
 
@@ -251,7 +228,7 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
               ),
             );
           } else {
-            Navigator.push(
+            await Navigator.push(
               context,
               MaterialPageRoute<Material>(
                 builder: (context) => const SignInScreen(),

@@ -1,10 +1,16 @@
 import 'package:hive/hive.dart';
 import 'package:transporter/data/models/authentication/user.dart';
+import 'package:transporter/services/security_service.dart';
 
 class UserRepository {
-  UserRepository({required this.userBox, required this.settingsBox});
+  UserRepository({
+    required this.userBox,
+    required this.settingsBox,
+    required this.securityService,
+  });
   final Box<User> userBox;
   final Box<String> settingsBox;
+  final SecurityService securityService;
 
   Future<User?> getCurrentUser() async {
     if (userBox.values.isEmpty) {
@@ -36,11 +42,15 @@ class UserRepository {
 
   Future<User?> authenticateUser(String email, String password) async {
     final user = userBox.get(email);
-    if (user != null && user.password == password) {
-      user.isLoggedIn = true;
-      await userBox.put(user.email, user);
-      await saveCurrentUserEmail(email);
-      return user;
+    if (user != null) {
+      final isPasswordValid =
+          await securityService.verifyPassword(password, user.password ?? '');
+      if (isPasswordValid) {
+        user.isLoggedIn = true;
+        await userBox.put(user.email, user);
+        await saveCurrentUserEmail(email);
+        return user;
+      }
     }
     return null;
   }
@@ -73,9 +83,9 @@ class UserRepository {
   Future<User?> setNewPassword(String password) async {
     final userEmail = getCurrentUserEmail();
     final user = getUserByEmail(userEmail);
-
+    final hashedPassword = await securityService.hashPassword(password);
     if (user != null) {
-      user.password = password;
+      user.password = hashedPassword;
       await userBox.put(user.email, user);
       return user;
     }

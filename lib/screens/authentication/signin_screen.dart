@@ -62,31 +62,50 @@ class _SignInFormState extends State<SignInForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthState>(
-      builder: (context, state) {
-        return Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              Text(
-                Strings.of(context).signin_heading,
-                style: Styles.mediumBlackTitle,
+    return BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is Authenticated) {
+          if (state.user.password == null) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute<Material>(
+                builder: (context) => const SetNewPasswordScreen(),
               ),
-              const SizedBox(height: 30),
-              _buildEmailField(),
-              const SizedBox(height: 16),
-              _buildPasswordField(),
-              _buildForgotPasswordButton(),
-              const SizedBox(height: 24),
-              _buildSignInButton(),
-              const SizedBox(height: 24),
-              _buildOrDivider(),
-              const SizedBox(height: 50),
-              _buildSignUpPrompt(),
-            ],
-          ),
-        );
+            );
+          } else if (state.user.isLoggedIn == true) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute<Material>(
+                builder: (context) => HomePage(
+                  user: state.user,
+                ),
+              ),
+            );
+          }
+        }
       },
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            Text(
+              Strings.of(context).signin_heading,
+              style: Styles.mediumBlackTitle,
+            ),
+            const SizedBox(height: 30),
+            _buildEmailField(),
+            const SizedBox(height: 16),
+            _buildPasswordField(),
+            _buildForgotPasswordButton(),
+            const SizedBox(height: 24),
+            _buildSignInButton(),
+            const SizedBox(height: 24),
+            _buildOrDivider(),
+            const SizedBox(height: 50),
+            _buildSignUpPrompt(),
+          ],
+        ),
+      ),
     );
   }
 

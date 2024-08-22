@@ -1,5 +1,9 @@
 PODS:
+  - BCryptSwift (1.1)
   - Flutter (1.0.0)
+  - flutter_bcrypt (0.0.1):
+    - BCryptSwift (~> 1.1)
+    - Flutter
   - Google-Maps-iOS-Utils (5.0.0):
     - GoogleMaps (~> 8.0)
   - google_maps_flutter_ios (0.0.1):
@@ -17,24 +21,30 @@ PODS:
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - flutter_bcrypt (from `.symlinks/plugins/flutter_bcrypt/ios`)
   - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
 
 SPEC REPOS:
   trunk:
+    - BCryptSwift
     - Google-Maps-iOS-Utils
     - GoogleMaps
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  flutter_bcrypt:
+    :path: ".symlinks/plugins/flutter_bcrypt/ios"
   google_maps_flutter_ios:
     :path: ".symlinks/plugins/google_maps_flutter_ios/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
 
 SPEC CHECKSUMS:
+  BCryptSwift: f69992ea5685f6714260842c2770688043b89ab2
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_bcrypt: 8ae63c682225f69d9981465509cb26b9e93522ef
   Google-Maps-iOS-Utils: 66d6de12be1ce6d3742a54661e7a79cb317a9321
   google_maps_flutter_ios: e31555a04d1986ab130f2b9f24b6cdc861acc6d3
   GoogleMaps: 8939898920281c649150e0af74aa291c60f2e77d
