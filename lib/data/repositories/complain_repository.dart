@@ -11,8 +11,11 @@ class ComplaintRepository {
     await complaintBox.add(complaint);
   }
 
-  Future<List<Complaint>> getComplaints() async {
-    return complaintBox.values.toList();
+  Future<List<Complaint>> getComplaints(String userEmail) async {
+    return complaintBox.values
+        .where((complaint) => complaint.userEmail == userEmail)
+        .toList()
+      ..sort((a, b) => b.timestamp.compareTo(a.timestamp));
   }
 
   Future<void> updateComplaint(int index, Complaint complaint) async {
