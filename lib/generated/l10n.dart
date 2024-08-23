@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:transporter/generated/intl/messages_all.dart';
+import 'intl/messages_all.dart';
 
 // **************************************************************************
 // Generator: Flutter Intl IDE plugin
@@ -19,7 +19,7 @@ class Strings {
 
   static Strings get current {
     assert(_current != null,
-        'No instance of Strings was loaded. Try to initialize the Strings delegate before accessing Strings.current.',);
+        'No instance of Strings was loaded. Try to initialize the Strings delegate before accessing Strings.current.');
     return _current!;
   }
 
@@ -42,7 +42,7 @@ class Strings {
   static Strings of(BuildContext context) {
     final instance = Strings.maybeOf(context);
     assert(instance != null,
-        'No instance of Strings present in the widget tree. Did you add Strings.delegate in localizationsDelegates?',);
+        'No instance of Strings present in the widget tree. Did you add Strings.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -935,6 +935,26 @@ class Strings {
     return Intl.message(
       'Failed to delete complaint',
       name: 'complaints_failed_to_delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `From`
+  String get from_label {
+    return Intl.message(
+      'From',
+      name: 'from_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To`
+  String get to_label {
+    return Intl.message(
+      'To',
+      name: 'to_label',
       desc: '',
       args: [],
     );

@@ -102,5 +102,8 @@
     "complaints_failed_to_load": "Failed to load complaints",
     "complaints_failed_to_add": "Failed to add complaint",
     "complaints_failed_to_update": "Failed to update complaint",
-    "complaints_failed_to_delete": "Failed to delete complaint"
+    "complaints_failed_to_delete": "Failed to delete complaint",
+
+    "from_label": "From",
+    "to_label": "To"
 }

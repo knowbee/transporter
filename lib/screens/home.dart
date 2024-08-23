@@ -11,6 +11,8 @@ import 'package:transporter/values/assets/navigation_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/home/visual/address_confirmation_bottom_sheet.dart';
+import 'package:transporter/widgets/home/visual/address_selection_draggable_bottom_sheet.dart';
 import 'package:transporter/widgets/home/visual/custom_drawer.dart';
 
 class HomePage extends StatefulWidget {
@@ -128,7 +130,7 @@ class _HomePageState extends State<HomePage> {
 
   ElevatedButton _buildRentalButton() {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () => showAddressConfirmationBottomSheet(context),
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.tGreen,
         padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 12),
@@ -161,32 +163,63 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildSearchField() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        color: AppColors.tLighterGreen,
-        borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-      ),
-      child: TextField(
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(vertical: 12),
-          hintText: Strings.of(context).home_address_input_hint,
-          hintStyle: Styles.regularGreyParagraph,
-          border: InputBorder.none,
-          prefixIcon: Padding(
-            padding: const EdgeInsets.all(14),
-            child: SvgPicture.asset(
-              HomeAssets.searchIcon,
-            ),
-          ),
-          suffixIcon: Padding(
-            padding: const EdgeInsets.all(14),
-            child: SvgPicture.asset(
-              HomeAssets.favoriteIcon,
+    return GestureDetector(
+      onTap: () => showAddressSelectionBottomSheet(context),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        decoration: BoxDecoration(
+          color: AppColors.tLighterGreen,
+          borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
+        ),
+        child: IgnorePointer(
+          child: TextField(
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 12),
+              hintText: Strings.of(context).home_address_input_hint,
+              hintStyle: Styles.regularGreyParagraph,
+              border: InputBorder.none,
+              prefixIcon: Padding(
+                padding: const EdgeInsets.all(14),
+                child: SvgPicture.asset(
+                  HomeAssets.searchIcon,
+                ),
+              ),
+              suffixIcon: Padding(
+                padding: const EdgeInsets.all(14),
+                child: SvgPicture.asset(
+                  HomeAssets.favoriteIcon,
+                ),
+              ),
             ),
           ),
         ),
       ),
+    );
+  }
+
+  void showAddressSelectionBottomSheet(BuildContext context) {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(Dimensions.radiusXLarge),
+        ),
+      ),
+      builder: (context) => const AddressSelectionBottomSheet(),
+    );
+  }
+
+  void showAddressConfirmationBottomSheet(BuildContext context) {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(Dimensions.radiusXLarge),
+        ),
+      ),
+      builder: (context) => const AddressConfirmationBottomSheet(),
     );
   }
 
