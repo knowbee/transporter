@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transporter/screens/transport/select_transport_screen.dart';
 import 'package:transporter/values/assets/home_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
@@ -179,8 +180,13 @@ class AddressConfirmationBottomSheet extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          // Handle confirm action
           Navigator.of(context).pop();
+          Navigator.push(
+            context,
+            MaterialPageRoute<Material>(
+              builder: (context) => const TransportSelectionScreen(),
+            ),
+          );
         },
         child: const Padding(
           padding: EdgeInsets.symmetric(vertical: Dimensions.marginDefault),

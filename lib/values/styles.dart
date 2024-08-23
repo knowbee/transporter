@@ -189,6 +189,13 @@ abstract class Styles {
     fontWeight: FontWeight.w500,
   );
 
+  static const headingLightBlackText = TextStyle(
+    color: Color(0xFF5A5A5A),
+    fontSize: 24,
+    fontFamily: _poppins,
+    fontWeight: FontWeight.w600,
+  );
+
   static const mediumBlackText = TextStyle(
     color: Color(0xFF414141),
     fontSize: 18,
