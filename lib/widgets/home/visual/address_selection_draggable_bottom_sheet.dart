@@ -94,7 +94,7 @@ class AddressSelectionBottomSheet extends StatelessWidget {
     IconData? suffixIcon,
     bool obscureText = false,
     TextEditingController? controller,
-    Function()? onSuffixIconPressed,
+    void Function()? onSuffixIconPressed,
   }) {
     return TextFormField(
       controller: controller,
