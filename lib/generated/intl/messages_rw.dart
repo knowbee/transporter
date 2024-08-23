@@ -38,26 +38,26 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Back Home"),
         "complain_created_success_message":
             MessageLookupByLibrary.simpleMessage(
-                "Your complain has been send successful",),
+                "Your complain has been send successful"),
         "complain_modal_title":
             MessageLookupByLibrary.simpleMessage("Send successful"),
         "complain_recent_reviews_heading":
             MessageLookupByLibrary.simpleMessage("Recent Reviews"),
         "complain_text_area_placeholder": MessageLookupByLibrary.simpleMessage(
-            "Write your complain here (minimum 10 characters)",),
+            "Write your complain here (minimum 10 characters)"),
         "complain_text_area_placeholder_validation_error":
             MessageLookupByLibrary.simpleMessage(
-                "Complaint must be at least 10 characters long",),
+                "Complaint must be at least 10 characters long"),
         "complain_topic_validation_error":
             MessageLookupByLibrary.simpleMessage("Please select a topic"),
         "complain_updated_success_message":
             MessageLookupByLibrary.simpleMessage(
-                "Your updated complain has been send successful",),
+                "Your updated complain has been send successful"),
         "complain_vehicle_arrived_late":
             MessageLookupByLibrary.simpleMessage("Vehicle arrived late"),
         "complain_vehicle_has_mechanical_fault":
             MessageLookupByLibrary.simpleMessage(
-                "Vehicle has mechanical fault",),
+                "Vehicle has mechanical fault"),
         "complain_vehicle_not_clean":
             MessageLookupByLibrary.simpleMessage("Vehicle not clean"),
         "complaints_failed_to_add":
@@ -74,9 +74,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "confirm_password_rule_validation":
             MessageLookupByLibrary.simpleMessage(
-                "At least 1 number or a special character",),
+                "At least 1 number or a special character"),
         "confirm_password_validation":
             MessageLookupByLibrary.simpleMessage("Please enter your password"),
+        "from_label": MessageLookupByLibrary.simpleMessage("From"),
         "gender_female": MessageLookupByLibrary.simpleMessage("Female"),
         "gender_male": MessageLookupByLibrary.simpleMessage("Male"),
         "header_back_label": MessageLookupByLibrary.simpleMessage("Back"),
@@ -90,11 +91,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Transport"),
         "invalid_credentials_error_message":
             MessageLookupByLibrary.simpleMessage(
-                "Please enter correct email and password",),
+                "Please enter correct email and password"),
         "invalid_otp_verification":
             MessageLookupByLibrary.simpleMessage("Invalid OTP"),
         "invalid_password_message": MessageLookupByLibrary.simpleMessage(
-            "Please enter matching password",),
+            "Please enter matching password"),
         "menu_about_label": MessageLookupByLibrary.simpleMessage("About Us"),
         "menu_complain_label": MessageLookupByLibrary.simpleMessage("Complain"),
         "menu_help_label":
@@ -107,17 +108,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_password_label":
             MessageLookupByLibrary.simpleMessage("Enter Your New Password"),
         "new_password_validation": MessageLookupByLibrary.simpleMessage(
-            "Please enter your new password",),
+            "Please enter your new password"),
         "onboarding_anytime_description": MessageLookupByLibrary.simpleMessage(
-            "Sell houses easily with the help of Listenoryx and to make this line big I am writing more.",),
+            "Sell houses easily with the help of Listenoryx and to make this line big I am writing more."),
         "onboarding_anytime_heading":
             MessageLookupByLibrary.simpleMessage("At anytime"),
         "onboarding_anywhere_description": MessageLookupByLibrary.simpleMessage(
-            "Sell houses easily with the help of Listenoryx and to make this line big I am writing more.",),
+            "Sell houses easily with the help of Listenoryx and to make this line big I am writing more."),
         "onboarding_anywhere_heading":
             MessageLookupByLibrary.simpleMessage("Anywhere you are"),
         "onboarding_book_car_description": MessageLookupByLibrary.simpleMessage(
-            "Sell houses easily with the help of Listenoryx and to make this line big I am writing more.",),
+            "Sell houses easily with the help of Listenoryx and to make this line big I am writing more."),
         "onboarding_book_car_heading":
             MessageLookupByLibrary.simpleMessage("Book your car"),
         "onboarding_skip": MessageLookupByLibrary.simpleMessage("Skip"),
@@ -134,7 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signin_forgot_password_label":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "signin_heading": MessageLookupByLibrary.simpleMessage(
-            "Sign in with your email or phone number",),
+            "Sign in with your email or phone number"),
         "signin_label": MessageLookupByLibrary.simpleMessage("Sign in"),
         "signin_password_label":
             MessageLookupByLibrary.simpleMessage("Enter your Password"),
@@ -142,7 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter your password"),
         "signin_validation_email_or_phone":
             MessageLookupByLibrary.simpleMessage(
-                "Please enter your email or phone number",),
+                "Please enter your email or phone number"),
         "signup_already_have_account_label":
             MessageLookupByLibrary.simpleMessage("Already have an account? "),
         "signup_button_label": MessageLookupByLibrary.simpleMessage("Sign Up"),
@@ -153,14 +154,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "signup_gender_field_label":
             MessageLookupByLibrary.simpleMessage("Gender"),
         "signup_heading": MessageLookupByLibrary.simpleMessage(
-            "Sign up with your email or phone number",),
+            "Sign up with your email or phone number"),
         "signup_name_field_label": MessageLookupByLibrary.simpleMessage("Name"),
         "signup_name_validation_label":
             MessageLookupByLibrary.simpleMessage("Please enter your name"),
         "signup_phone_field_label":
             MessageLookupByLibrary.simpleMessage("Your mobile number"),
         "signup_terms_conditions_1": MessageLookupByLibrary.simpleMessage(
-            "By signing up, you agree to the ",),
+            "By signing up, you agree to the "),
         "signup_terms_conditions_2":
             MessageLookupByLibrary.simpleMessage("Terms of service"),
         "signup_terms_conditions_3":
@@ -168,6 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signup_terms_conditions_4":
             MessageLookupByLibrary.simpleMessage("Privacy policy."),
         "submit_button_label": MessageLookupByLibrary.simpleMessage("Submit"),
+        "to_label": MessageLookupByLibrary.simpleMessage("To"),
         "transporterAppBarTitle":
             MessageLookupByLibrary.simpleMessage("Mutwazi"),
         "user_signup_failed_message":
@@ -186,6 +188,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "welcome_heading": MessageLookupByLibrary.simpleMessage("Welcome"),
         "welcome_login_label": MessageLookupByLibrary.simpleMessage("Log In"),
         "welcome_subheading": MessageLookupByLibrary.simpleMessage(
-            "Have a better sharing experience",),
+            "Have a better sharing experience")
       };
 }

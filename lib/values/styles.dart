@@ -224,4 +224,12 @@ abstract class Styles {
     fontWeight: FontWeight.w400,
     height: 2,
   );
+
+  static const vSmallBlackText = TextStyle(
+    color: Color(0xFF5A5A5A),
+    fontSize: 14,
+    fontFamily: _poppins,
+    fontWeight: FontWeight.w500,
+    height: 0.10,
+  );
 }

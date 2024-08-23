@@ -15,4 +15,5 @@ abstract class AppColors {
   static const greyIconColor = Color(0xFFB8B8B8);
 
   static const tSeparatorColor = Color(0xFFE8E8E8);
+  static const lightBlack = Color(0xFF5A5A5A);
 }
