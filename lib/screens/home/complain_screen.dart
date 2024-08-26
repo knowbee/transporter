@@ -13,7 +13,8 @@ import 'package:transporter/values/assets/complain_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
-import 'package:transporter/widgets/common/input/Tbutton.dart';
+import 'package:transporter/widgets/common/input/custom_button.dart';
+import 'package:transporter/widgets/common/input/custom_form_field.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 import 'package:transporter/widgets/complaints/modals/success_modal.dart';
 
@@ -202,29 +203,10 @@ class _ComplainContentState extends State<ComplainContent> {
   }
 
   Widget _buildComplaintField() {
-    return TextFormField(
-      controller: _complaintController,
-      decoration: InputDecoration(
-        hintText: Strings.of(context).complain_text_area_placeholder,
-        hintStyle: Styles.textAreaHintStyle,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGrey),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGrey),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGreen),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-      ),
-      maxLines: 5,
-      minLines: 1,
+    return TFormField(
+      fieldType: FieldType.textArea,
+      labelText: Strings.of(context).complain_text_area_placeholder,
+      labelStyle: Styles.regularGreyParagraph,
       validator: (value) {
         if (value == null || value.length < 10) {
           return Strings.of(context)
@@ -232,6 +214,7 @@ class _ComplainContentState extends State<ComplainContent> {
         }
         return null;
       },
+      controller: _complaintController,
     );
   }
 

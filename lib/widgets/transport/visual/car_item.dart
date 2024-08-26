@@ -4,7 +4,7 @@ import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
-import 'package:transporter/widgets/common/input/Tbutton.dart';
+import 'package:transporter/widgets/common/input/custom_button.dart';
 
 class CarItem extends StatelessWidget {
   const CarItem({

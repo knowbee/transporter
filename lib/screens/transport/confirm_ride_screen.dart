@@ -4,7 +4,7 @@ import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/home.dart';
 import 'package:transporter/values/assets/transport_assets.dart';
 import 'package:transporter/values/dimensions.dart';
-import 'package:transporter/widgets/common/input/Tbutton.dart';
+import 'package:transporter/widgets/common/input/custom_button.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 import 'package:transporter/widgets/transport/visual/confirm_ride_modal_sheet.dart';
 

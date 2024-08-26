@@ -7,7 +7,7 @@ import 'package:transporter/values/assets/authentication_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
-import 'package:transporter/widgets/common/input/Tbutton.dart';
+import 'package:transporter/widgets/common/input/custom_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});

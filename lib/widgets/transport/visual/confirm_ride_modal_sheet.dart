@@ -4,7 +4,7 @@ import 'package:transporter/values/assets/profile_assets.dart';
 import 'package:transporter/values/assets/transport_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
-import 'package:transporter/widgets/common/input/Tbutton.dart';
+import 'package:transporter/widgets/common/input/custom_button.dart';
 import 'package:transporter/widgets/transport/visual/payment_success_dialog.dart';
 
 class ConfirmRideBottomSheet extends StatelessWidget {

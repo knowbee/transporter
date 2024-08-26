@@ -8,7 +8,8 @@ import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
-import 'package:transporter/widgets/common/input/Tbutton.dart';
+import 'package:transporter/widgets/common/input/custom_button.dart';
+import 'package:transporter/widgets/common/input/custom_form_field.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 
 class SetNewPasswordScreen extends StatelessWidget {
@@ -112,91 +113,70 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
   }
 
   Widget _buildNewPasswordField() {
-    return TextFormField(
-      controller: _newPasswordController,
-      decoration: InputDecoration(
-        labelText: Strings.of(context).new_password_label,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGrey),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGrey),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGreen),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        suffixIcon: IconButton(
-          icon: Icon(
-            color: AppColors.greyIconColor,
-            _isNewPasswordObscured
-                ? Icons.visibility_off_outlined
-                : Icons.visibility_outlined,
-          ),
-          onPressed: () {
-            setState(() {
-              _isNewPasswordObscured = !_isNewPasswordObscured;
-            });
-          },
-        ),
+    return TFormField(
+      fieldType: FieldType.password,
+      labelText: Strings.of(context).new_password_label,
+      labelStyle: Styles.regularGreyParagraph,
+      contentPadding: const EdgeInsets.symmetric(
+        vertical: Dimensions.marginDefault,
+        horizontal: Dimensions.marginDefault,
       ),
-      obscureText: _isNewPasswordObscured,
-      keyboardType: TextInputType.emailAddress,
+      isObscured: _isNewPasswordObscured,
+      hasSuffixIcon: true,
+      suffixIcon: IconButton(
+        icon: Icon(
+          color: AppColors.greyIconColor,
+          _isNewPasswordObscured
+              ? Icons.visibility_off_outlined
+              : Icons.visibility_outlined,
+        ),
+        onPressed: () {
+          setState(() {
+            _isNewPasswordObscured = !_isNewPasswordObscured;
+          });
+        },
+      ),
       validator: (value) {
         if (value == null || value.isEmpty) {
           return Strings.of(context).new_password_validation;
         }
         return null;
       },
+      controller: _newPasswordController,
     );
   }
 
   Widget _buildConfirmPasswordField() {
-    return TextFormField(
-      controller: _confirmPasswordController,
-      decoration: InputDecoration(
-        labelText: Strings.of(context).confirm_password_label,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGrey),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGrey),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGreen),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        suffixIcon: IconButton(
-          icon: Icon(
-            color: AppColors.greyIconColor,
-            _isConfirmPasswordObscured
-                ? Icons.visibility_off_outlined
-                : Icons.visibility_outlined,
-          ),
-          onPressed: () {
-            setState(() {
-              _isConfirmPasswordObscured = !_isConfirmPasswordObscured;
-            });
-          },
-        ),
+    return TFormField(
+      fieldType: FieldType.password,
+      labelText: Strings.of(context).confirm_password_label,
+      labelStyle: Styles.regularGreyParagraph,
+      contentPadding: const EdgeInsets.symmetric(
+        vertical: Dimensions.marginDefault,
+        horizontal: Dimensions.marginDefault,
       ),
-      obscureText: _isConfirmPasswordObscured,
+      isObscured: _isConfirmPasswordObscured,
+      hasSuffixIcon: true,
+      suffixIcon: IconButton(
+        icon: Icon(
+          color: AppColors.greyIconColor,
+          _isConfirmPasswordObscured
+              ? Icons.visibility_off_outlined
+              : Icons.visibility_outlined,
+        ),
+        onPressed: () {
+          setState(() {
+            _isConfirmPasswordObscured = !_isConfirmPasswordObscured;
+          });
+        },
+      ),
       validator: (value) {
         if (value == null || value.isEmpty) {
           return Strings.of(context).confirm_password_validation;
         }
         return null;
       },
+      controller: _confirmPasswordController,
     );
   }
 
@@ -214,6 +194,18 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
     return TButton(
       onPressed: () async {
         if (_formKey.currentState?.validate() ?? false) {
+          if (_newPasswordController.text != _confirmPasswordController.text) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  Strings.of(context).password_mismatch_message,
+                  style: Styles.mediumWhiteText,
+                ),
+                backgroundColor: AppColors.tRed,
+              ),
+            );
+            return;
+          }
           await context.read<AuthCubit>().setNewPassword(
                 _newPasswordController.text,
               );

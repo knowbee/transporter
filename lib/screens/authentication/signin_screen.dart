@@ -10,7 +10,8 @@ import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
-import 'package:transporter/widgets/common/input/Tbutton.dart';
+import 'package:transporter/widgets/common/input/custom_button.dart';
+import 'package:transporter/widgets/common/input/custom_form_field.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -111,77 +112,55 @@ class _SignInFormState extends State<SignInForm> {
   }
 
   Widget _buildPasswordField() {
-    return TextFormField(
-      controller: _passwordController,
-      decoration: InputDecoration(
-        labelText: Strings.of(context).signin_password_label,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGrey),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGrey),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGreen),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        suffixIcon: IconButton(
-          icon: Icon(
-            color: AppColors.greyIconColor,
-            _isObscured
-                ? Icons.visibility_off_outlined
-                : Icons.visibility_outlined,
-          ),
-          onPressed: () {
-            setState(() {
-              _isObscured = !_isObscured;
-            });
-          },
-        ),
+    return TFormField(
+      fieldType: FieldType.password,
+      labelText: Strings.of(context).signin_password_label,
+      labelStyle: Styles.regularGreyParagraph,
+      contentPadding: const EdgeInsets.symmetric(
+        vertical: Dimensions.marginDefault,
+        horizontal: Dimensions.marginDefault,
       ),
-      obscureText: _isObscured,
+      isObscured: _isObscured,
+      hasSuffixIcon: true,
+      suffixIcon: IconButton(
+        icon: Icon(
+          color: AppColors.greyIconColor,
+          _isObscured
+              ? Icons.visibility_off_outlined
+              : Icons.visibility_outlined,
+        ),
+        onPressed: () {
+          setState(() {
+            _isObscured = !_isObscured;
+          });
+        },
+      ),
       validator: (value) {
         if (value == null || value.isEmpty) {
           return Strings.of(context).signin_password_validation_label;
         }
         return null;
       },
+      controller: _passwordController,
     );
   }
 
   Widget _buildEmailField() {
-    return TextFormField(
-      controller: _identifierController,
-      decoration: InputDecoration(
-        labelText: Strings.of(context).signin_email_or_phone,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGrey),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGrey),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGreen),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
+    return TFormField(
+      fieldType: FieldType.textField,
+      labelText: Strings.of(context).signin_email_or_phone,
+      labelStyle: Styles.regularGreyParagraph,
+      contentPadding: const EdgeInsets.symmetric(
+        vertical: Dimensions.marginDefault,
+        horizontal: Dimensions.marginDefault,
       ),
-      keyboardType: TextInputType.emailAddress,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return Strings.of(context).signin_validation_email_or_phone;
         }
         return null;
       },
+      controller: _identifierController,
     );
   }
 

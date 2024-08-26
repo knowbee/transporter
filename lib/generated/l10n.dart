@@ -460,6 +460,16 @@ class Strings {
     );
   }
 
+  /// `Password and confirm password does not match`
+  String get password_mismatch_message {
+    return Intl.message(
+      'Password and confirm password does not match',
+      name: 'password_mismatch_message',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Set New Password`
   String get set_new_password_heading {
     return Intl.message(
