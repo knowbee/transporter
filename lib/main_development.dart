@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -41,8 +43,10 @@ void main() async {
       complaintRepository: complaintRepository,
     ),
   );
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    final apiKey = Config.googleApiKeyOverride;
-    channel.invokeMethod('setApiKey', apiKey);
-  });
+  if (Platform.isIOS || Platform.isMacOS) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final apiKey = Config.googleApiKeyOverride;
+      channel.invokeMethod('setApiKey', apiKey);
+    });
+  }
 }

@@ -5,8 +5,8 @@ import 'package:transporter/screens/transport/request_for_rent_screen.dart';
 import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/assets/transport_assets.dart';
 import 'package:transporter/values/colors.dart';
-import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/common/input/custom_button.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 
 class CarDetailsScreen extends StatefulWidget {
@@ -260,29 +260,18 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
     return Row(
       children: [
         Expanded(
-          child: ElevatedButton(
+          child: TButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(
-                vertical: Dimensions.marginDefault,
-              ),
-              backgroundColor: Colors.white,
-              side: const BorderSide(color: AppColors.tGreen),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-            child: Text(
-              Strings.current.book_later_button_label,
-              style: Styles.bookLaterButtonGreenTextStyle,
-            ),
+            title: Strings.current.book_later_button_label,
+            textStyle: Styles.bookLaterButtonGreenTextStyle,
+            buttonType: TButtonType.outlined,
           ),
         ),
         const SizedBox(width: 8),
         Expanded(
-          child: ElevatedButton(
+          child: TButton(
             onPressed: () {
               Navigator.push(
                 context,
@@ -291,19 +280,9 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
                 ),
               );
             },
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(
-                vertical: Dimensions.marginDefault,
-              ),
-              backgroundColor: AppColors.tGreen,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-            child: Text(
-              Strings.current.ride_now_button_label,
-              style: Styles.rideNowButtonWhiteTextStyle,
-            ),
+            title: Strings.current.ride_now_button_label,
+            textStyle: Styles.rideNowButtonWhiteTextStyle,
+            borderRadius: BorderRadius.circular(8),
           ),
         ),
       ],

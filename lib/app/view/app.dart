@@ -22,8 +22,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
-        statusBarColor: Colors.white,
-        statusBarBrightness: Brightness.light,
+        statusBarColor: Colors.black,
+        statusBarBrightness: Brightness.dark,
       ),
     );
 
@@ -44,6 +44,7 @@ class AppView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: Styles.themeData,
+      debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
         Strings.delegate,
         GlobalMaterialLocalizations.delegate,

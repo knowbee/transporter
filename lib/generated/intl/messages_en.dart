@@ -136,6 +136,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Book your car"),
         "onboarding_skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "or_separator": MessageLookupByLibrary.simpleMessage("or"),
+        "password_mismatch_message": MessageLookupByLibrary.simpleMessage(
+            "Password and confirm password does not match",),
         "request_for_rent_screen_title":
             MessageLookupByLibrary.simpleMessage("Request for rent"),
         "ride_now_button_label":

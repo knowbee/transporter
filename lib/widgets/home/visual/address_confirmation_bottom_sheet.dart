@@ -5,6 +5,7 @@ import 'package:transporter/values/assets/home_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/common/input/custom_button.dart';
 
 class AddressConfirmationBottomSheet extends StatelessWidget {
   const AddressConfirmationBottomSheet({super.key});
@@ -174,13 +175,7 @@ class AddressConfirmationBottomSheet extends StatelessWidget {
   Widget _buildConfirmButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: Dimensions.marginDefault),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.tGreen,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-          ),
-        ),
+      child: TButton(
         onPressed: () {
           Navigator.of(context).pop();
           Navigator.push(
@@ -190,14 +185,8 @@ class AddressConfirmationBottomSheet extends StatelessWidget {
             ),
           );
         },
-        child: Padding(
-          padding:
-              const EdgeInsets.symmetric(vertical: Dimensions.marginDefault),
-          child: Text(
-            Strings.current.confirm_button_label,
-            style: Styles.mediumWhiteText,
-          ),
-        ),
+        borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
+        title: Strings.current.confirm_button_label,
       ),
     );
   }

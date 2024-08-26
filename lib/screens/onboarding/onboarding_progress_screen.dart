@@ -151,7 +151,6 @@ class _OnboardingProgressCarousel extends State<OnboardingProgressCarousel> {
           Expanded(
             child: _buildBody(),
           ),
-          _buildFooter(index: _current),
         ],
       ),
     );
@@ -186,36 +185,32 @@ class _OnboardingProgressCarousel extends State<OnboardingProgressCarousel> {
           right: Dimensions.marginLarge,
           bottom: Dimensions.marginDefault,
         ),
-        child: SafeArea(
-          top: false,
-          maintainBottomViewPadding: true,
-          child: GestureDetector(
-            onTap: () {
-              if (_current < 2) {
-                _carouselController.nextPage();
-              } else if (_current == 2) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<Material>(
-                    builder: (context) => const WelcomeScreen(),
-                  ),
-                );
-              }
-              setState(
-                () => _current = (_current + 1) % 3,
-              );
-            },
-            child: SizedBox(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Image.asset(
-                  height: _Constants.progressIconHeight,
-                  index == 0
-                      ? OnboardingAssets.startOnboarding
-                      : index == 1
-                          ? OnboardingAssets.halfway
-                          : OnboardingAssets.complete,
+        child: GestureDetector(
+          onTap: () {
+            if (_current < 2) {
+              _carouselController.nextPage();
+            } else if (_current == 2) {
+              Navigator.push(
+                context,
+                MaterialPageRoute<Material>(
+                  builder: (context) => const WelcomeScreen(),
                 ),
+              );
+            }
+            setState(
+              () => _current = (_current + 1) % 3,
+            );
+          },
+          child: SizedBox(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Image.asset(
+                height: _Constants.progressIconHeight,
+                index == 0
+                    ? OnboardingAssets.startOnboarding
+                    : index == 1
+                        ? OnboardingAssets.halfway
+                        : OnboardingAssets.complete,
               ),
             ),
           ),
@@ -277,18 +272,20 @@ class _OnboardingProgressCarousel extends State<OnboardingProgressCarousel> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
               Flexible(
-                child: Text(
-                  description,
-                  style: Styles.mediumGreyParagraph,
-                  softWrap: true,
-                  overflow: TextOverflow.visible,
-                  textAlign: TextAlign.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(Dimensions.marginDefault),
+                  child: Text(
+                    description,
+                    style: Styles.mediumGreyParagraph,
+                    softWrap: true,
+                    overflow: TextOverflow.visible,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
+              const Spacer(),
+              _buildFooter(index: _current),
             ],
           ),
         ],

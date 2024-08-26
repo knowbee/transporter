@@ -36,6 +36,7 @@
     "invalid_password_message": "Please enter matching password",
     "user_signup_failed_message": "User signup failed",
     "invalid_otp_verification": "Invalid OTP",
+    "password_mismatch_message": "Password and confirm password does not match",
     
     "signin_label": "Sign in",
     "gender_male": "Male",

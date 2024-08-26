@@ -14,6 +14,8 @@ import 'package:transporter/values/assets/authentication_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/common/input/custom_button.dart';
+import 'package:transporter/widgets/common/input/custom_form_field.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -117,25 +119,13 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   Widget _buildNameField() {
-    return TextFormField(
-      controller: _nameController,
-      decoration: InputDecoration(
-        labelText: Strings.of(context).signup_name_field_label,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGrey),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGrey),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGreen),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
+    return TFormField(
+      fieldType: FieldType.textField,
+      labelText: Strings.of(context).signup_name_field_label,
+      labelStyle: Styles.regularGreyParagraph,
+      contentPadding: const EdgeInsets.symmetric(
+        vertical: Dimensions.marginDefault,
+        horizontal: Dimensions.marginDefault,
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -143,37 +133,26 @@ class _SignUpFormState extends State<SignUpForm> {
         }
         return null;
       },
+      controller: _nameController,
     );
   }
 
   Widget _buildEmailField() {
-    return TextFormField(
-      controller: _emailController,
-      decoration: InputDecoration(
-        labelText: Strings.of(context).signup_email_field_label,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGrey),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGrey),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.tLightGreen),
-          borderRadius:
-              BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
+    return TFormField(
+      fieldType: FieldType.textField,
+      labelText: Strings.of(context).signup_email_field_label,
+      labelStyle: Styles.regularGreyParagraph,
+      contentPadding: const EdgeInsets.symmetric(
+        vertical: Dimensions.marginDefault,
+        horizontal: Dimensions.marginDefault,
       ),
-      keyboardType: TextInputType.emailAddress,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return Strings.of(context).signup_email_validation_label;
         }
         return null;
       },
+      controller: _emailController,
     );
   }
 
@@ -319,7 +298,7 @@ class _SignUpFormState extends State<SignUpForm> {
   Widget _buildSignUpButton() {
     return SizedBox(
       width: double.infinity,
-      child: ElevatedButton(
+      child: TButton(
         key: const Key('signup_button'),
         onPressed: () async {
           if (_formKey.currentState?.validate() ?? false) {
@@ -353,19 +332,7 @@ class _SignUpFormState extends State<SignUpForm> {
             _nameController.clear();
           }
         },
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(
-            vertical: Dimensions.marginDefault,
-          ),
-          backgroundColor: AppColors.tGreen,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-          ),
-        ),
-        child: Text(
-          Strings.of(context).signup_button_label,
-          style: Styles.mediumWhiteText,
-        ),
+        title: Strings.of(context).signup_button_label,
       ),
     );
   }
