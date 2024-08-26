@@ -14,6 +14,7 @@ import 'package:transporter/values/assets/authentication_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/common/input/Tbutton.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -319,7 +320,7 @@ class _SignUpFormState extends State<SignUpForm> {
   Widget _buildSignUpButton() {
     return SizedBox(
       width: double.infinity,
-      child: ElevatedButton(
+      child: TButton(
         key: const Key('signup_button'),
         onPressed: () async {
           if (_formKey.currentState?.validate() ?? false) {
@@ -353,19 +354,7 @@ class _SignUpFormState extends State<SignUpForm> {
             _nameController.clear();
           }
         },
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(
-            vertical: Dimensions.marginDefault,
-          ),
-          backgroundColor: AppColors.tGreen,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-          ),
-        ),
-        child: Text(
-          Strings.of(context).signup_button_label,
-          style: Styles.mediumWhiteText,
-        ),
+        title: Strings.of(context).signup_button_label,
       ),
     );
   }

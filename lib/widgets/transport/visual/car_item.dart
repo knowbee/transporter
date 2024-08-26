@@ -4,6 +4,7 @@ import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/common/input/Tbutton.dart';
 
 class CarItem extends StatelessWidget {
   const CarItem({
@@ -79,41 +80,22 @@ class CarItem extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: ElevatedButton(
+                child: TButton(
                   onPressed: onBookLater,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: Dimensions.marginDefault,
-                    ),
-                    side: const BorderSide(color: AppColors.tGreen),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: Text(
-                    Strings.of(context).book_later_button_label,
-                    style: Styles.bookLaterButtonGreenTextStyle,
-                  ),
+                  title: Strings.of(context).book_later_button_label,
+                  outlineColor: AppColors.tGreen,
+                  textStyle: Styles.bookLaterButtonGreenTextStyle,
+                  borderRadius: BorderRadius.circular(8),
+                  buttonType: TButtonType.outlined,
                 ),
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: ElevatedButton(
+                child: TButton(
                   onPressed: onRideNow,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.tGreen,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: Dimensions.marginDefault,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: Text(
-                    Strings.of(context).ride_now_button_label,
-                    style: Styles.rideNowButtonWhiteTextStyle,
-                  ),
+                  title: Strings.of(context).ride_now_button_label,
+                  textStyle: Styles.rideNowButtonWhiteTextStyle,
+                  borderRadius: BorderRadius.circular(8),
                 ),
               ),
             ],

@@ -8,6 +8,7 @@ import 'package:transporter/values/assets/transport_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/common/input/Tbutton.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 
 class RequestForRentScreen extends StatefulWidget {
@@ -355,7 +356,7 @@ class _RequestForRentScreenState extends State<RequestForRentScreen> {
   Widget _buildConfirmRideButton(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: ElevatedButton(
+      child: TButton(
         onPressed: () {
           Navigator.push(
             context,
@@ -364,17 +365,9 @@ class _RequestForRentScreenState extends State<RequestForRentScreen> {
             ),
           );
         },
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.all(18),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          backgroundColor: AppColors.tGreen,
-        ),
-        child: const Text(
-          'Confirm Ride',
-          style: Styles.mediumWhiteText,
-        ),
+        padding: const EdgeInsets.all(18),
+        borderRadius: BorderRadius.circular(12),
+        title: 'Confirm Ride',
       ),
     );
   }

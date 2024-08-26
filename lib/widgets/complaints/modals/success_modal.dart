@@ -3,9 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/home.dart';
 import 'package:transporter/values/assets/complain_assets.dart';
-import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/common/input/Tbutton.dart';
 
 abstract class _Constants {
   static const iconHeight = 100.0;
@@ -58,7 +58,7 @@ class SuccessDialog extends StatelessWidget {
             const SizedBox(height: Dimensions.marginMedium),
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
+              child: TButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                   Navigator.push(
@@ -68,19 +68,8 @@ class SuccessDialog extends StatelessWidget {
                     ),
                   );
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.tGreen,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: Dimensions.marginDefault,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(Dimensions.marginSmall),
-                  ),
-                ),
-                child: Text(
-                  Strings.of(context).complain_back_home_button_label,
-                  style: Styles.mediumWhiteText,
-                ),
+                borderRadius: BorderRadius.circular(Dimensions.marginSmall),
+                title: Strings.of(context).complain_back_home_button_label,
               ),
             ),
           ],

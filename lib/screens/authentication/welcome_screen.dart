@@ -7,6 +7,7 @@ import 'package:transporter/values/assets/authentication_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/common/input/Tbutton.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -48,7 +49,7 @@ class WelcomeScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  ElevatedButton(
+                  TButton(
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -57,24 +58,12 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: Dimensions.marginDefault,
-                      ),
-                      backgroundColor: AppColors.tGreen,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          Dimensions.radiusSmall,
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      Strings.of(context).welcome_create_account_label,
-                      style: Styles.mediumWhiteText,
-                    ),
+                    title: Strings.of(context).welcome_create_account_label,
                   ),
                   SizedBox(height: size.height * 0.02),
-                  OutlinedButton(
+                  TButton(
+                    backgroundColor: AppColors.tWhite,
+                    buttonType: TButtonType.outlined,
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -83,21 +72,8 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: Dimensions.marginDefault,
-                      ),
-                      side: const BorderSide(color: Colors.green),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          Dimensions.radiusSmall,
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      Strings.of(context).welcome_login_label,
-                      style: Styles.mediumLightGreenText,
-                    ),
+                    title: Strings.of(context).welcome_login_label,
+                    textStyle: Styles.mediumLightGreenText,
                   ),
                 ],
               ),

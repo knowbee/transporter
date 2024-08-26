@@ -13,6 +13,7 @@ import 'package:transporter/values/assets/complain_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/common/input/Tbutton.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 import 'package:transporter/widgets/complaints/modals/success_modal.dart';
 
@@ -237,7 +238,7 @@ class _ComplainContentState extends State<ComplainContent> {
   Widget _buildSubmitButton() {
     return SizedBox(
       width: double.infinity,
-      child: ElevatedButton(
+      child: TButton(
         onPressed: () {
           if (_formKey.currentState?.validate() ?? false) {
             final complaintCubit = context.read<ComplaintCubit>();
@@ -290,19 +291,8 @@ class _ComplainContentState extends State<ComplainContent> {
             }
           }
         },
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(
-            vertical: Dimensions.marginDefault,
-          ),
-          backgroundColor: AppColors.tGreen,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-          ),
-        ),
-        child: Text(
-          Strings.current.submit_button_label,
-          style: Styles.mediumWhiteText,
-        ),
+        borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
+        title: Strings.current.submit_button_label,
       ),
     );
   }

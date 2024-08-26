@@ -5,6 +5,7 @@ import 'package:transporter/values/assets/transport_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/common/input/Tbutton.dart';
 
 abstract class _Constants {
   static const iconHeight = 100.0;
@@ -132,23 +133,12 @@ class PaymentSuccessDialog extends StatelessWidget {
             const SizedBox(height: Dimensions.marginMedium),
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
+              child: TButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.tGreen,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: Dimensions.marginDefault,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(Dimensions.marginSmall),
-                  ),
-                ),
-                child: const Text(
-                  'Please Feedback',
-                  style: Styles.mediumWhiteText,
-                ),
+                title: 'Please Feedback',
+                borderRadius: BorderRadius.circular(Dimensions.marginSmall),
               ),
             ),
           ],

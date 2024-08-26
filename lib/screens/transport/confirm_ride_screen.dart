@@ -3,9 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/home.dart';
 import 'package:transporter/values/assets/transport_assets.dart';
-import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
-import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/common/input/Tbutton.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 import 'package:transporter/widgets/transport/visual/confirm_ride_modal_sheet.dart';
 
@@ -67,7 +66,7 @@ class ConfirmRideScreen extends StatelessWidget {
             const Spacer(),
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
+              child: TButton(
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -77,17 +76,8 @@ class ConfirmRideScreen extends StatelessWidget {
                   );
                   showAddressSelectionBottomSheet(context);
                 },
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  backgroundColor: AppColors.tGreen,
-                ),
-                child: Text(
-                  Strings.current.confirm_ride,
-                  style: Styles.mediumWhiteText,
-                ),
+                borderRadius: BorderRadius.circular(8),
+                title: Strings.current.confirm_ride,
               ),
             ),
             const SizedBox(height: 24),

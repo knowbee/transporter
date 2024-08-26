@@ -10,6 +10,7 @@ import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/common/input/Tbutton.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -209,7 +210,7 @@ class _SignInFormState extends State<SignInForm> {
   Widget _buildSignInButton() {
     return SizedBox(
       width: double.infinity,
-      child: ElevatedButton(
+      child: TButton(
         onPressed: () async {
           if (_formKey.currentState?.validate() ?? false) {
             await context.read<AuthCubit>().logIn(
@@ -237,19 +238,7 @@ class _SignInFormState extends State<SignInForm> {
             }
           }
         },
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(
-            vertical: Dimensions.marginDefault,
-          ),
-          backgroundColor: AppColors.tGreen,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-          ),
-        ),
-        child: Text(
-          Strings.of(context).signin_label,
-          style: Styles.mediumWhiteText,
-        ),
+        title: Strings.of(context).signin_label,
       ),
     );
   }

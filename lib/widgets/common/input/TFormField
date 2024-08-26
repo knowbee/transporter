@@ -1,0 +1,99 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:transporter/values/colors.dart';
+import 'package:transporter/values/dimensions.dart';
+
+enum FieldType { password, email, textArea, textField }
+
+class TFormField extends StatefulWidget {
+  final TextEditingController controller;
+  final FieldType fieldType;
+  final String labelText;
+  final String? Function(String?) validator;
+  final bool isObscured;
+  final String? suffixIconAsset;
+  final VoidCallback? onSuffixIconPressed;
+  final String? prefixIconAsset; 
+  final EdgeInsetsGeometry contentPadding;
+  final String? hintText;
+  final TextStyle? labelStyle;
+  final bool isBorderEnabled;
+
+  const TFormField({
+    Key? key,
+    required this.controller,
+    required this.fieldType,
+    required this.labelText,
+    required this.validator,
+    this.isObscured = false,
+    this.suffixIconAsset,
+    this.onSuffixIconPressed,
+    this.prefixIconAsset,
+    this.contentPadding = const EdgeInsets.symmetric(horizontal: 16.0),
+    this.hintText,
+    this.labelStyle,
+    this.isBorderEnabled = true,
+  }) : super(key: key);
+
+  @override
+  _TFormFieldState createState() => _TFormFieldState();
+}
+
+class _TFormFieldState extends State<TFormField> {
+  late bool _isObscured;
+
+  @override
+  void initState() {
+    super.initState();
+    _isObscured = widget.isObscured;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: widget.controller,
+      obscureText: widget.fieldType == FieldType.password ? _isObscured : false,
+      maxLines: widget.fieldType == FieldType.textArea ? 5 : 1,
+      decoration: InputDecoration(
+        labelText: widget.labelText,
+        labelStyle: widget.labelStyle,
+        contentPadding: widget.contentPadding,
+        border: widget.isBorderEnabled
+            ? const OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.tLightGrey),
+                borderRadius: BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+              )
+            : InputBorder.none,
+        enabledBorder: widget.isBorderEnabled
+            ? const OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.tLightGrey),
+                borderRadius: BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+              )
+            : InputBorder.none,
+        focusedBorder: widget.isBorderEnabled
+            ? const OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.tLightGreen),
+                borderRadius: BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+              )
+            : InputBorder.none,
+        prefixIcon: widget.prefixIconAsset != null
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                child: SvgPicture.asset(
+                  widget.prefixIconAsset!,
+                ),
+              )
+            : null,
+        suffixIcon: widget.suffixIconAsset != null 
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                child: SvgPicture.asset(
+                  widget.suffixIconAsset!,
+                ),
+              ) 
+            : null,
+      ),
+      validator: widget.validator,
+    );
+  }
+}

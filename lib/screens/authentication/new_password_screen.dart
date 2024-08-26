@@ -8,6 +8,7 @@ import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/common/input/Tbutton.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 
 class SetNewPasswordScreen extends StatelessWidget {
@@ -210,13 +211,12 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
   }
 
   Widget _buildSaveButton() {
-    return ElevatedButton(
+    return TButton(
       onPressed: () async {
         if (_formKey.currentState?.validate() ?? false) {
           await context.read<AuthCubit>().setNewPassword(
                 _newPasswordController.text,
               );
-
           if (context.read<AuthCubit>().state is AuthenticationFailed) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -237,19 +237,7 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
           }
         }
       },
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(
-          vertical: Dimensions.marginDefault,
-        ),
-        backgroundColor: AppColors.tGreen,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-        ),
-      ),
-      child: Text(
-        Strings.of(context).save_button_label,
-        style: Styles.mediumWhiteText,
-      ),
+      title: Strings.of(context).save_button_label,
     );
   }
 }

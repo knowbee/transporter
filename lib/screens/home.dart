@@ -11,6 +11,8 @@ import 'package:transporter/values/assets/navigation_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/common/input/TFormField';
+import 'package:transporter/widgets/common/input/Tbutton.dart';
 import 'package:transporter/widgets/home/visual/address_confirmation_bottom_sheet.dart';
 import 'package:transporter/widgets/home/visual/address_selection_draggable_bottom_sheet.dart';
 import 'package:transporter/widgets/home/visual/custom_drawer.dart';
@@ -31,6 +33,7 @@ class _HomePageState extends State<HomePage> {
   GoogleMapController? mapController;
   final Set<Marker> _markers = {};
   LatLng startLocation = const LatLng(-1.9524035, 30.0892928);
+  final TextEditingController _searchController = TextEditingController();
 
   void _onItemTapped(int index) {
     setState(() {
@@ -128,20 +131,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  ElevatedButton _buildRentalButton() {
-    return ElevatedButton(
-      onPressed: () => {},
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.tGreen,
-        padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 12),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-        ),
-      ),
-      child: Text(
-        Strings.of(context).home_rental_button_heading,
-        style: Styles.mediumWhiteText,
-      ),
+  TButton _buildRentalButton() {
+    return TButton(
+      onPressed: () {},
+      title: Strings.of(context).home_rental_button_heading,
+      borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
+      padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 12),
     );
   }
 
@@ -172,25 +167,18 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
         ),
         child: IgnorePointer(
-          child: TextField(
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(vertical: 12),
-              hintText: Strings.of(context).home_address_input_hint,
-              hintStyle: Styles.regularGreyParagraph,
-              border: InputBorder.none,
-              prefixIcon: Padding(
-                padding: const EdgeInsets.all(14),
-                child: SvgPicture.asset(
-                  HomeAssets.searchIcon,
-                ),
-              ),
-              suffixIcon: Padding(
-                padding: const EdgeInsets.all(14),
-                child: SvgPicture.asset(
-                  HomeAssets.favoriteIcon,
-                ),
-              ),
-            ),
+          child: TFormField(
+            fieldType: FieldType.textField,
+            labelText: Strings.of(context).home_address_input_hint,
+            labelStyle: Styles.regularGreyParagraph,
+            contentPadding: const EdgeInsets.symmetric(vertical: 12),
+            isBorderEnabled: false,
+            prefixIconAsset: HomeAssets.searchIcon,
+            suffixIconAsset: HomeAssets.favoriteIcon,
+            validator: (value) {
+              return null;
+            },
+            controller: _searchController,
           ),
         ),
       ),

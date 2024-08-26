@@ -4,6 +4,7 @@ import 'package:transporter/values/assets/profile_assets.dart';
 import 'package:transporter/values/assets/transport_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
+import 'package:transporter/widgets/common/input/Tbutton.dart';
 import 'package:transporter/widgets/transport/visual/payment_success_dialog.dart';
 
 class ConfirmRideBottomSheet extends StatelessWidget {
@@ -242,7 +243,7 @@ class ConfirmRideBottomSheet extends StatelessWidget {
   Widget _buildPayButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: ElevatedButton(
+      child: TButton(
         onPressed: () {
           Navigator.of(context).pop();
           showDialog<void>(
@@ -254,17 +255,13 @@ class ConfirmRideBottomSheet extends StatelessWidget {
             },
           );
         },
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          backgroundColor: AppColors.tGreen,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+        title: 'Pay',
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
         ),
-        child: const Text(
-          'Pay',
-          style: TextStyle(fontSize: 16, color: Colors.white),
-        ),
+        borderRadius: BorderRadius.circular(8),
       ),
     );
   }
