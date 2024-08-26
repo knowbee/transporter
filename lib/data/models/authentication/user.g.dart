@@ -22,9 +22,8 @@ class UserAdapter extends TypeAdapter<User> {
       gender: fields[2] as String,
       phoneNumber: fields[4] as String,
       password: fields[3] as String?,
-      isVerified: fields[5] as bool?,
       isLoggedIn: fields[6] as bool?,
-    );
+    )..isVerified = fields[5] as bool?;
   }
 
   @override

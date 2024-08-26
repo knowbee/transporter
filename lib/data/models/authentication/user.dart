@@ -10,7 +10,6 @@ class User extends HiveObject {
     required this.gender,
     required this.phoneNumber,
     this.password,
-    this.isVerified = false,
     this.isLoggedIn = false,
   });
   @HiveField(0)
@@ -41,7 +40,6 @@ class User extends HiveObject {
       'gender': gender,
       'phoneNumber': phoneNumber,
       'password': password,
-      'isVerified': isVerified,
       'isLoggedIn': isLoggedIn,
     };
   }

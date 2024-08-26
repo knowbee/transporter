@@ -7,8 +7,8 @@ import 'package:transporter/data/cubits/authentication/auth_cubit.dart';
 import 'package:transporter/data/enums/authentication/gender.dart';
 import 'package:transporter/data/repositories/user_repository.dart';
 import 'package:transporter/generated/l10n.dart';
+import 'package:transporter/screens/authentication/new_password_screen.dart';
 import 'package:transporter/screens/authentication/signin_screen.dart';
-import 'package:transporter/screens/authentication/verify_otp_screen.dart';
 import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/assets/authentication_assets.dart';
 import 'package:transporter/values/colors.dart';
@@ -344,7 +344,7 @@ class _SignUpFormState extends State<SignUpForm> {
               await Navigator.push(
                 context,
                 MaterialPageRoute<Material>(
-                  builder: (context) => const VerificationScreen(),
+                  builder: (context) => const SetNewPasswordScreen(),
                 ),
               );
             }
