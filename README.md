@@ -151,7 +151,7 @@ To use the latest translations changes, you will need to generate them:
 1. Generate localizations for the current project:
 
 ```sh
-flutter pub run intl_utils:generate
+dart run intl_utils:generate
 ```
 
 Alternatively, run `flutter run` and code generation will take place automatically.

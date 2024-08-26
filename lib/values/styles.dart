@@ -120,6 +120,13 @@ abstract class Styles {
     fontWeight: FontWeight.w500,
   );
 
+  static const smallSubheadingBlack = TextStyle(
+    color: Color(0xFFB8B8B8),
+    fontSize: 14,
+    fontFamily: _poppins,
+    fontWeight: FontWeight.w500,
+  );
+
   static const smallParagraphLightGreen = TextStyle(
     color: AppColors.tLightGreen,
     fontSize: 12,
@@ -189,6 +196,21 @@ abstract class Styles {
     fontWeight: FontWeight.w500,
   );
 
+  static const headingLightBlackText = TextStyle(
+    color: Color(0xFF5A5A5A),
+    fontSize: 24,
+    fontFamily: _poppins,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const mediumBlackLabel = TextStyle(
+    color: Color(0xFF414141),
+    fontSize: 16,
+    fontFamily: _poppins,
+    fontWeight: FontWeight.w500,
+    height: 0.09,
+  );
+
   static const mediumBlackText = TextStyle(
     color: Color(0xFF414141),
     fontSize: 18,
@@ -230,6 +252,31 @@ abstract class Styles {
     fontSize: 14,
     fontFamily: _poppins,
     fontWeight: FontWeight.w500,
-    height: 0.10,
+  );
+
+  static const modalHeadingStyle = TextStyle(
+    color: Color(0xFF5A5A5A),
+    fontSize: 20,
+    fontFamily: _poppins,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const specificationHeadingStyle = TextStyle(
+    color: Color(0xFF5A5A5A),
+    fontSize: 18,
+    fontFamily: _poppins,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const rideNowButtonWhiteTextStyle = TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const bookLaterButtonGreenTextStyle = TextStyle(
+    color: AppColors.tGreen,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
   );
 }

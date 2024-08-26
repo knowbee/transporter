@@ -5,6 +5,7 @@ import 'package:transporter/values/assets/home_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/home/visual/address_confirmation_bottom_sheet.dart';
 
 class AddressSelectionBottomSheet extends StatelessWidget {
   const AddressSelectionBottomSheet({super.key});
@@ -33,10 +34,10 @@ class AddressSelectionBottomSheet extends StatelessWidget {
   Widget _buildHeader(BuildContext context) {
     return Stack(
       children: [
-        const Column(
+        Column(
           children: [
-            SizedBox(height: 8),
-            Row(
+            const SizedBox(height: Dimensions.marginSmall),
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
@@ -45,10 +46,10 @@ class AddressSelectionBottomSheet extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: Dimensions.marginDefault),
             Text(
-              'Select address',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              Strings.of(context).address_selection_header,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ],
         ),
@@ -62,6 +63,7 @@ class AddressSelectionBottomSheet extends StatelessWidget {
             ),
             onPressed: () {
               Navigator.of(context).pop();
+              showAddressSelectionBottomSheet(context);
             },
           ),
         ),
@@ -69,16 +71,29 @@ class AddressSelectionBottomSheet extends StatelessWidget {
     );
   }
 
+  void showAddressSelectionBottomSheet(BuildContext context) {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(Dimensions.radiusXLarge),
+        ),
+      ),
+      builder: (context) => const AddressConfirmationBottomSheet(),
+    );
+  }
+
   Widget _buildAddressInputs() {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(Dimensions.marginDefault),
       child: Column(
         children: [
           _buildInputField(
             icon: HomeAssets.locationIcon,
             hintText: Strings.current.from_label,
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: Dimensions.marginDefault),
           _buildInputField(
             icon: HomeAssets.mapPinIcon,
             hintText: Strings.current.from_label,
@@ -104,8 +119,8 @@ class AddressSelectionBottomSheet extends StatelessWidget {
         hintStyle: Styles.smallLightBlackText,
         prefixIcon: Image.asset(
           icon,
-          width: 12,
-          height: 12,
+          width: Dimensions.marginTwelve,
+          height: Dimensions.marginTwelve,
         ),
         suffixIcon: suffixIcon != null
             ? IconButton(
@@ -113,7 +128,10 @@ class AddressSelectionBottomSheet extends StatelessWidget {
                 onPressed: onSuffixIconPressed,
               )
             : null,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: Dimensions.marginTwelve,
+          vertical: 8,
+        ),
         border: const OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.tLightGrey),
           borderRadius:
@@ -135,15 +153,15 @@ class AddressSelectionBottomSheet extends StatelessWidget {
 
   Widget _buildRecentPlacesSection() {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(Dimensions.marginDefault),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Recent places',
+          Text(
+            Strings.current.address_selection_recent_places_heading,
             style: Styles.smallLightBlackText,
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: Dimensions.marginDefault),
           SizedBox(
             height: 200,
             child: ListView(
@@ -168,7 +186,6 @@ class AddressSelectionBottomSheet extends StatelessWidget {
                   address: '4140 Parker Rd. Allentown, New Mexico 31134',
                   distance: '4.0km',
                 ),
-                // Add more items as needed
               ],
             ),
           ),
@@ -183,7 +200,7 @@ class AddressSelectionBottomSheet extends StatelessWidget {
     required String distance,
   }) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.only(bottom: Dimensions.marginDefault),
       child: Row(
         children: [
           SvgPicture.asset(
@@ -191,7 +208,7 @@ class AddressSelectionBottomSheet extends StatelessWidget {
             width: Dimensions.iconDimensTwentyFour,
             height: Dimensions.iconDimensTwentyFour,
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: Dimensions.marginTwelve),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -208,7 +225,7 @@ class AddressSelectionBottomSheet extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: Dimensions.marginSmall),
           Text(distance, style: Styles.vSmallBlackText),
         ],
       ),

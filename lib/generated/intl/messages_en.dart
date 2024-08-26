@@ -22,8 +22,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "address_selection_header":
+            MessageLookupByLibrary.simpleMessage("Select address"),
+        "address_selection_recent_places_heading":
+            MessageLookupByLibrary.simpleMessage("Recent places"),
         "auth_user_is_not_authenticated":
             MessageLookupByLibrary.simpleMessage("User is not authenticated"),
+        "available_cars_screen_description":
+            MessageLookupByLibrary.simpleMessage("Available cars for ride"),
+        "book_later_button_label":
+            MessageLookupByLibrary.simpleMessage("Book Later"),
         "bottom_navigation_fav_label":
             MessageLookupByLibrary.simpleMessage("Favourite"),
         "bottom_navigation_home_label":
@@ -34,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Profile"),
         "bottom_navigation_wallet_label":
             MessageLookupByLibrary.simpleMessage("Wallet"),
+        "car_features_label":
+            MessageLookupByLibrary.simpleMessage("Car Features"),
         "complain_back_home_button_label":
             MessageLookupByLibrary.simpleMessage("Back Home"),
         "complain_created_success_message":
@@ -70,6 +80,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Failed to update complaint"),
         "complaints_not_found_message":
             MessageLookupByLibrary.simpleMessage("No complaints found"),
+        "confirm_button_label":
+            MessageLookupByLibrary.simpleMessage("Confirm Location"),
         "confirm_password_label":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "confirm_password_rule_validation":
@@ -77,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "At least 1 number or a special character",),
         "confirm_password_validation":
             MessageLookupByLibrary.simpleMessage("Please enter your password"),
+        "confirm_ride": MessageLookupByLibrary.simpleMessage("Confirm Ride"),
         "from_label": MessageLookupByLibrary.simpleMessage("From"),
         "gender_female": MessageLookupByLibrary.simpleMessage("Female"),
         "gender_male": MessageLookupByLibrary.simpleMessage("Male"),
@@ -123,6 +136,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Book your car"),
         "onboarding_skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "or_separator": MessageLookupByLibrary.simpleMessage("or"),
+        "request_for_rent_screen_title":
+            MessageLookupByLibrary.simpleMessage("Request for rent"),
+        "ride_now_button_label":
+            MessageLookupByLibrary.simpleMessage("Ride Now"),
         "save_button_label": MessageLookupByLibrary.simpleMessage("Save"),
         "set_new_password_heading":
             MessageLookupByLibrary.simpleMessage("Set New Password"),
@@ -168,8 +185,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" and "),
         "signup_terms_conditions_4":
             MessageLookupByLibrary.simpleMessage("Privacy policy."),
+        "specifications_label":
+            MessageLookupByLibrary.simpleMessage("Specifications"),
         "submit_button_label": MessageLookupByLibrary.simpleMessage("Submit"),
         "to_label": MessageLookupByLibrary.simpleMessage("To"),
+        "transport_selection_screen_description":
+            MessageLookupByLibrary.simpleMessage("Select your transport"),
+        "transport_selection_screen_title":
+            MessageLookupByLibrary.simpleMessage("Select transport"),
         "transporterAppBarTitle":
             MessageLookupByLibrary.simpleMessage("Transporter"),
         "user_signup_failed_message":

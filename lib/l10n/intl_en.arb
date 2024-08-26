@@ -104,5 +104,18 @@
     "complaints_failed_to_delete": "Failed to delete complaint",
 
     "from_label": "From",
-    "to_label": "To"
+    "to_label": "To",
+    "address_selection_header": "Select address",
+    "address_selection_recent_places_heading": "Recent places",
+    "confirm_button_label": "Confirm Location",
+    "transport_selection_screen_title": "Select transport",
+    "transport_selection_screen_description": "Select your transport",
+    "available_cars_screen_description": "Available cars for ride",
+    "book_later_button_label": "Book Later",
+    "ride_now_button_label": "Ride Now",
+    "car_features_label": "Car Features",
+    "specifications_label": "Specifications",
+    "request_for_rent_screen_title": "Request for rent",
+    "confirm_ride": "Confirm Ride"
+
 }

@@ -156,6 +156,7 @@ class _ComplainContentState extends State<ComplainContent> {
 
   Widget _buildDropdown() {
     return DropdownButtonFormField<String>(
+      dropdownColor: Colors.white,
       value: _selectedTopic,
       icon: SvgPicture.asset(
         ComplainAssets.dropdownIcon,

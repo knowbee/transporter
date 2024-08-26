@@ -62,6 +62,9 @@ flutter:
     - assets/images/profile/
     - assets/images/onboarding/
     - assets/images/authentication/
+    - assets/images/transport/
+    - assets/images/payment/
+    - assets/icons/transport/
     - assets/icons/authentication/
     - assets/icons/bottom_navigation/
     - assets/icons/home/
