@@ -9,7 +9,6 @@ import 'package:transporter/data/repositories/user_repository.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/authentication/new_password_screen.dart';
 import 'package:transporter/screens/authentication/signin_screen.dart';
-import 'package:transporter/screens/authentication/verify_otp_screen.dart';
 import 'package:transporter/screens/authentication/welcome_screen.dart';
 import 'package:transporter/screens/home.dart';
 import 'package:transporter/templates/responsive_layout.dart';
@@ -114,13 +113,6 @@ class _OnboardingProgressCarousel extends State<OnboardingProgressCarousel> {
               context,
               MaterialPageRoute<Material>(
                 builder: (context) => const SetNewPasswordScreen(),
-              ),
-            );
-          } else if (state.user.isVerified == false) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute<Material>(
-                builder: (context) => const VerificationScreen(),
               ),
             );
           } else if (state.user.isLoggedIn == false) {
