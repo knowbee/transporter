@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/transport/select_transport_screen.dart';
 import 'package:transporter/values/assets/home_assets.dart';
 import 'package:transporter/values/colors.dart';
@@ -24,8 +25,9 @@ class AddressConfirmationBottomSheet extends StatelessWidget {
           const Divider(color: AppColors.tLightGrey, thickness: 1),
           const SizedBox(height: Dimensions.marginDefault),
           _buildAddressConfirmationSection(),
-          const SizedBox(height: 24),
+          const SizedBox(height: 8),
           _buildConfirmButton(context),
+          const SizedBox(height: 32),
         ],
       ),
     );
@@ -34,10 +36,10 @@ class AddressConfirmationBottomSheet extends StatelessWidget {
   Widget _buildHeader(BuildContext context) {
     return Stack(
       children: [
-        const Column(
+        Column(
           children: [
-            SizedBox(height: Dimensions.marginSmall),
-            Row(
+            const SizedBox(height: Dimensions.marginSmall),
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
@@ -46,10 +48,10 @@ class AddressConfirmationBottomSheet extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: Dimensions.marginDefault),
+            const SizedBox(height: Dimensions.marginDefault),
             Text(
-              'Select address',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              Strings.current.address_selection_header,
+              style: Styles.modalHeadingStyle,
             ),
           ],
         ),
@@ -188,10 +190,11 @@ class AddressConfirmationBottomSheet extends StatelessWidget {
             ),
           );
         },
-        child: const Padding(
-          padding: EdgeInsets.symmetric(vertical: Dimensions.marginDefault),
+        child: Padding(
+          padding:
+              const EdgeInsets.symmetric(vertical: Dimensions.marginDefault),
           child: Text(
-            'Confirm Location',
+            Strings.current.confirm_button_label,
             style: Styles.mediumWhiteText,
           ),
         ),

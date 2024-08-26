@@ -3,7 +3,7 @@ import 'package:transporter/data/models/transport/car_model.dart';
 import 'package:transporter/generated/l10n.dart';
 import 'package:transporter/screens/transport/car_details_screen.dart';
 import 'package:transporter/values/assets/transport_assets.dart';
-import 'package:transporter/values/colors.dart';
+import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 import 'package:transporter/widgets/transport/visual/car_item.dart';
@@ -58,19 +58,19 @@ class AvailableCarsScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(Dimensions.marginDefault),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Available cars for ride',
+            Text(
+              Strings.of(context).available_cars_screen_description,
               style: Styles.headingLightBlackText,
             ),
             const Text(
               '18 cars found',
-              style: TextStyle(fontSize: 16, color: AppColors.tLightGrey),
+              style: Styles.smallSubheadingBlack,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: Dimensions.marginDefault),
             Expanded(
               child: ListView.builder(
                 itemCount: availableCars.length,

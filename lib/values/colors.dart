@@ -5,6 +5,7 @@ abstract class AppColors {
   static const tLightGreen = Color(0xFF08B783);
   static const tLighterGreen = Color(0xFFE2F5ED);
   static const tLighterBackgroundGreen = Color(0xFFB9E5D1);
+  static const tCardGreen = Color(0xFFE8F5E9);
   static const tBlue = Color(0xFF00B0FF);
   static const tRed = Color(0xFFF44336);
   static const tYellow = Color(0xFFFFC107);

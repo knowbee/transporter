@@ -5,6 +5,8 @@ import 'package:transporter/screens/transport/request_for_rent_screen.dart';
 import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/assets/transport_assets.dart';
 import 'package:transporter/values/colors.dart';
+import 'package:transporter/values/dimensions.dart';
+import 'package:transporter/values/styles.dart';
 import 'package:transporter/widgets/common/visual/generic_header.dart';
 
 class CarDetailsScreen extends StatefulWidget {
@@ -17,7 +19,7 @@ class CarDetailsScreen extends StatefulWidget {
 class _CarDetailsScreenState extends State<CarDetailsScreen> {
   final CarouselSliderController _carouselController =
       CarouselSliderController();
-  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +38,7 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
               _buildCarHeader(context),
               const SizedBox(height: 16),
               _buildSpecifications(),
-              const SizedBox(height: 16),
+              const SizedBox(height: 30),
               _buildCarFeatures(),
               const Spacer(),
               _buildActionButtons(),
@@ -66,11 +68,11 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
           children: [
             Icon(Icons.star, color: Colors.orange, size: 18),
             SizedBox(width: 4),
-            Text('4.9', style: TextStyle(fontSize: 16)),
+            Text('4.9', style: Styles.smallSubheadingBlack),
             SizedBox(width: 4),
             Text(
               '(531 reviews)',
-              style: TextStyle(fontSize: 16, color: AppColors.tLightGrey),
+              style: Styles.smallSubheadingBlack,
             ),
           ],
         ),
@@ -83,11 +85,7 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
               options: CarouselOptions(
                 height: 150,
                 enlargeCenterPage: true,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                },
+                onPageChanged: (index, reason) {},
               ),
               items: carImages.map((imagePath) {
                 return Builder(
@@ -129,19 +127,31 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Specifications',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        Text(
+          Strings.current.specifications_label,
+          style: Styles.specificationHeadingStyle,
         ),
         const SizedBox(height: 16),
         Wrap(
-          spacing: 16, // Horizontal spacing between items
-          runSpacing: 16, // Vertical spacing between rows
+          spacing: 18,
+          runSpacing: 16,
           children: [
-            _buildSpecificationItem(Icons.speed, 'Max Power', '760hp'),
-            _buildSpecificationItem(Icons.emoji_flags, 'Top Speed', '180mph'),
-            _buildSpecificationItem(Icons.timer, '0-60mph', '3.5s'),
-            _buildSpecificationItem(Icons.local_gas_station, 'Fuel', 'Octane'),
+            _buildSpecificationItem(
+              TransportAssets.maxPowerIcon,
+              'Max Power',
+              '760hp',
+            ),
+            _buildSpecificationItem(TransportAssets.fuelIcon, 'Fuel', 'Octane'),
+            _buildSpecificationItem(
+              TransportAssets.maxSpeedIcon,
+              'Max Speed',
+              '180mph',
+            ),
+            _buildSpecificationItem(
+              TransportAssets.speedIcon,
+              '0-60mph',
+              '3.5s',
+            ),
           ],
         ),
       ],
@@ -149,7 +159,7 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
   }
 
   Widget _buildSpecificationItem(
-    IconData iconData,
+    String iconData,
     String title,
     String subtitle,
   ) {
@@ -164,16 +174,26 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(iconData, color: AppColors.tGreen, size: 24),
+          Image.asset(
+            iconData,
+          ),
           const SizedBox(height: 4),
           Text(
             title,
-            style: const TextStyle(fontSize: 10, color: AppColors.tLightGrey),
+            style: const TextStyle(
+              color: Color(0xFF5A5A5A),
+              fontSize: 10,
+              fontWeight: FontWeight.w500,
+            ),
             textAlign: TextAlign.center,
           ),
           Text(
             subtitle,
-            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+              color: Color(0xFF5A5A5A),
+              fontSize: 8,
+              fontWeight: FontWeight.w400,
+            ),
             textAlign: TextAlign.center,
           ),
         ],
@@ -185,9 +205,9 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Car Features',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        Text(
+          Strings.current.car_features_label,
+          style: Styles.specificationHeadingStyle,
         ),
         const SizedBox(height: 16),
         _buildFeatureItem('Model', 'GT500'),
@@ -216,11 +236,19 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
           children: [
             Text(
               title,
-              style: const TextStyle(fontSize: 14, color: AppColors.tLightGrey),
+              style: const TextStyle(
+                color: Color(0xFF5A5A5A),
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
             ),
             Text(
               value,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                color: Color(0xFF5A5A5A),
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ],
         ),
@@ -237,15 +265,18 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
               Navigator.pop(context);
             },
             style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(
+                vertical: Dimensions.marginDefault,
+              ),
               backgroundColor: Colors.white,
               side: const BorderSide(color: AppColors.tGreen),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
-            child: const Text(
-              'Book later',
-              style: TextStyle(color: AppColors.tGreen),
+            child: Text(
+              Strings.current.book_later_button_label,
+              style: Styles.bookLaterButtonGreenTextStyle,
             ),
           ),
         ),
@@ -261,14 +292,17 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
               );
             },
             style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(
+                vertical: Dimensions.marginDefault,
+              ),
               backgroundColor: AppColors.tGreen,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
-            child: const Text(
-              'Ride Now',
-              style: TextStyle(color: Colors.white),
+            child: Text(
+              Strings.current.ride_now_button_label,
+              style: Styles.rideNowButtonWhiteTextStyle,
             ),
           ),
         ),

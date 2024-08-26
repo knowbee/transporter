@@ -959,6 +959,126 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Select address`
+  String get address_selection_header {
+    return Intl.message(
+      'Select address',
+      name: 'address_selection_header',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent places`
+  String get address_selection_recent_places_heading {
+    return Intl.message(
+      'Recent places',
+      name: 'address_selection_recent_places_heading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Location`
+  String get confirm_button_label {
+    return Intl.message(
+      'Confirm Location',
+      name: 'confirm_button_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select transport`
+  String get transport_selection_screen_title {
+    return Intl.message(
+      'Select transport',
+      name: 'transport_selection_screen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select your transport`
+  String get transport_selection_screen_description {
+    return Intl.message(
+      'Select your transport',
+      name: 'transport_selection_screen_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Available cars for ride`
+  String get available_cars_screen_description {
+    return Intl.message(
+      'Available cars for ride',
+      name: 'available_cars_screen_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book Later`
+  String get book_later_button_label {
+    return Intl.message(
+      'Book Later',
+      name: 'book_later_button_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ride Now`
+  String get ride_now_button_label {
+    return Intl.message(
+      'Ride Now',
+      name: 'ride_now_button_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Car Features`
+  String get car_features_label {
+    return Intl.message(
+      'Car Features',
+      name: 'car_features_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Specifications`
+  String get specifications_label {
+    return Intl.message(
+      'Specifications',
+      name: 'specifications_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request for rent`
+  String get request_for_rent_screen_title {
+    return Intl.message(
+      'Request for rent',
+      name: 'request_for_rent_screen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Ride`
+  String get confirm_ride {
+    return Intl.message(
+      'Confirm Ride',
+      name: 'confirm_ride',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

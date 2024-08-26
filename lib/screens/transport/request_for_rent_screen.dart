@@ -1,38 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:transporter/generated/l10n.dart';
+import 'package:transporter/screens/transport/confirm_ride_screen.dart';
+import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/assets/home_assets.dart';
+import 'package:transporter/values/assets/payment_assets.dart';
 import 'package:transporter/values/assets/transport_assets.dart';
 import 'package:transporter/values/colors.dart';
 import 'package:transporter/values/dimensions.dart';
 import 'package:transporter/values/styles.dart';
+import 'package:transporter/widgets/common/visual/generic_header.dart';
 
-class RequestForRentScreen extends StatelessWidget {
+class RequestForRentScreen extends StatefulWidget {
   const RequestForRentScreen({super.key});
 
   @override
+  State<RequestForRentScreen> createState() => _RequestForRentScreenState();
+}
+
+class _RequestForRentScreenState extends State<RequestForRentScreen> {
+  int selectedPaymentMethod = 0;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton(color: Colors.black),
-        title: const Text(
-          'Request for rent',
-          style: TextStyle(color: Colors.black),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: GenericHeader(
+          backLabel: Strings.of(context).header_back_label,
+          title: Strings.of(context).request_for_rent_screen_title,
+          hasTitle: true,
         ),
-        backgroundColor: Colors.white,
-        elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildLocationSection(),
-            const SizedBox(height: 16),
-            _buildCarDetailsSection(),
-            const SizedBox(height: 16),
-            _buildPaymentMethodSection(),
-            const Spacer(),
-            _buildConfirmRideButton(),
-          ],
+      body: ResponsiveLayout(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildLocationSection(),
+              const SizedBox(height: 30),
+              _buildCarDetailsSection(),
+              const SizedBox(height: 30),
+              _buildChargeSection(),
+              const SizedBox(height: 30),
+              _buildPaymentMethodSection(),
+              const SizedBox(height: 30),
+              const Spacer(),
+              _buildConfirmRideButton(context),
+            ],
+          ),
         ),
       ),
     );
@@ -62,7 +77,7 @@ class RequestForRentScreen extends StatelessWidget {
               _buildLocationRow(
                 icon: Icons.location_on,
                 title: 'Office',
-                subtitle: '1600 Pennsylvania Ave NW, Washington, DC 20500',
+                subtitle: '1600 Pennsylvania Ave DC 20500 ',
                 trailing: const Text('1.8km'),
               ),
             ],
@@ -110,13 +125,18 @@ class RequestForRentScreen extends StatelessWidget {
     Widget? trailing,
   }) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                color: Color(0xFF5A5A5A),
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
               overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 4),
@@ -136,8 +156,9 @@ class RequestForRentScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
+        color: AppColors.tLighterGreen,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.shade300),
+        border: Border.all(color: AppColors.tGreen),
       ),
       child: Row(
         children: [
@@ -154,7 +175,10 @@ class RequestForRentScreen extends StatelessWidget {
                   children: [
                     Icon(Icons.star, color: Colors.orange, size: 18),
                     SizedBox(width: 4),
-                    Text('4.9 (531 reviews)', style: TextStyle(fontSize: 14)),
+                    Text(
+                      '4.9 (531 reviews)',
+                      style: Styles.smallSubheadingBlack,
+                    ),
                   ],
                 ),
               ],
@@ -171,11 +195,76 @@ class RequestForRentScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildChargeSection() {
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Charge',
+          style: Styles.specificationHeadingStyle,
+        ),
+        SizedBox(height: 16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Mustang/per hours',
+              style: Styles.vSmallBlackText,
+            ),
+            Text(
+              r'$200',
+              style: Styles.vSmallBlackText,
+            ),
+          ],
+        ),
+        SizedBox(height: 16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Vat(5%)',
+              style: Styles.vSmallBlackText,
+            ),
+            Text(
+              r'$20',
+              style: Styles.vSmallBlackText,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
   Widget _buildPaymentMethodSection() {
     final paymentMethods = [
-      _buildPaymentMethodItem(Icons.credit_card, '**** 8970', 'Visa'),
-      _buildPaymentMethodItem(Icons.email, 'mail@address.com', 'Email'),
-      _buildPaymentMethodItem(Icons.attach_money, 'Cash', ''),
+      _buildPaymentMethodItem(
+        selectedPaymentMethod == 0,
+        PaymentAssets.visa,
+        '**** **** **** 8970',
+        'Expires: 12/26',
+        index: 0,
+      ),
+      _buildPaymentMethodItem(
+        selectedPaymentMethod == 1,
+        PaymentAssets.mastercard,
+        '**** **** **** 8970',
+        'Expires: 12/26',
+        index: 1,
+      ),
+      _buildPaymentMethodItem(
+        selectedPaymentMethod == 2,
+        PaymentAssets.paypal,
+        'mailaddress@mail.com',
+        'Expires: 12/26',
+        index: 2,
+      ),
+      _buildPaymentMethodItem(
+        selectedPaymentMethod == 3,
+        PaymentAssets.cash,
+        'Cash',
+        'Expires: 12/26',
+        index: 3,
+      ),
     ];
 
     return Column(
@@ -183,42 +272,108 @@ class RequestForRentScreen extends StatelessWidget {
       children: [
         const Text(
           'Select payment method',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: Styles.specificationHeadingStyle,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 16),
         Column(children: paymentMethods),
       ],
     );
   }
 
-  Widget _buildPaymentMethodItem(IconData icon, String title, String subtitle) {
-    return Card(
-      elevation: 2,
-      child: ListTile(
-        leading: Icon(icon, color: Colors.green),
-        title: Text(title),
-        subtitle: Text(subtitle),
-        trailing: const Icon(Icons.check_circle, color: Colors.green),
+  Widget _buildPaymentMethodItem(
+    bool isSelected,
+    String icon,
+    String title,
+    String subtitle, {
+    required int index,
+  }) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedPaymentMethod = index;
+        });
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 6),
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          border: isSelected
+              ? Border.all(color: AppColors.tGreen)
+              : Border.all(color: AppColors.tLightGreen.withOpacity(0.2)),
+          borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
+          color: isSelected
+              ? AppColors.tLightGreen.withOpacity(0.1)
+              : AppColors.tLighterGreen.withOpacity(0.1),
+        ),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
+              child: Image.asset(
+                icon,
+                width: 45,
+                fit: BoxFit.contain,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ).copyWith(
+                      color: isSelected
+                          ? AppColors.lightBlack
+                          : AppColors.lightBlack.withOpacity(0.3),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: AppColors.greyIconColor,
+                    ).copyWith(
+                      color: isSelected
+                          ? AppColors.lightBlack
+                          : AppColors.lightBlack.withOpacity(0.3),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildConfirmRideButton() {
+  Widget _buildConfirmRideButton(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          // Handle confirm ride action
+          Navigator.push(
+            context,
+            MaterialPageRoute<Material>(
+              builder: (context) => const ConfirmRideScreen(),
+            ),
+          );
         },
         style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(18),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
+          backgroundColor: AppColors.tGreen,
         ),
         child: const Text(
           'Confirm Ride',
-          style: TextStyle(fontSize: 16),
+          style: Styles.mediumWhiteText,
         ),
       ),
     );

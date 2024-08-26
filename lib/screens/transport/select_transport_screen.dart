@@ -16,7 +16,7 @@ class TransportSelectionScreen extends StatefulWidget {
 }
 
 class _TransportSelectionScreenState extends State<TransportSelectionScreen> {
-  String? selectedTransport;
+  String? selectedTransport = 'Car';
 
   final List<TransportOption> transportOptions = [
     TransportOption(name: 'Car', imagePath: TransportAssets.car),
@@ -33,15 +33,15 @@ class _TransportSelectionScreenState extends State<TransportSelectionScreen> {
         child: GenericHeader(
           backLabel: Strings.of(context).header_back_label,
           hasTitle: true,
-          title: 'Select transport',
+          title: Strings.of(context).transport_selection_screen_title,
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const Text(
-              'Select your transport',
+            Text(
+              Strings.of(context).transport_selection_screen_description,
               style: Styles.headingLightBlackText,
             ),
             const SizedBox(height: 24),
@@ -73,7 +73,7 @@ class _TransportSelectionScreenState extends State<TransportSelectionScreen> {
                     child: Container(
                       decoration: BoxDecoration(
                         color: isSelected
-                            ? AppColors.tLighterBackgroundGreen
+                            ? AppColors.tCardGreen
                             : AppColors.tLightBackgroundGrey,
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(

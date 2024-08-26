@@ -130,7 +130,7 @@ class _HomePageState extends State<HomePage> {
 
   ElevatedButton _buildRentalButton() {
     return ElevatedButton(
-      onPressed: () => showAddressConfirmationBottomSheet(context),
+      onPressed: () => {},
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.tGreen,
         padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 12),
@@ -240,16 +240,8 @@ class _HomePageState extends State<HomePage> {
             AppColors.tGreen,
             AppColors.tGreen,
           ],
-          selectedTextStyle: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-          unSelectedTextStyle: const TextStyle(
-            color: Colors.black87,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
+          selectedTextStyle: Styles.mediumWhiteText,
+          unSelectedTextStyle: Styles.mediumBlackLabel,
           labels: _listTextTabToggle,
           selectedLabelIndex: (index) {
             _tabIndexBasicToggle.value = index;

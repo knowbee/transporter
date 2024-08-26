@@ -247,6 +247,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   Widget _buildGenderField() {
     return DropdownButtonFormField<String>(
+      dropdownColor: Colors.white,
       decoration: InputDecoration(
         labelText: Strings.of(context).signup_gender_field_label,
         border: const OutlineInputBorder(
