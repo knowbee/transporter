@@ -6,6 +6,7 @@
    - [Features](#features)
 1. [Getting Started 🚀](#getting-started-)
 2. [Running Tests 🧪](#running-tests-)
+   - [Preview Recording](#preview-recording)
 3. [Working with Flavors](#working-with-flavors-)
 4. [Working with Translations 🌐](#working-with-translations-)
    - [Adding Strings](#adding-strings)
@@ -74,6 +75,10 @@ To run integration tests run the following command:
 ```sh
 flutter test integration_test/ --flavor development
 ```
+
+## Preview (Running Integration Testing)
+
+![transporter-gif](./assets/preview/integration_testing.gif)
 
 ## Working with Flavors 🧩
 
