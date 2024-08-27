@@ -43,4 +43,22 @@ class User extends HiveObject {
       'isLoggedIn': isLoggedIn,
     };
   }
+
+  User copyWith({
+    String? email,
+    String? name,
+    String? gender,
+    String? phoneNumber,
+    String? password,
+    bool? isLoggedIn,
+  }) {
+    return User(
+      email: email ?? this.email,
+      name: name ?? this.name,
+      gender: gender ?? this.gender,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      password: password ?? this.password,
+      isLoggedIn: isLoggedIn ?? this.isLoggedIn,
+    );
+  }
 }

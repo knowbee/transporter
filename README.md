@@ -1,8 +1,43 @@
 # Transporter
 
+## Table of Contents
+
+0. [Introduction](#introduction)
+   - [Features](#features)
+1. [Getting Started 🚀](#getting-started-)
+2. [Running Tests 🧪](#running-tests-)
+   - [Preview Recording](#preview-recording)
+3. [Working with Flavors](#working-with-flavors-)
+4. [Working with Translations 🌐](#working-with-translations-)
+   - [Adding Strings](#adding-strings)
+   - [Adding Supported Locales](#adding-supported-locales)
+   - [Adding Translations](#adding-translations)
+   - [Generating Translations](#generating-translations)
+5. [Tools & Libraries Used](#tools--libraries-used)
+6. [License](#license)
+
 ---
 
+## Introduction
+
+This a mobile application developed to showcase proficiency in mobile development, UI design implementation, state management, and handling authentication and CRUD operations using Flutter.Additionally, the project demonstrates the ability to implement unit tests and integration tests to ensure the robustness of the application.
+
+## Features
+
+- User Authentication: Secure login and registration.
+- Complaints Management: Request a ride by specifying a pick-up and drop-off location.
+- Responsive Design: Adaptable UI for different screen sizes.
+
 ## Getting Started 🚀
+
+```sh
+# Clone the repository
+$ git clone https://github.com/knowbee/transporter.git
+# Change directory
+$ cd transporter
+# Install dependencies
+$ flutter pub get
+```
 
 This project contains 3 flavors:
 
@@ -35,17 +70,19 @@ To run all unit and widget tests use the following command:
 flutter test --coverage --test-randomize-ordering-seed random
 ```
 
-To view the generated coverage report you can use [lcov](https://github.com/linux-test-project/lcov).
+To run integration tests run the following command:
 
 ```sh
-# Generate Coverage Report
-$ genhtml coverage/lcov.info -o coverage/
-
-# Open Coverage Report
-$ open coverage/index.html
+flutter test integration_test/ --flavor development
 ```
 
----
+## Preview (Running Integration Testing)
+
+![transporter-gif](./assets/preview/integration_testing.gif)
+
+## Working with Flavors 🧩
+
+Flavors are used to manage different environments (development, staging, production) within the Transporter app. This setup ensures that each environment can have distinct configurations, resources, and settings.
 
 ## Working with Translations 🌐
 
@@ -155,3 +192,15 @@ dart run intl_utils:generate
 ```
 
 Alternatively, run `flutter run` and code generation will take place automatically.
+
+## Tools & Libraries Used
+
+- Flutter: Framework for building the mobile application.
+- Bloc: State management.
+- Hive: For local data storage.
+- Intl: Internationalization and localization support.
+- Mockito: Mocking library for unit testing.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.

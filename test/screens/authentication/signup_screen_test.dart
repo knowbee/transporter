@@ -105,16 +105,5 @@ void main() {
       ),
       '1234567890',
     );
-
-    // // Act: Tap on the "Sign Up" button
-    // await tester.tap(signUpButton);
-    // await tester.pumpAndSettle();
-
-    // // Assert: Verify that VerificationScreen is pushed
-    // expect(find.byType(VerificationScreen), findsOneWidget);
-
-    // // Act: Return to Signup screen
-    // await tester.tap(find.text(Strings.current.header_back_label));
-    // await tester.pumpAndSettle();
   });
 }

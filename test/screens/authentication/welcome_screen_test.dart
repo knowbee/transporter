@@ -81,7 +81,7 @@ void main() {
     // Act: Return to WelcomeScreen
     await tester.tap(find.text(Strings.current.header_back_label));
     await tester.pumpAndSettle();
-    // // Act: Tap on the "Sign In" button
+    // Act: Tap on the "Sign In" button
     await tester.tap(find.text(Strings.current.welcome_login_label));
     await tester.pumpAndSettle();
 

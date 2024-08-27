@@ -207,7 +207,7 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
             return;
           }
           await context.read<AuthCubit>().setNewPassword(
-                _newPasswordController.text,
+                password: _newPasswordController.text,
               );
           if (context.read<AuthCubit>().state is AuthenticationFailed) {
             ScaffoldMessenger.of(context).showSnackBar(
