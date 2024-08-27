@@ -136,8 +136,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Book your car"),
         "onboarding_skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "or_separator": MessageLookupByLibrary.simpleMessage("or"),
+        "password_change_failed_message":
+            MessageLookupByLibrary.simpleMessage("Password change failed"),
+        "password_change_success_message": MessageLookupByLibrary.simpleMessage(
+            "Password changed successfully",),
         "password_mismatch_message": MessageLookupByLibrary.simpleMessage(
             "Password and confirm password does not match",),
+        "password_set_success_message": MessageLookupByLibrary.simpleMessage(
+            "Password created successfully",),
         "request_for_rent_screen_title":
             MessageLookupByLibrary.simpleMessage("Request for rent"),
         "ride_now_button_label":
@@ -197,8 +203,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select transport"),
         "transporterAppBarTitle":
             MessageLookupByLibrary.simpleMessage("Transporter"),
-        "user_signup_failed_message":
-            MessageLookupByLibrary.simpleMessage("User signup failed"),
+        "user_signup_failed_message": MessageLookupByLibrary.simpleMessage(
+            "Account with the same email or phone number already exists",),
+        "user_signup_success_message": MessageLookupByLibrary.simpleMessage(
+            "User account created successfully",),
         "verify_button_label": MessageLookupByLibrary.simpleMessage("Verify"),
         "verify_didnt_receive_label":
             MessageLookupByLibrary.simpleMessage("Didn\'t receive code? "),

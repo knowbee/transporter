@@ -323,6 +323,18 @@ class _SignUpFormState extends State<SignUpForm> {
                     ),
                   );
                 } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        Strings.of(context).user_signup_success_message,
+                        style: Styles.mediumWhiteText,
+                      ),
+                      backgroundColor: AppColors.tGreen,
+                    ),
+                  );
+                  await Future<void>.delayed(
+                    const Duration(milliseconds: 200),
+                  );
                   await Navigator.push(
                     context,
                     MaterialPageRoute<Material>(

@@ -40,7 +40,7 @@ class TButton extends StatelessWidget {
             height: 20,
             width: 20,
             child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              valueColor: AlwaysStoppedAnimation<Color>(AppColors.tWhite),
               strokeWidth: 2,
             ),
           )

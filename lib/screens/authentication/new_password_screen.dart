@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transporter/data/cubits/authentication/auth_cubit.dart';
 import 'package:transporter/data/repositories/user_repository.dart';
 import 'package:transporter/generated/l10n.dart';
+import 'package:transporter/helpers/form_fields_validator.dart';
 import 'package:transporter/screens/authentication/signin_screen.dart';
 import 'package:transporter/templates/responsive_layout.dart';
 import 'package:transporter/values/colors.dart';
@@ -102,7 +103,6 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
               _buildNewPasswordField(),
               const SizedBox(height: 16),
               _buildConfirmPasswordField(),
-              _buildPasswordRuleLabel(),
               const SizedBox(height: 24),
               _buildSaveButton(),
             ],
@@ -173,20 +173,12 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
       validator: (value) {
         if (value == null || value.isEmpty) {
           return Strings.of(context).confirm_password_validation;
+        } else if (!isValidPassword(value)) {
+          return Strings.of(context).confirm_password_rule_validation;
         }
         return null;
       },
       controller: _confirmPasswordController,
-    );
-  }
-
-  Widget _buildPasswordRuleLabel() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Text(
-        Strings.of(context).confirm_password_rule_validation,
-        style: Styles.mediumHintText,
-      ),
     );
   }
 
@@ -225,6 +217,19 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
                   ),
                 );
               } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      Strings.of(context).password_set_success_message,
+                      style: Styles.mediumWhiteText,
+                    ),
+                    backgroundColor: AppColors.tGreen,
+                  ),
+                );
+                await Future<void>.delayed(
+                  const Duration(milliseconds: 200),
+                );
+
                 await Navigator.push(
                   context,
                   MaterialPageRoute<Material>(
