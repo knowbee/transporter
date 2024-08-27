@@ -21,6 +21,8 @@ void main() {
       userRepository: MockUserRepository(),
     );
 
+    await tester.pumpAndSettle();
+
     // Verify that the email field is displayed
     expect(find.byType(TextFormField), findsNWidgets(2));
 

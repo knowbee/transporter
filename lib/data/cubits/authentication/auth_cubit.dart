@@ -10,6 +10,10 @@ class AuthCubit extends Cubit<AuthState> {
   final UserRepository userRepository;
 
   Future<void> checkAuthState() async {
+    emit(Loading());
+    await Future<void>.delayed(
+      const Duration(milliseconds: 200),
+    );
     try {
       final user = await userRepository.getCurrentUser();
       if (user != null) {
@@ -26,6 +30,10 @@ class AuthCubit extends Cubit<AuthState> {
     required String email,
     required String password,
   }) async {
+    emit(Loading());
+    await Future<void>.delayed(
+      const Duration(milliseconds: 500),
+    );
     try {
       final user = await userRepository.authenticateUser(email, password);
       if (user != null) {
@@ -49,6 +57,10 @@ class AuthCubit extends Cubit<AuthState> {
     required String phoneNumber,
     required String gender,
   }) async {
+    emit(Loading());
+    await Future<void>.delayed(
+      const Duration(milliseconds: 500),
+    );
     final existingUser = userRepository.getUserByEmail(email);
     final newUser = User(
       name: name,
@@ -59,17 +71,15 @@ class AuthCubit extends Cubit<AuthState> {
 
     if (existingUser == null) {
       await userRepository.addUser(newUser);
-      emit(
-        Authenticated(
-          user: newUser,
-        ),
-      );
+      emit(Authenticated(user: newUser));
     } else {
       emit(AuthenticationFailed());
     }
   }
 
   Future<void> verifyOTP(String otp) async {
+    emit(Loading());
+    await Future<void>.delayed(const Duration(milliseconds: 500));
     try {
       final user = await userRepository.verifyOTP(otp);
       if (user != null) {
@@ -85,6 +95,10 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> setNewPassword({
     required String password,
   }) async {
+    emit(Loading());
+    await Future<void>.delayed(
+      const Duration(milliseconds: 500),
+    );
     try {
       final user = await userRepository.setNewPassword(password);
       if (user != null) {

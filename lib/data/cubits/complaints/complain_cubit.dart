@@ -15,6 +15,9 @@ class ComplaintCubit extends Cubit<ComplaintState> {
 
   Future<void> loadComplaints() async {
     emit(ComplaintLoading());
+    await Future<void>.delayed(
+      const Duration(milliseconds: 200),
+    );
     try {
       final user = await userRepository.getCurrentUser();
       final complaints =
@@ -27,6 +30,9 @@ class ComplaintCubit extends Cubit<ComplaintState> {
 
   Future<void> addComplaint(String topic, String text, String userEmail) async {
     emit(ComplaintLoading());
+    await Future<void>.delayed(
+      const Duration(milliseconds: 200),
+    );
     try {
       final complaint = Complaint(
         topic: topic,
@@ -43,6 +49,9 @@ class ComplaintCubit extends Cubit<ComplaintState> {
 
   Future<void> updateComplaint(int index, Complaint complaint) async {
     emit(ComplaintLoading());
+    await Future<void>.delayed(
+      const Duration(milliseconds: 200),
+    );
     try {
       await complaintRepository.updateComplaint(index, complaint);
       await loadComplaints();
@@ -53,6 +62,9 @@ class ComplaintCubit extends Cubit<ComplaintState> {
 
   Future<void> deleteComplaint(int index) async {
     emit(ComplaintLoading());
+    await Future<void>.delayed(
+      const Duration(milliseconds: 200),
+    );
     try {
       await complaintRepository.deleteComplaint(index);
       await loadComplaints();

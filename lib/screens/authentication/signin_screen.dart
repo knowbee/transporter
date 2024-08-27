@@ -190,36 +190,41 @@ class _SignInFormState extends State<SignInForm> {
   Widget _buildSignInButton() {
     return SizedBox(
       width: double.infinity,
-      child: TButton(
-        key: const Key('sign_in_button'),
-        onPressed: () async {
-          if (_formKey.currentState?.validate() ?? false) {
-            await context.read<AuthCubit>().logIn(
-                  email: _identifierController.text,
-                  password: _passwordController.text,
-                );
-            if (context.read<AuthCubit>().state == AuthenticationFailed() ||
-                context.read<AuthCubit>().state == Unauthenticated()) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    Strings.of(context).invalid_credentials_error_message,
-                    style: Styles.mediumWhiteText,
-                  ),
-                  backgroundColor: AppColors.tRed,
-                ),
-              );
-            } else if (context.read<AuthCubit>().state is Authenticated) {
-              await Navigator.push(
-                context,
-                MaterialPageRoute<Material>(
-                  builder: (context) => const HomePage(),
-                ),
-              );
-            }
-          }
+      child: BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, state) {
+          return TButton(
+            key: const Key('sign_in_button'),
+            isLoading: state is Loading,
+            onPressed: () async {
+              if (_formKey.currentState?.validate() ?? false) {
+                await context.read<AuthCubit>().logIn(
+                      email: _identifierController.text,
+                      password: _passwordController.text,
+                    );
+                if (context.read<AuthCubit>().state == AuthenticationFailed() ||
+                    context.read<AuthCubit>().state == Unauthenticated()) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        Strings.of(context).invalid_credentials_error_message,
+                        style: Styles.mediumWhiteText,
+                      ),
+                      backgroundColor: AppColors.tRed,
+                    ),
+                  );
+                } else if (context.read<AuthCubit>().state is Authenticated) {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute<Material>(
+                      builder: (context) => const HomePage(),
+                    ),
+                  );
+                }
+              }
+            },
+            title: Strings.of(context).signin_label,
+          );
         },
-        title: Strings.of(context).signin_label,
       ),
     );
   }
