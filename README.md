@@ -6,7 +6,7 @@
    - [Features](#features)
 1. [Getting Started 🚀](#getting-started-)
 2. [Running Tests 🧪](#running-tests-)
-   - [Preview Recording](#preview-recording)
+   - [Preview](#preview-recording)
 3. [Working with Flavors](#working-with-flavors-)
 4. [Working with Translations 🌐](#working-with-translations-)
    - [Adding Strings](#adding-strings)
