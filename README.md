@@ -242,5 +242,4 @@ Alternatively, run `flutter run` and code generation will take place automatical
 <p align="center">
   <img src="https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/21.png" width="22%" />
   <img src="https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/22.png" width="22%" />
-  <img src="https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/23.png" width="22%" />
 </p>
