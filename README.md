@@ -14,7 +14,7 @@
    - [Adding Translations](#adding-translations)
    - [Generating Translations](#generating-translations)
 5. [Tools & Libraries Used](#tools--libraries-used)
-6. [License](#license)
+6. [User Flow](#user-flow-)
 
 ---
 
@@ -25,7 +25,13 @@ This a mobile application developed to showcase proficiency in mobile developmen
 ## Features
 
 - User Authentication: Secure login and registration.
-- Complaints Management: Request a ride by specifying a pick-up and drop-off location.
+  - Email or Phone number and Password Sign In
+  - Reset Password
+- Complaints Management:
+  - Create a Complaint: Allow users to create a new complaint with a title and description.
+  - Edit a Complaint: Enable users to modify the title or description of an existing complaint.
+  - Delete a Complaint: Allow users to delete a complaint from the list.
+  - View Complaints: Allow users to view their complaints.
 - Responsive Design: Adaptable UI for different screen sizes.
 
 ## Getting Started 🚀
@@ -195,12 +201,22 @@ Alternatively, run `flutter run` and code generation will take place automatical
 
 ## Tools & Libraries Used
 
-- Flutter: Framework for building the mobile application.
-- Bloc: State management.
-- Hive: For local data storage.
-- Intl: Internationalization and localization support.
-- Mockito: Mocking library for unit testing.
+- [Flutter](https://flutter.dev/): Framework for building the mobile application.
+- [Bloc](https://pub.dev/packages/flutter_bloc): State management.
+- [Hive](https://pub.dev/packages/hive): For local data storage.
+- [Intl](https://pub.dev/packages/intl): Internationalization and localization support.
+- [Mockito](https://pub.dev/packages/mockito): Mocking library for unit testing.
 
-## License
+## User Flow 🚶‍♂️
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+| ![01](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/01.png) | ![02](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/02.png) | ![03](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/03.png) | ![04](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/04.png) |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| ![05](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/05.png) | ![06](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/06.png) | ![07](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/07.png) | ![08](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/08.png) |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| ![09](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/09.png) | ![10](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/10.png) | ![11](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/11.png) | ![12](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/12.png) |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| ![13](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/13.png) | ![14](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/14.png) | ![15](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/15.png) | ![16](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/16.png) |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| ![17](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/17.png) | ![18](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/18.png) | ![19](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/19.png) | ![20](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/20.png) |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| ![21](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/21.png) | ![22](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/22.png) | ![23](https://raw.githubusercontent.com/knowbee/hosting/master/assets/transporter/23.png) |

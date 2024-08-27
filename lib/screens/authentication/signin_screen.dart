@@ -198,7 +198,7 @@ class _SignInFormState extends State<SignInForm> {
             onPressed: () async {
               if (_formKey.currentState?.validate() ?? false) {
                 await context.read<AuthCubit>().logIn(
-                      email: _identifierController.text,
+                      identifier: _identifierController.text,
                       password: _passwordController.text,
                     );
                 if (context.read<AuthCubit>().state == AuthenticationFailed() ||

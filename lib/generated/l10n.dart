@@ -440,11 +440,21 @@ class Strings {
     );
   }
 
-  /// `User signup failed`
+  /// `Account with the same email or phone number already exists`
   String get user_signup_failed_message {
     return Intl.message(
-      'User signup failed',
+      'Account with the same email or phone number already exists',
       name: 'user_signup_failed_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User account created successfully`
+  String get user_signup_success_message {
+    return Intl.message(
+      'User account created successfully',
+      name: 'user_signup_success_message',
       desc: '',
       args: [],
     );
@@ -465,6 +475,36 @@ class Strings {
     return Intl.message(
       'Password and confirm password does not match',
       name: 'password_mismatch_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password changed successfully`
+  String get password_change_success_message {
+    return Intl.message(
+      'Password changed successfully',
+      name: 'password_change_success_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password change failed`
+  String get password_change_failed_message {
+    return Intl.message(
+      'Password change failed',
+      name: 'password_change_failed_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password created successfully`
+  String get password_set_success_message {
+    return Intl.message(
+      'Password created successfully',
+      name: 'password_set_success_message',
       desc: '',
       args: [],
     );

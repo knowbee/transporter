@@ -6,7 +6,7 @@ import 'package:transporter/values/dimensions.dart';
 enum FieldType { password, email, textArea, textField }
 
 abstract class _Constants {
-  static const double _defaultTextFieldHeight = 60;
+  static const double _defaultTextFieldHeight = 65;
   static const double _defaultTextAreaHeight = 120;
 }
 
@@ -88,6 +88,14 @@ class _TFormFieldState extends State<TFormField> {
                   ),
                 )
               : InputBorder.none,
+          errorBorder: widget.isBorderEnabled
+              ? const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(Dimensions.radiusDefault),
+                  ),
+                )
+              : InputBorder.none,
           prefixIcon: widget.prefixIconAsset != null
               ? Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 14),
@@ -106,6 +114,7 @@ class _TFormFieldState extends State<TFormField> {
                       ),
                     )
                   : null,
+          errorStyle: const TextStyle(height: 0.1),
         ),
         validator: widget.validator,
       ),

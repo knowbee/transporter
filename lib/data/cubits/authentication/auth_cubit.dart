@@ -27,7 +27,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> logIn({
-    required String email,
+    required String identifier,
     required String password,
   }) async {
     emit(Loading());
@@ -35,7 +35,7 @@ class AuthCubit extends Cubit<AuthState> {
       const Duration(milliseconds: 500),
     );
     try {
-      final user = await userRepository.authenticateUser(email, password);
+      final user = await userRepository.authenticateUser(identifier, password);
       if (user != null) {
         emit(Authenticated(user: user));
       } else {
@@ -73,21 +73,6 @@ class AuthCubit extends Cubit<AuthState> {
       await userRepository.addUser(newUser);
       emit(Authenticated(user: newUser));
     } else {
-      emit(AuthenticationFailed());
-    }
-  }
-
-  Future<void> verifyOTP(String otp) async {
-    emit(Loading());
-    await Future<void>.delayed(const Duration(milliseconds: 500));
-    try {
-      final user = await userRepository.verifyOTP(otp);
-      if (user != null) {
-        emit(Authenticated(user: user));
-      } else {
-        emit(AuthenticationFailed());
-      }
-    } catch (e) {
       emit(AuthenticationFailed());
     }
   }

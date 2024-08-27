@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:transporter/data/models/authentication/user.dart';
+import 'package:transporter/helpers/form_fields_validator.dart';
 import 'package:transporter/services/security_service.dart';
 
 class UserRepository {
@@ -8,23 +9,26 @@ class UserRepository {
     required this.settingsBox,
     required this.securityService,
   });
+
   final Box<User> userBox;
   final Box<String> settingsBox;
   final SecurityService securityService;
 
   Future<User?> getCurrentUser() async {
-    if (userBox.values.isEmpty) {
-      return null;
-    }
+    if (userBox.values.isEmpty) return null;
+
     final userEmail = getCurrentUserEmail();
-    if (userEmail.isEmpty) {
-      return null;
-    }
+    if (userEmail.isEmpty) return null;
+
     return getUserByEmail(userEmail);
   }
 
-  Future<void> saveCurrentUserEmail(String currentUserEmail) async {
-    await settingsBox.put('userEmail', currentUserEmail);
+  Future<void> saveUserIdentifiers({
+    required String email,
+    required String phoneNumber,
+  }) async {
+    await settingsBox.put('userEmail', email);
+    await settingsBox.put('userPhoneNumber', phoneNumber);
   }
 
   String getCurrentUserEmail() {
@@ -32,7 +36,7 @@ class UserRepository {
   }
 
   Future<void> addUser(User user) async {
-    await saveCurrentUserEmail(user.email);
+    await saveUserIdentifiers(email: user.email, phoneNumber: user.phoneNumber);
     await userBox.put(user.email, user);
   }
 
@@ -40,17 +44,36 @@ class UserRepository {
     return userBox.get(email);
   }
 
-  Future<User?> authenticateUser(String email, String password) async {
-    final user = userBox.get(email);
-    if (user != null) {
-      final isPasswordValid =
-          await securityService.verifyPassword(password, user.password ?? '');
-      if (isPasswordValid) {
-        user.isLoggedIn = true;
-        await userBox.put(user.email, user);
-        await saveCurrentUserEmail(email);
-        return user;
-      }
+  User? getUserByPhone(String phoneNumber) {
+    if (userBox.values.isEmpty) return null;
+    return userBox.values
+        .toList()
+        .where(
+          (user) => user.phoneNumber == phoneNumber,
+        )
+        .first;
+  }
+
+  Future<User?> authenticateUser(String identifier, String password) async {
+    final user = isEmail(identifier)
+        ? getUserByEmail(identifier)
+        : getUserByPhone(identifier);
+
+    if (user == null) return null;
+
+    final isPasswordValid = await securityService.verifyPassword(
+      password,
+      user.password ?? '',
+    );
+
+    if (isPasswordValid) {
+      user.isLoggedIn = true;
+      await userBox.put(user.email, user);
+      await saveUserIdentifiers(
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+      );
+      return user;
     }
     return null;
   }
@@ -61,34 +84,23 @@ class UserRepository {
 
   Future<User?> logoutUser(String email) async {
     final user = userBox.get(email);
-    if (user != null) {
-      user.isLoggedIn = false;
-      await userBox.put(user.email, user);
-      return user;
-    }
-    return null;
-  }
+    if (user == null) return null;
 
-  Future<User?> verifyOTP(String otp) async {
-    final userEmail = getCurrentUserEmail();
-    final user = getUserByEmail(userEmail);
-    if (user != null && otp == '12345') {
-      user.isVerified = true;
-      await userBox.put(user.email, user);
-      return user;
-    }
-    return null;
+    user.isLoggedIn = false;
+    await userBox.put(user.email, user);
+    return user;
   }
 
   Future<User?> setNewPassword(String password) async {
     final userEmail = getCurrentUserEmail();
     final user = getUserByEmail(userEmail);
+
+    if (user == null) return null;
+
     final hashedPassword = await securityService.hashPassword(password);
-    if (user != null) {
-      user.password = hashedPassword;
-      await userBox.put(user.email, user);
-      return user;
-    }
-    return null;
+    user.password = hashedPassword;
+
+    await userBox.put(user.email, user);
+    return user;
   }
 }

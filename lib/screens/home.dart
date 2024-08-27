@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
             Positioned(
               key: const Key('seachAndToggle'),
               bottom: // in the middle of the screen
-                  (MediaQuery.of(context).size.height / 2) * 0.30,
+                  (MediaQuery.of(context).size.height / 2) * 0.35,
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Padding(
@@ -267,7 +267,7 @@ class _HomePageState extends State<HomePage> {
         color: Colors.transparent,
         shadowColor: Colors.transparent,
         child: BottomAppBar(
-          height: MediaQuery.of(context).size.height * 0.10,
+          height: MediaQuery.of(context).size.height * 0.11,
           color: AppColors.tWhite.withOpacity(.99),
           child: Container(
             padding: const EdgeInsets.only(top: 16),
@@ -306,7 +306,7 @@ class _HomePageState extends State<HomePage> {
                 _selectedIndex == index ? AppColors.tGreen : AppColors.tGrey,
                 BlendMode.srcIn,
               ),
-              width: 25,
+              width: 20,
             ),
           if (iconPhoto != null)
             const SizedBox(height: 8)
