@@ -19,7 +19,12 @@ void main() async {
 
   await Hive.initFlutter();
 
-  Hive.registerAdapter(UserAdapter());
+  Hive
+    ..registerAdapter(
+      UserAdapter(),
+    )
+    ..registerAdapter(ComplaintAdapter());
+
   final userBox = await Hive.openBox<User>(Constants.userBox);
   final settingsBox = await Hive.openBox<String>(Constants.settingsBox);
   final complaintBox = await Hive.openBox<Complaint>(Constants.complaintsBox);

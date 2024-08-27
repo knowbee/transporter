@@ -122,7 +122,9 @@ class _ComplainContentState extends State<ComplainContent> {
               builder: (context, state) {
                 if (state is ComplaintLoading) {
                   return const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      color: AppColors.tGreen,
+                    ),
                   );
                 } else if (state is ComplaintLoaded) {
                   if (state.complaints.isEmpty) {
@@ -222,10 +224,11 @@ class _ComplainContentState extends State<ComplainContent> {
     return SizedBox(
       width: double.infinity,
       child: TButton(
-        onPressed: () {
+        onPressed: () async {
           if (_formKey.currentState?.validate() ?? false) {
             final complaintCubit = context.read<ComplaintCubit>();
             final authState = context.read<AuthCubit>().state;
+            final complainState = context.read<ComplaintCubit>().state;
             if (authState is Authenticated) {
               final userEmail = authState.user.email;
 
@@ -236,11 +239,11 @@ class _ComplainContentState extends State<ComplainContent> {
                 final complaint = _selectedComplaint;
                 complaint!.topic = topic;
                 complaint.text = text;
-                complaintCubit.updateComplaint(
+                await complaintCubit.updateComplaint(
                   _selectedComplaintIndex,
                   complaint,
                 );
-                showDialog<void>(
+                await showDialog<void>(
                   context: context,
                   builder: (BuildContext context) {
                     return SuccessDialog(
@@ -250,13 +253,15 @@ class _ComplainContentState extends State<ComplainContent> {
                   },
                 );
               } else {
-                complaintCubit.addComplaint(topic, text, userEmail);
-                showDialog<void>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return const SuccessDialog();
-                  },
-                );
+                await complaintCubit.addComplaint(topic, text, userEmail);
+                if (complainState is ComplaintLoaded) {
+                  await showDialog<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const SuccessDialog();
+                    },
+                  );
+                }
               }
 
               _formKey.currentState?.reset();

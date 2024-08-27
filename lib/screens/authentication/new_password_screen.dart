@@ -191,45 +191,52 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
   }
 
   Widget _buildSaveButton() {
-    return TButton(
-      onPressed: () async {
-        if (_formKey.currentState?.validate() ?? false) {
-          if (_newPasswordController.text != _confirmPasswordController.text) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  Strings.of(context).password_mismatch_message,
-                  style: Styles.mediumWhiteText,
-                ),
-                backgroundColor: AppColors.tRed,
-              ),
-            );
-            return;
-          }
-          await context.read<AuthCubit>().setNewPassword(
-                password: _newPasswordController.text,
-              );
-          if (context.read<AuthCubit>().state is AuthenticationFailed) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  Strings.of(context).invalid_password_message,
-                  style: Styles.mediumWhiteText,
-                ),
-                backgroundColor: AppColors.tRed,
-              ),
-            );
-          } else {
-            await Navigator.push(
-              context,
-              MaterialPageRoute<Material>(
-                builder: (context) => const SignInScreen(),
-              ),
-            );
-          }
-        }
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        return TButton(
+          key: const Key('new-password-save-button'),
+          isLoading: state is Loading,
+          onPressed: () async {
+            if (_formKey.currentState?.validate() ?? false) {
+              if (_newPasswordController.text !=
+                  _confirmPasswordController.text) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      Strings.of(context).password_mismatch_message,
+                      style: Styles.mediumWhiteText,
+                    ),
+                    backgroundColor: AppColors.tRed,
+                  ),
+                );
+                return;
+              }
+              await context.read<AuthCubit>().setNewPassword(
+                    password: _newPasswordController.text,
+                  );
+              if (context.read<AuthCubit>().state is AuthenticationFailed) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      Strings.of(context).invalid_password_message,
+                      style: Styles.mediumWhiteText,
+                    ),
+                    backgroundColor: AppColors.tRed,
+                  ),
+                );
+              } else {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute<Material>(
+                    builder: (context) => const SignInScreen(),
+                  ),
+                );
+              }
+            }
+          },
+          title: Strings.of(context).save_button_label,
+        );
       },
-      title: Strings.of(context).save_button_label,
     );
   }
 }

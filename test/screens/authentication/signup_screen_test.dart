@@ -20,6 +20,7 @@ void main() {
       userRepository: MockUserRepository(),
     );
 
+    await tester.pumpAndSettle();
     // Verify that the header title is displayed
     expect(
       find.text(

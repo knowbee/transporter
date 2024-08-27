@@ -22,6 +22,7 @@ void main() {
       const WelcomeScreen(),
       userRepository: MockUserRepository(),
     );
+    await tester.pumpAndSettle();
     // Verify that the welcome image is displayed
     expect(find.byType(Image), findsOneWidget);
     expect(

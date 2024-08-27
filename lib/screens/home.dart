@@ -46,8 +46,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       extendBody: true,
       drawer: const CustomDrawer(),
+      backgroundColor: Colors.white,
       body: SizedBox(
-        height: MediaQuery.of(context).size.height - 100,
         child: Stack(
           children: [
             GoogleMap(
@@ -105,7 +105,8 @@ class _HomePageState extends State<HomePage> {
             ),
             Positioned(
               key: const Key('seachAndToggle'),
-              bottom: 40,
+              bottom: // in the middle of the screen
+                  (MediaQuery.of(context).size.height / 2) * 0.30,
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Padding(
@@ -127,7 +128,11 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: _buildFloatingActionButton(),
-      bottomNavigationBar: _buildBottomNavigationBar(),
+      bottomNavigationBar: Material(
+        color: const Color(0xFFF1EDE4),
+        shadowColor: Colors.transparent,
+        child: _buildBottomNavigationBar(),
+      ),
     );
   }
 
@@ -255,25 +260,30 @@ class _HomePageState extends State<HomePage> {
   Widget _buildBottomNavigationBar() {
     return ClipRRect(
       borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(20),
-        topRight: Radius.circular(20),
+        topLeft: Radius.circular(40),
+        topRight: Radius.circular(40),
       ),
-      child: BottomAppBar(
-        height: 70,
-        notchMargin: 0,
+      child: Material(
+        color: Colors.transparent,
         shadowColor: Colors.transparent,
-        color: AppColors.tWhite,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: BottomNavigationLinks.values
-              .map(
-                (e) => _buildNavBarItem(
-                  index: e.index,
-                  iconPhoto: e.icon,
-                  label: e.label,
-                ),
-              )
-              .toList(),
+        child: BottomAppBar(
+          height: MediaQuery.of(context).size.height * 0.10,
+          color: AppColors.tWhite.withOpacity(.99),
+          child: Container(
+            padding: const EdgeInsets.only(top: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: BottomNavigationLinks.values
+                  .map(
+                    (e) => _buildNavBarItem(
+                      index: e.index,
+                      iconPhoto: e.icon,
+                      label: e.label,
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
         ),
       ),
     );
@@ -296,16 +306,17 @@ class _HomePageState extends State<HomePage> {
                 _selectedIndex == index ? AppColors.tGreen : AppColors.tGrey,
                 BlendMode.srcIn,
               ),
+              width: 25,
             ),
           if (iconPhoto != null)
             const SizedBox(height: 8)
           else
-            const SizedBox(height: 26),
+            const SizedBox(height: 33),
           Text(
             label,
             style: _selectedIndex == index
                 ? Styles.smallParagraphLightGreen
-                : Styles.smallParagraphGrey,
+                : Styles.regularBlackText,
           ),
         ],
       ),

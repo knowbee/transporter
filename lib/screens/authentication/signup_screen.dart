@@ -298,41 +298,46 @@ class _SignUpFormState extends State<SignUpForm> {
   Widget _buildSignUpButton() {
     return SizedBox(
       width: double.infinity,
-      child: TButton(
-        key: const Key('signup_button'),
-        onPressed: () async {
-          if (_formKey.currentState?.validate() ?? false) {
-            await context.read<AuthCubit>().signUp(
-                  email: _emailController.text,
-                  phoneNumber:
-                      _selectedCountry.phoneCode + _phoneController.text,
-                  name: _nameController.text,
-                  gender: _selectedGender ?? '',
-                );
-            if (context.read<AuthCubit>().state is AuthenticationFailed) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    Strings.of(context).user_signup_failed_message,
-                    style: Styles.mediumWhiteText,
-                  ),
-                  backgroundColor: AppColors.tRed,
-                ),
-              );
-            } else {
-              await Navigator.push(
-                context,
-                MaterialPageRoute<Material>(
-                  builder: (context) => const SetNewPasswordScreen(),
-                ),
-              );
-            }
-            _emailController.clear();
-            _phoneController.clear();
-            _nameController.clear();
-          }
+      child: BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, state) {
+          return TButton(
+            key: const Key('signup_button'),
+            isLoading: state is Loading,
+            onPressed: () async {
+              if (_formKey.currentState?.validate() ?? false) {
+                await context.read<AuthCubit>().signUp(
+                      email: _emailController.text,
+                      phoneNumber:
+                          _selectedCountry.phoneCode + _phoneController.text,
+                      name: _nameController.text,
+                      gender: _selectedGender ?? '',
+                    );
+                if (context.read<AuthCubit>().state is AuthenticationFailed) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        Strings.of(context).user_signup_failed_message,
+                        style: Styles.mediumWhiteText,
+                      ),
+                      backgroundColor: AppColors.tRed,
+                    ),
+                  );
+                } else {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute<Material>(
+                      builder: (context) => const SetNewPasswordScreen(),
+                    ),
+                  );
+                }
+                _emailController.clear();
+                _phoneController.clear();
+                _nameController.clear();
+              }
+            },
+            title: Strings.of(context).signup_button_label,
+          );
         },
-        title: Strings.of(context).signup_button_label,
       ),
     );
   }
