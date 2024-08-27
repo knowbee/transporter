@@ -76,25 +76,5 @@ void main() {
     // Navigate back to Sign In screen
     await tester.tap(find.text(Strings.current.header_back_label));
     await tester.pumpAndSettle();
-
-    // // Test successful sign in navigation to Home screen
-    // await tester.enterText(
-    //   find.widgetWithText(
-    //     TextFormField,
-    //     Strings.current.signin_email_or_phone,
-    //   ),
-    //   'test@example.com',
-    // );
-    // await tester.enterText(
-    //   find.widgetWithText(
-    //     TextFormField,
-    //     Strings.current.signin_password_label,
-    //   ),
-    //   'password',
-    // );
-    // await tester
-    //     .tap(find.widgetWithText(ElevatedButton, Strings.current.signin_label));
-    // await tester.pumpAndSettle();
-    // expect(find.byType(HomePage), findsOneWidget);
   });
 }

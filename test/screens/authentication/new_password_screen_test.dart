@@ -41,25 +41,5 @@ void main() {
       find.text(Strings.current.confirm_password_validation),
       findsOneWidget,
     );
-
-    // // Test successful password entry
-    // await tester.enterText(
-    //   find.widgetWithText(TextFormField, Strings.current.new_password_label),
-    //   'newpassword123',
-    // );
-    // await tester.enterText(
-    //   find.widgetWithText(
-    //     TextFormField,
-    //     Strings.current.confirm_password_label,
-    //   ),
-    //   'newpassword123',
-    // );
-    // await tester.tap(
-    //   find.widgetWithText(ElevatedButton, Strings.current.save_button_label),
-    // );
-    // await tester.pumpAndSettle();
-
-    // // Verify that the screen navigates to SignInScreen after successful save
-    // expect(find.byType(SignInScreen), findsOneWidget);
   });
 }

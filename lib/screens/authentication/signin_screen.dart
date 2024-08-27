@@ -113,6 +113,7 @@ class _SignInFormState extends State<SignInForm> {
 
   Widget _buildPasswordField() {
     return TFormField(
+      key: const Key('password_field'),
       fieldType: FieldType.password,
       labelText: Strings.of(context).signin_password_label,
       labelStyle: Styles.regularGreyParagraph,
@@ -190,11 +191,12 @@ class _SignInFormState extends State<SignInForm> {
     return SizedBox(
       width: double.infinity,
       child: TButton(
+        key: const Key('sign_in_button'),
         onPressed: () async {
           if (_formKey.currentState?.validate() ?? false) {
             await context.read<AuthCubit>().logIn(
-                  _identifierController.text,
-                  _passwordController.text,
+                  email: _identifierController.text,
+                  password: _passwordController.text,
                 );
             if (context.read<AuthCubit>().state == AuthenticationFailed() ||
                 context.read<AuthCubit>().state == Unauthenticated()) {

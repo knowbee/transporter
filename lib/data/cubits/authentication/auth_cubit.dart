@@ -22,7 +22,10 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> logIn(String email, String password) async {
+  Future<void> logIn({
+    required String email,
+    required String password,
+  }) async {
     try {
       final user = await userRepository.authenticateUser(email, password);
       if (user != null) {
@@ -79,9 +82,11 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> setNewPassword(String newPassword) async {
+  Future<void> setNewPassword({
+    required String password,
+  }) async {
     try {
-      final user = await userRepository.setNewPassword(newPassword);
+      final user = await userRepository.setNewPassword(password);
       if (user != null) {
         emit(Authenticated(user: user));
       } else {
