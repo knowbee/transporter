@@ -10,7 +10,7 @@ dependencies:
   animated_size_and_fade: ^4.0.0
   bloc: ^8.1.4
   carousel_slider: ^5.0.0
-  country_picker: ^2.0.26
+  country_picker: ^2.0.27
 
   analyzer: '>=4.6.0 <=5.12.0'
   flutter:
