@@ -25,7 +25,7 @@ dependencies:
 
   intl_utils: ^2.8.7
   flutter_toggle_tab: ^1.4.1
-  google_maps_flutter: ^2.9.0
+  google_maps_flutter: ^2.10.0
   intersperse: ^2.0.0
 
   hive: ^2.2.3
