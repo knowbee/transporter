@@ -12,7 +12,7 @@ dependencies:
   carousel_slider: ^5.0.0
   country_picker: ^2.0.26
 
-  analyzer: '>=4.6.0 <=5.12.0'
+  analyzer: ^6.11.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
